@@ -1,0 +1,77 @@
+@font-face {
+    font-family: myFont;
+    src: url(../font/PPNeueMontreal-book.otf);
+}
+
+@font-face {
+    font-family: myFont;
+    src: url(../font/PPNeueMontreal-Medium.otf);
+}
+
+:root {
+    --body-font-family: myFont,sans-serif;
+    --serif-font-family: Migra,sans-serif;
+
+    --color-coal: #191d1c;
+    --color-almond: #f0f0ea;
+    --color-white: #fff;
+
+    --theme-text-color: var(--color-white);
+
+    --fluid-screen: 100vw;
+    --fluid-bp: calc((var(--fluid-screen) - 20rem) / 2240);
+    --space-s: calc(1rem + 12 * var(--fluid-bp));
+    --space-m: calc(1.5rem + 18 * var(--fluid-bp));
+    --space-s-xl: calc(1rem + 68 * var(--fluid-bp));
+    --space-l: calc(2rem + 24 * var(--fluid-bp));
+    --space-xs: calc(0.75rem + 9 * var(--fluid-bp));
+    --space-2xs: calc(0.5rem + 6 * var(--fluid-bp));
+    --space-xl-3xl: calc(3rem + 120 * var(--fluid-bp));
+    --space-section: calc(var(--space-xl-3xl) * 1.2);
+
+    --tb-gutter-x: 1.5rem;
+
+    --border-radius: var(--space-s-m);
+    --logo-height: var(--space-l);
+    --site-header-padding: var(--space-m);
+    --font-size-small: 16px;
+    --logo-width: calc(var(--logo-height) * 150 / 60);
+    --nav-items: 5;
+    --container-padding: var(--space-s-xl);
+
+    --gutter-x: var(--space-s);
+    --gutter-y: var(--space-s);
+
+    --step-2: calc(1.3225rem + 23.29 * var(--fluid-bp));
+    --step-8: calc(3.05875rem + 128.94 * var(--fluid-bp));
+
+    --site-header-height: calc(var(--logo-height) + var(--site-header-padding) * 2);
+
+    --tb-border-color: #eaeef4;
+
+    /* HOME */
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+
+
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    margin: 0;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding: 0;
+}
+
+

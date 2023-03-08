@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'Whyte Inktrap';
+    src: url(../../font/WhyteInktrap-Book.woff2) format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+@font-face {
+    font-family: 'Whyte Inktrap';
+    src: url(../../font/WhyteInktrap-Medium.woff2) format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Whyte Inktrap';
+    src: url(../../font/WhyteInktrap-Light.woff2) format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+@font-face {
+	font-family: 'Brice';
+	src: url('../../font/Brice-Regular.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: auto;
+}
+
+@font-face {
+	font-family: 'Brice';
+	src: url('../../font/Brice-SemiBold.otf') format('opentype');
+	font-weight: 600;
+	font-style: normal;
+	font-display: auto;
+}
+
+@font-face {
+	font-family: 'Brice';
+	src: url('../../font/Brice-Bold.otf') format('opentype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: auto;
+}
+
+@font-face {
+	font-family: 'Brice Sun';
+	src: url('../../font/StudioSun-BriceRegular.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: auto;
+}
+
+@font-face {
+	font-family: 'Brice Sun';
+	src: url('../../font/StudioSun-BriceSemiBold.otf') format('opentype');
+	font-weight: 600;
+	font-style: normal;
+	font-display: auto;
+}
+
+@font-face {
+	font-family: 'Brice Sun';
+	src: url('../../font/StudioSun-BriceBold.otf') format('opentype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: auto;
+}
+
+.p-col.left {
+    width: 35%;
+    padding-top: 5vw;
+}
