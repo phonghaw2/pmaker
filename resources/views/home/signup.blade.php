@@ -26,16 +26,16 @@
 
                 <div id="login_password" class="input-row">
                     <input aria-label="Password" placeholder="Password" type="password" value=""
-                        name="customer[password]" class="password" size="16" data-cc-animate-delay="0.35s">
-                    <div id="forgot_password" data-cc-animate-delay="0.5s" style="">
+                        name="password" class="password" size="16" autocomplete="on">
+                    <div id="forgot_password" style="">
                         <a href="#" onclick="showRecoverPasswordForm();return false;">Forgot your password?</a>
                     </div>
                 </div>
 
                 <div class="wide-action">
-                    <input type="submit" value="Create" data-cc-animate-delay="0.6s"style="">
+                    <input type="submit" value="Create" style="">
                     <span class="note">
-                        <a href="{{ route('index') }}" data-cc-animate-delay="0.9s" style="">
+                        <a href="{{ route('index') }}"  style="">
                             Return to Pmaker
                         </a>
                     </span>

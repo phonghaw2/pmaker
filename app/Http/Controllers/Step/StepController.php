@@ -14,8 +14,7 @@ class StepController extends Controller
 
     public function __construct()
     {
-        $this->data_step['p_next_step'] = '';
-        $this->data_step['p_type'] = '';
+
     }
     public function guide()
     {
@@ -29,7 +28,6 @@ class StepController extends Controller
 
     public function step_2(Request $request)
     {
-        dd($this->shared);
         return view('home.step.step_2');
     }
 
@@ -63,11 +61,10 @@ class StepController extends Controller
 
     public function step_save(Request $request)
     {
-        foreach ($request->all() as $key => $value) {
-            $this->data_step[$key] = $value;
-            $this->shared[$key] = $value;
+        $data = $request->all();
+        foreach ($data as $key => $value) {
+            $request->session()->put('data.'. $key, $value);
         }
-        // $this->$data_step[] =
-        return redirect()->route('step.step_' . $this->data_step['p_next_step'])->with('success', 'Password not match');
+        return redirect()->route('step.step_' . session('data')['p_next_step']);
     }
 }

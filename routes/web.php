@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Executed when no other routes match
+Route::fallback(function () {
+    // page not found
+    abort(404);
+});
+
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/main', [HomeController::class, 'main'])->name('main');
@@ -51,3 +57,5 @@ Route::group([
 });
 
 Route::get('/main/api/test', [HomeController::class, 'check'])->name('check');
+
+

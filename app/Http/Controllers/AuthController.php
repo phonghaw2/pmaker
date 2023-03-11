@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Authentication;
 
 class AuthController extends Controller
 {
@@ -57,7 +58,6 @@ class AuthController extends Controller
                 'required',
                 'min:6',
             ],
-
         ]);
         User::create([
             'name' => $request->name,
