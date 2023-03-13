@@ -26,14 +26,17 @@
                 </div>
             </div>
             <div class="p-col right">
-                <form method="post" action="{{ route('step.save') }}" id="step_save" class="form-info">
+                <form method="post" action="{{ route('step.step_3') }}" id="step-save" class="form-info">
                     @csrf
-                    <input type="hidden" name="p_next_step" value="3">
+                    @method('POST')
                     <div class="card">
                         <div class="front card-item">
                             <div class="form-col">
                                 <label class="label" for="name">What's your name? <span title="required">*</span></label>
                                 <input class="field" type="text" name="p_name" id="name" value="{{ old('p_name') }}" required placeholder="My name is Jeff" maxlength="100">
+                                @error('p_name')
+                                    <span class="text-red-400 text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-col">

@@ -37,9 +37,9 @@ Route::group([
 ], static function () {
     Route::get('/recover', [AuthController::class, 'recover'])->name('recover');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/login_action', [AuthController::class, 'login_action'])->name('login_action');
+    Route::post('/login-action', [AuthController::class, 'loginAction'])->name('login_action');
     Route::get('/signup', [AuthController::class, 'signup'])->name('signup');
-    Route::post('/signup_action', [AuthController::class, 'signup_action'])->name('signup_action');
+    Route::post('/signup-action', [AuthController::class, 'signupAction'])->name('signup_action');
 });
 
 Route::group([
@@ -48,12 +48,12 @@ Route::group([
 ], static function () {
     // FULL MAIN STEP TO CREATE PAGE
     Route::get('/', [StepController::class, 'guide'])->name('guide');
-    Route::get('/step-1', [StepController::class, 'step_1'])->name('step_1');
-    Route::get('/step-2', [StepController::class, 'step_2'])->name('step_2');
-    Route::get('/step-3', [StepController::class, 'step_3'])->name('step_3');
-    Route::get('/step-4', [StepController::class, 'step_4'])->name('step_4');
-    Route::get('/step-5', [StepController::class, 'step_5'])->name('step_5');
-    Route::post('/save', [StepController::class, 'step_save'])->name('save');
+    Route::get('/step-1', [StepController::class, 'step1'])->name('step_1');
+    Route::match(['get', 'post'], '/step-2', [StepController::class, 'step2'])->name('step_2');
+    Route::match(['get', 'post'], '/step-3', [StepController::class, 'step3'])->name('step_3');
+    Route::get('/step-4', [StepController::class, 'step4'])->name('step_4');
+    Route::get('/step-5', [StepController::class, 'step5'])->name('step_5');
+    Route::post('/save', [StepController::class, 'stepSave'])->name('save');
 });
 
 Route::get('/main/api/test', [HomeController::class, 'check'])->name('check');

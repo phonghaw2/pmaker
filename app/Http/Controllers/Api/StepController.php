@@ -26,7 +26,7 @@ class StepController extends Controller
                 // render innerHTML for new social field
                 $innerHTML  = "<div class='choose-icon'>";
                 $innerHTML .= "<div class='choosen-icon'>";
-                $innerHTML .= "<img src='/images/" . $platform . "_default.svg' class='p-icon' alt='instagram' title='instagram'>";
+                $innerHTML .= "<img src='/images/" . $platform . "_default.svg' class='p-icon' alt='" . $platform . "' title='" . $platform . "'>";
                 $innerHTML .= "<i class='dropdown icon'><img src='/images/down-chevron.svg'></i></div>";
                 $innerHTML .= "<ul class='select-icon-ul'>";
 

@@ -12,6 +12,7 @@ $(document).ready(function () {
     $('.f-prev').click( function( event ) {
         $('.card').removeClass('flipped');
         $('.p-func-left').removeClass('f-show');
+        $('.f-next').removeClass('submit');
     });
 
     $(document).on("click",".submit", function() {
@@ -19,7 +20,7 @@ $(document).ready(function () {
     });
 
     function step_save() {
-        $('#step_save').submit();
+        $('#step-save').submit();
     }
 
 });

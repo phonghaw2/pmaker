@@ -27,13 +27,13 @@ $(document).ready(function () {
         if (e.key == 'Enter' || e.keyCode === 13) {
             let tag = e.target.value.replace(/\s+/g, ' ');
             if (tag.length > 1 && !tags.includes(tag)) {
-                tag.split(',').forEach(tag => {
+                // tag.split(',').forEach(tag => {
                     tags.push(tag);
                     createTag(tag);
                     if (tags.length >= 10) {
                         $('#tag-input').hide();
                     };
-                });
+                // });
             }
             e.target.value = '';
         }

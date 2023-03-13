@@ -17,8 +17,8 @@ final class TemplateEnum extends Enum
     const OptionThree   =   2;
 
     // Type template
-    const PORTFOLIO     =   0;
-    const BLOG          =   1;
+    const PORTFOLIO     =   1;
+    const BLOG          =   2;
 
     // Flag
     const FLAG_EDITABLE_OFF = 0;

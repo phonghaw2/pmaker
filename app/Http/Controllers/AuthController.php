@@ -16,7 +16,7 @@ class AuthController extends Controller
         return view('home.login');
     }
 
-    public function login_action(request $request)
+    public function loginAction(request $request)
     {
         $request->validate([
             'email' => [
@@ -45,7 +45,7 @@ class AuthController extends Controller
         return view('home.signup');
     }
 
-    public function signup_action(request $request)
+    public function signupAction(request $request)
     {
         $request->validate([
             'name' => 'required',
