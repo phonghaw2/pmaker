@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class CheckDataStep2Request extends FormRequest
 {
+    public function __construct() {
+        if (FacadesRequest::isMethod('get') && !session('step2')) {
+            return redirect()->back()->withInput();
+        }
+    }
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -27,32 +32,48 @@ class CheckDataStep2Request extends FormRequest
         return [
             'p_name' => [
                 'required',
+                'string',
+                'max:100',
+                'min:10',
             ],
             'p_about' => [
-                // 'required',
+                'required',
                 'string',
+                'max:500',
+                'min:50',
             ],
             'p_company_func' => [
-                // 'required',
+                'required',
+                'string',
+                'max:150',
+                'min:10',
             ],
             'p_address' => [
-                // 'required',
+                'required',
                 'string',
-                'max:100'
+                'max:150',
+                'min:10',
             ],
             'p_phone' => [
-                // 'required',
+                'required',
                 'numeric',
-                // 'digits_between:10,11',
+                'digits_between:7,11',
             ],
         ];
     }
 
-    // public function messages()
-    // {
-    //     dd(2);
-    //     return [
-    //         'p_name.required' => 'tao test message',
-    //     ];
-    // }
+    public function messages()
+    {
+        return [
+            'p_name.required' => 'Do you have a name?',
+            'p_about.required' => 'Please introduce yourself a little bit',
+            'p_company_func.required' => 'The field is required. Maybe "Freelance at home"',
+            'p_address.required' => 'Please enter the address.',
+            'p_phone.required' => 'The field is required.',
+            'max' => 'The field must not be greater than :max characters.',
+            'min' => 'The field must be at least :min characters.',
+            'numeric' => 'Invalid phone number.',
+            'digits_between' => 'The phone number must be between :min and :max digits.',
+        ];
+    }
 }

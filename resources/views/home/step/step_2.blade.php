@@ -32,30 +32,31 @@
                     <div class="card">
                         <div class="front card-item">
                             <div class="form-col">
-                                <label class="label" for="name">What's your name? <span title="required">*</span></label>
-                                <input class="field" type="text" name="p_name" id="name" value="{{ old('p_name') }}" required placeholder="My name is Jeff" maxlength="100">
-                                @error('p_name')
-                                    <span class="text-red-400 text-sm">{{ $message }}</span>
-                                @enderror
+                                <label class="label" for="name">What's your name? <span title="required">*</span>
+                                    @error('p_name')
+                                        <button class="btn-msg-error">{{ $message }}</button>
+                                    @enderror
+                                </label>
+                                <input class="field" type="text" name="p_name" id="name" value="{{ old('p_name') }}" placeholder="My name is Jeff" maxlength="100">
                             </div>
 
                             <div class="form-col">
                                 <label class="label" for="about">About Your <span title="required">*</span></label>
-                                <textarea class="field" name="p_about" id="about" placeholder="Hello dude! ..." value="{{ old('p_about') }}" ></textarea>
+                                <textarea class="field" name="p_about" id="about" placeholder="Hello dude! ..." maxlength="500">{{ old('p_about') }}</textarea>
                             </div>
                         </div>
                         <div class="back card-item">
                             <div class="form-col">
                                 <label class="label" for="working">WHAT'S YOUR COMPANY & FUNCTION?<span title="required">*</span></label>
-                                <input class="field" type="text" name="p_company_func" id="working" value="" required placeholder="Company Name, Job Title" value="{{ old('p_company_func') }}" >
+                                <input class="field" type="text" name="p_company_func" id="working" value="{{ old('p_company_func') }}"  placeholder="Company Name, Job Title" maxlength="150">
                             </div>
                             <div class="form-col">
                                 <label class="label" for="address">Address<span title="required">*</span></label>
-                                <input class="field" type="text" name="p_address" id="address" value="" required placeholder="501 Poplar Court Lafayette, IN 47905" value="{{ old('p_address') }}">
+                                <input class="field" type="text" name="p_address" id="address" value="{{ old('p_address') }}"  placeholder="501 Poplar Court Lafayette, IN 47905" maxlength="150">
                             </div>
                             <div class="form-col">
                                 <label class="label" for="phone">WHAT'S YOUR PHONE NUMBER?<span title="required">*</span></label>
-                                <input class="field" type="tel" name="p_phone" id="phone" value="" required placeholder="+31 6 12 34 56 78" value="{{ old('p_phone') }}">
+                                <input class="field" type="tel" name="p_phone" id="phone" value="{{ old('p_phone') }}"  placeholder="+31 6 12 34 56 78" maxlength="11">
                             </div>
                         </div>
                     </div>

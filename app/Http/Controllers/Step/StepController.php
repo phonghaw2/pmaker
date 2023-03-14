@@ -57,17 +57,17 @@ class StepController extends Controller
     public function step3(CheckDataStep2Request $request)
     {
         // try {
-            if (FacadesRequest::isMethod('post')) {
-                $data = $request->validated();
-                session()->put('step2', $data);
 
-                $data_step3 = [];
-                if (session('step3')) {
-                    $data_step3 = session('step3');
-                }
-                $p_type = session('p_type');
-                // return redirect()->route('step.step_3')->with('success', 'ehehe');
+            $data = $request->validated();
+            session()->put('step2', $data);
+
+            $data_step3 = [];
+            if (session('step3')) {
+                $data_step3 = session('step3');
             }
+            $p_type = session('p_type');
+                // return redirect()->route('step.step_3')->with('success', 'ehehe');
+
             return view('home.step.step_3', [
                 'p_type' => $p_type,
                 'data' => $data_step3,

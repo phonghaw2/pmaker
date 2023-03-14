@@ -44,14 +44,9 @@
     <footer class="pmaker-footer">
         <div class="c-footer_thanks">
             <span class="c-footer_thanks_from -mobile" aria-hidden="true">From the Phong Ha</span>
-
             <span class="c-footer_thanks_text">
                 Thank you<br> for your <span class="u-relative u-inline-block">support<span class="c-footer_thanks_from -desktop">From the Phong Ha</span></span>
             </span>
-
-            <figure class="c-footer_thanks_visual">
-                <div class="c-character has-thumbnail is-inview" data-module-character="m15" data-character-file="mad-coffee" data-scroll="" data-scroll-call="inview, Character" data-scroll-repeat=""><img src="/assets/data/lottie/mad-coffee.png"></div>
-            </figure>
         </div>
     </footer>
     <div class="phong-intro">

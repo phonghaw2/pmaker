@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/home/step3.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home/main.css') }}">
     <title>Pmaker - Step 3</title>
-    <script>
-        const tags = [];
-        const experience = [];
-        const certificate = [];
-    </script>
 </head>
-
 <body translate="no">
     <div class="pick-container">
         <div class="project-dv">
@@ -30,7 +23,7 @@
                 </div>
             </div>
             <div class="p-col right">
-                <form action="" class="form-info">
+                <div class="form-info">
                     <div class="card">
                         <div class="front card-item">
                             <div class="form-col">
@@ -40,7 +33,7 @@
                                         <span>Example</span>
                                         <svg viewBox="0 0 50 50" width="16px" height="16px" onclick="remove(this, '')"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"/></svg>
                                     </div>
-                                    <input type="text" id="tag-input" maxlength="20" name="tech-stack">
+                                    <input type="text" id="tag-input" maxlength="20" name="p_tech_stack">
                                 </div>
                             </div>
                             <div class="form-col col-experience">
@@ -84,7 +77,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <input class="field" type="text" name="education" value="" placeholder="University of California, Los Angeles" maxlength="150">
+                                <input class="field" type="text" name="p_education[]" value="" placeholder="University of California, Los Angeles" maxlength="150">
                             </div>
                             <div class="form-col col-certification">
                                 <label class="label" for="certification">Certifications </label>
@@ -118,7 +111,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -358,6 +351,11 @@
         </a>
     </div>
 
+    <form action="{{ route('step.save') }}" method="post" id="step_save">
+        @csrf
+        <input type="hidden" id="type" name="p_type" value="">
+        <input type="hidden" id="type" name="p_next_step" value="2">
+    </form>
     <footer class="pmaker-footer">
         <div class="c-footer_thanks">
             <span class="c-footer_thanks_from -mobile" aria-hidden="true">From the Phong Ha</span>
@@ -367,6 +365,11 @@
             </span>
         </div>
     </footer>
+    <script>
+        const tags = [];
+        const experience = [];
+        const certificate = [];
+    </script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/step3.js') }}"></script>
     <script>
