@@ -4,7 +4,8 @@ $(document).ready(function () {
     $('.f-next').click( function( event ) {
         $('.card').addClass('flipped');
         if ($('.p-func-left').hasClass('f-show')) {
-            window.location.href = "/main/step-4";
+            $('.f-next').addClass('submit');
+
         } else {
             $('.p-func-left').addClass('f-show');
         }

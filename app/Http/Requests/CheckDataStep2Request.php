@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class CheckDataStep2Request extends FormRequest
 {
-    public function __construct() {
-        if (FacadesRequest::isMethod('get') && !session('step2')) {
-            return redirect()->back()->withInput();
-        }
-    }
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -19,6 +14,10 @@ class CheckDataStep2Request extends FormRequest
      */
     public function authorize()
     {
+        // block
+        if(FacadesRequest::ip() == '127.1.1.1'){
+            return false;
+        }
         return true;
     }
 
@@ -34,7 +33,7 @@ class CheckDataStep2Request extends FormRequest
                 'required',
                 'string',
                 'max:100',
-                'min:10',
+                'min:5',
             ],
             'p_about' => [
                 'required',
@@ -46,13 +45,13 @@ class CheckDataStep2Request extends FormRequest
                 'required',
                 'string',
                 'max:150',
-                'min:10',
+                'min:5',
             ],
             'p_address' => [
                 'required',
                 'string',
                 'max:150',
-                'min:10',
+                'min:5',
             ],
             'p_phone' => [
                 'required',
@@ -64,6 +63,9 @@ class CheckDataStep2Request extends FormRequest
 
     public function messages()
     {
+        if (FacadesRequest::isMethod('get')) {
+            return [];
+        }
         return [
             'p_name.required' => 'Do you have a name?',
             'p_about.required' => 'Please introduce yourself a little bit',

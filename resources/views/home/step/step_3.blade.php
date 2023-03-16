@@ -381,14 +381,22 @@
                 tags.splice(index, 1);
             }
         }
-        $('#abc').click( function( event ) {
-            event.preventDefault();
+
+        $(document).on("click",".submit", function() {
+            let data_experience = JSON.stringify(tags);
+            console.log(data_experience);
             $.ajax({
-                type: "GET",
-                url: '{{ route('check') }}',
-                data: {data : data},
+                type: "POST",
+                url: '{{ route('step.step_4') }}',
+                data: {
+                    '_token': "{{ csrf_token() }}",
+                    tags : tags,
+                    experience : experience,
+                    certificate : certificate
+                },
                 dataType: 'json',
                 success: function (response) {
+                    window.location.href = "/main/step-4";
                 }
             });
         });

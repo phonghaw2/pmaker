@@ -39,7 +39,6 @@
     <form method="post" action="{{ route('step.step_2') }}" id="next-step">
         @csrf
         <input type="hidden" id="type" name="p_type" value="">
-        <input type="hidden" id="type" name="p_next_step" value="2">
     </form>
     <footer class="pmaker-footer">
         <div class="c-footer_thanks">
