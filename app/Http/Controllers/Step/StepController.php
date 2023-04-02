@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Step;
 use App\Enums\TemplateEnum;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ResponseTrait;
 use App\Http\Requests\CheckDataStep1Request;
 use App\Http\Requests\CheckDataStep2Request;
+use App\Models\Certification;
+use App\Models\Experience;
 use App\Models\Social;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as FacadesRequest;
@@ -44,10 +45,18 @@ class StepController extends Controller
         if (FacadesRequest::isMethod('get') && !session('step2')) {
             return redirect()->route('step.step_2');
         }
+        // Storing data to session
         $data = $request->validated();
         session()->put('step2', $data);
 
+        // Return view with data saved
         $p_type = session('p_type');
+
+        $user_id = 3;
+
+        $certification = Certification::where('user_id', $user_id)->get();
+        $experience = Experience::where('user_id', $user_id)->get();
+        dd($certification);
         return view('home.step.step_3', [
             'p_type' => $p_type,
         ]);

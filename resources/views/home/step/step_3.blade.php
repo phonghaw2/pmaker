@@ -77,7 +77,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <input class="field" type="text" name="p_education[]" value="" placeholder="University of California, Los Angeles" maxlength="150">
+                                <input class="field" type="text" value="" placeholder="University of California, Los Angeles" maxlength="150">
                             </div>
                             <div class="form-col col-certification">
                                 <label class="label" for="certification">Certifications </label>
@@ -116,6 +116,12 @@
         </div>
     </div>
 
+    <form method="post" action="{{ route('step.step_4') }}" id="step-save" class="form-info">
+        @csrf
+        @method('POST')
+        <input type="hidden" id="type" name="p_tech_stack" value="">
+        <input type="hidden" id="type" name="p_education" value="">
+    </form>
     {{-- EXPERIENCE --}}
     <div class="box-lightbox add-exp-modal">
         <div class="modal-dialog">
@@ -267,7 +273,7 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button id="add-cert-btn">Save</button>
+                    <button id="add-cert-card">Save</button>
                 </div>
             </div>
         </div>
@@ -381,25 +387,6 @@
                 tags.splice(index, 1);
             }
         }
-
-        $(document).on("click",".submit", function() {
-            let data_experience = JSON.stringify(tags);
-            console.log(data_experience);
-            $.ajax({
-                type: "POST",
-                url: '{{ route('step.step_4') }}',
-                data: {
-                    '_token': "{{ csrf_token() }}",
-                    tags : tags,
-                    experience : experience,
-                    certificate : certificate
-                },
-                dataType: 'json',
-                success: function (response) {
-                    window.location.href = "/main/step-4";
-                }
-            });
-        });
     </script>
 </body>
 </html>

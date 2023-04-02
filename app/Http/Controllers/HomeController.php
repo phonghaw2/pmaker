@@ -38,4 +38,9 @@ class HomeController extends Controller
     {
         dd($request->get('data'));
     }
+
+    public function preview(request $request)
+    {
+        return view('home.preview');
+    }
 }

@@ -28,6 +28,9 @@ class CheckDataStep2Request extends FormRequest
      */
     public function rules()
     {
+        if (FacadesRequest::isMethod('get')) {
+            return [];
+        }
         return [
             'p_name' => [
                 'required',

@@ -71,17 +71,24 @@ $(document).ready(function () {
                 'end_date' : $('#exp-end-date').val(),
             };
 
-            ajaxRenderCard('experience', experience);
+            $.ajax({
+                type: "POST",
+                url: '/api/step/render-experience',
+                data: { experience },
+                dataType: 'json',
+                success: function (response) {
+                    renderExpDiv(experience);
+                    $('.box-lightbox').removeClass('open');
+                    returnModal();
+                },
+                error: function (response) {
+                    alert(response.responseJSON.message);
+                }
+            });
         }
     });
 
-    function returnModal() {
-        var all_input = document.querySelectorAll(".model-body input");
-        for (p_input of all_input) {
-            p_input.value = '';
-            p_input.classList.remove("warning");
-        }
-    }
+
 
     function renderExpDiv(exp = []) {
         let diff_month = monthDiff(new Date(exp.start_date), new Date(exp.end_date));
@@ -177,7 +184,20 @@ $(document).ready(function () {
                 'credential_url' : $('#cert-credential-url').val(),
             };
 
-            ajaxRenderCard('certification', certification);
+            $.ajax({
+                type: "POST",
+                url: '/api/step/render-certification',
+                data: { certification },
+                dataType: 'json',
+                success: function (response) {
+                    renderCertDiv(certification);
+                    $('.box-lightbox').removeClass('open');
+                    returnModal();
+                },
+                error: function (response) {
+                    alert(response.responseJSON.message);
+                }
+            });
         }
     });
 
@@ -217,25 +237,36 @@ $(document).ready(function () {
     }
 
 
-    function ajaxRenderCard(name, data) {
-        $.ajax({
-            type: "POST",
-            url: '/api/step/render-' + name,
-            data: { data },
-            dataType: 'json',
-            success: function (response) {
-                const card = document.createElement('div');
-                card.setAttribute('class', 'form-' + name + '-card');
-                card.innerHTML = response.data;
-                certDiv.append(card);
+    function renderCertDiv(cert = []) {
+        let diff_month = monthDiff(new Date(cert.issue_date), new Date(cert.expiration_date));
+        if (cert.credential_id != '') {
+            cert.credential_id = "Credintial ID " + cert.credential_id;
+        }
+        // render
+        const card = document.createElement('div');
+        card.setAttribute('class', 'form-certification-card');
+        card.innerHTML =
+            `<div><img src="" alt="" width="48"></div>
+            <div class="certification-card">
+                <div class="certification-name"><span>` + cert.name + `</span></div>
+                <span class="certification-organization">` + cert.organization + `</span>
+                <span class="certification-info"> Issued ` + cert.issue_date + `</span>
+                <span class="certification-info">` + cert.credential_id + `</span>
+            </div>
+            <div class="button-wrapper">
+                <div class="swiper-button swiper-next-button edit-card-cert" role="button" data-test="`+ cert.name +`">
+                    <svg viewBox="0 0 15 15" fill="none" stroke="currentColor"> <path fill-rule="evenodd" clip-rule="evenodd" d="M11.8536 1.14645C11.6583 0.951184 11.3417 0.951184 11.1465 1.14645L3.71455 8.57836C3.62459 8.66832 3.55263 8.77461 3.50251 8.89155L2.04044 12.303C1.9599 12.491 2.00189 12.709 2.14646 12.8536C2.29103 12.9981 2.50905 13.0401 2.69697 12.9596L6.10847 11.4975C6.2254 11.4474 6.3317 11.3754 6.42166 11.2855L13.8536 3.85355C14.0488 3.65829 14.0488 3.34171 13.8536 3.14645L11.8536 1.14645ZM4.42166 9.28547L11.5 2.20711L12.7929 3.5L5.71455 10.5784L4.21924 11.2192L3.78081 10.7808L4.42166 9.28547Z" fill="currentColor" /> </svg>
+                </div>
+            </div>`;
+        certDiv.append(card);
+    }
 
-                $('.box-lightbox').removeClass('open');
-                returnModal();
-            },
-            error: function (response) {
-                alert(response.responseJSON.message);
-            }
-        });
+    function returnModal() {
+        var all_input = document.querySelectorAll(".model-body input");
+        for (p_input of all_input) {
+            p_input.value = '';
+            p_input.classList.remove("warning");
+        }
     }
 });
 
