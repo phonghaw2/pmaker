@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Certifications extends Model
+class Certification extends Model
 {
     use HasFactory;
-    protected $table = 'certification';
+    protected $table = 'certifications';
 
     protected $fillable = [
         'user_id',
@@ -19,4 +19,9 @@ class Certifications extends Model
         'credential_id',
         'credential_url',
     ];
+
+    public function getDataFormId($user_id) {
+        $data = static::where('user_id', $user_id)->get();
+        return $data;
+    }
 }
