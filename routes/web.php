@@ -58,4 +58,4 @@ Route::group([
 
 Route::get('/main/api/test', [HomeController::class, 'check'])->name('check');
 
-
+Route::get('/main/preview', [HomeController::class, 'preview'])->name('preview');

@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\StepController;
 use App\Http\Controllers\Gms\ApiController;
+use App\Http\Controllers\Step\ApiStepController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +30,6 @@ Route::prefix('/gms')->group( function () {
 
 Route::get('/check-social', [ApiController::class, 'check_exist_social'])->name('check_exist_social');
 
-Route::get('/render-social', [StepController::class, 'render_social_field'])->name('render_social_field');
+Route::get('/render-social', [ApiStepController::class, 'renderSocialField'])->name('render_social_field');
+Route::post('/step/render-certification', [ApiStepController::class, 'insertCertification'])->name('insert_certification');
+Route::post('/step/render-experience', [ApiStepController::class, 'insertExperience'])->name('insert_experience');
