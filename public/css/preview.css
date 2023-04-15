@@ -1,0 +1,283 @@
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    margin: 0;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding: 0;
+}
+
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    vertical-align: middle;
+}
+
+a {
+    color: inherit;
+    -webkit-text-decoration: inherit;
+    text-decoration: inherit;
+}
+
+ol, ul, menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
+    --tw-border-opacity: 1;
+}
+
+body {
+    font-family: Montserrat, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+.preview-header {
+    border-bottom-width: 1px;
+    background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+}
+
+
+.p-h-div {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-flow: row wrap;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 1.25rem;
+}
+
+.p-h-title {
+    margin-bottom: 0px;
+    width: auto;
+    flex: 1 1 0%;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    border-width: 0px;
+    padding-bottom: 0px;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    white-space: nowrap;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    font-weight: 700;
+    color: rgb(51 65 85 / var(--tw-text-opacity));
+}
+
+.p-h-svg {
+    margin-right: 0.5rem;
+    height: 1.25rem;
+    width: 1.25rem;
+    fill: currentcolor;
+}
+
+.p-h-subbtn {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: auto;
+}
+
+.a-btn {
+    margin-right: 1rem;
+    border: 1px solid rgb(226 232 240 / var(--tw-border-opacity));
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.625;
+    color: rgb(51 65 85 / var(--tw-text-opacity));
+    display: inline-flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    margin-right: 0.25rem;
+    outline: transparent solid 2px !important;
+    outline-offset: 2px !important;
+}
+
+.a-btn-svg {
+    margin-left: 0.25rem;
+    height: 1.25rem;
+    width: 1.25rem;
+    fill: currentcolor;
+}
+
+.preview-type {
+    padding: 1rem;
+}
+
+
+.p-t-div {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 72rem;
+}
+
+.p-t-list {
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    border: 1px solid rgb(226 232 240 / var(--tw-border-opacity));
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    --tw-text-opacity: 1;
+    color: rgb(15 23 42 / var(--tw-text-opacity));
+}
+
+.p-t-li {
+    width: 100%;
+    cursor: pointer;
+    border-bottom-width: 1px;
+    border-color: rgb(226 232 240 / var(--tw-border-opacity));
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.p-t-li-item {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-left: 0.75rem;
+}
+
+.p-t-li-input {
+    height: 1rem;
+    width: 1rem;
+    cursor: pointer;
+    border-color: rgb(203 213 225 / var(--tw-border-opacity));
+    background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+    color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+.p-t-li-label {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: rgb(71 85 105 / var(--tw-text-opacity));
+}
+
+.p-t-li-span {
+    margin-right: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(148 163 184 / var(--tw-text-opacity));
+}
+
+.p-t-li-svg {
+    height: 1.25rem;
+    width: 1.25rem;
+    fill: currentcolor;
+}
+
+.preview-content {
+    flex: 1 1 0%;
+    overflow: auto;
+}
+
+.p-c-div {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-top: 1.25rem;
+    padding-bottom: 2.5rem;
+    color: rgb(15 23 42 / var(--tw-text-opacity));
+
+}
+
+#phone {
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    background: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 438px;
+    height: 884px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 40%);
+}
+
+.p-c-desktop {
+    position: absolute;
+    overflow: hidden;
+    top: 31px;
+    left: 119px;
+    width: 770px;
+    height: 480px;
+}
+
+.css-iyw3ow {
+    height: 100%;
+    width: 100%;
+    background: #fff;
+
+}
+
+.p-c-section {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 1008px;
+    height: 635px;
+}
