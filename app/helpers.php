@@ -1,34 +1,18 @@
 <?php
 
-use App\Enums\SystemCacheKeyEnum;
-use App\Models\Post;
+use App\Rules\CheckBadWordText;
 
+if (!function_exists('getAndCacheBadWordList')) {
+    function getAndCacheBadWordList()
+    {
+        return cache()->remember(
+            'bad_word_list',
+            86400 * 30,
+            function () {
+                $list = CheckBadWordText::validate('en');
+                return collect(explode("\n", $list));
+            }
+        );
+    }
+}
 
-// if (!function_exists('getAndCachePostCities')) {
-//     function getAndCachePostCities(): array
-//     {
-//         return cache()->remember(
-//             SystemCacheKeyEnum::POST_CITIES,
-//             86400 * 30,
-//             function () {
-//                 $cities  = Post::query()
-//                     ->pluck('city')->toArray();
-//                 $arrCity = [];
-//                 foreach ($cities as $city) {
-//                     if (empty($city)) {
-//                         continue;
-//                     }
-//                     $arr = explode(', ', $city);
-//                     foreach ($arr as $item) {
-//                         if ($arrCity->contains($item)) {
-//                             continue;
-//                         }
-//                         $arrCity[] = $item;
-//                     }
-//                 }
-
-//                 return $arrCity->toArray();
-//             }
-//         );
-//     }
-// }
