@@ -15,10 +15,12 @@ class ApiStepController extends Controller
 {
     use ResponseTrait;
     use StepTrait;
+    use ArticleService;
 
-    public function renderSocialField(Request $request)
+    public function renderSocialField(Request $request, ArticleService $articleService)
     {
         try {
+            $articleService->handleUploadedImage($request->file('image'));
             $platform = $request->get('platform');
 
             $query = Social::query();
@@ -69,19 +71,21 @@ class ApiStepController extends Controller
 
     }
 
-    public function insertExperience(CheckDataRenderExperience $request)
+    public function insertExperience(CheckDataRenderExperience $request, Experience $experience)
     {
         try {
-            $data = $request->validated()['experience'];
+            $data = $request->validated();
+            $data = $data['experience'];
             $data['user_id'] = 3;
-            if (Experience::where('user_id', $data['user_id'])->where('company_name', $data['company_name'])->where('title', $data['title'])->exists()) {
+            $experience = new Experience;
+
+            if ($experience->checkExists($data)) {
                 return $this->errorResponse("This content has already been added");
             }
-            Experience::create($data);
+            Experience::create($experience);
             return $this->successResponse();
         } catch (\Throwable $th) {
             return $this->errorResponse($th->getMessage());
         }
-
     }
 }

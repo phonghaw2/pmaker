@@ -19,4 +19,11 @@ class Experience extends Model
         'start_date',
         'end_date',
     ];
+
+    public function checkExists(array $experience) {
+        return $this->where('user_id', $experience['user_id'])
+                    ->where('company_name', $experience['company_name'])
+                    ->where('title', $experience['title'])
+                    ->exists();
+    }
 }

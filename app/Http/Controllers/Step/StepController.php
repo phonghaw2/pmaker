@@ -26,24 +26,24 @@ class StepController extends Controller
 
     public function step1()
     {
-        return view('home.step.step_1');
+        return view('home.step.step-1');
     }
 
     public function step2(CheckDataStep1Request $request)
     {
         if (FacadesRequest::isMethod('get') && !session('p_type')) {
-            return redirect()->route('step.step_1');
+            return redirect()->route('step.step-1');
         }
         $data = $request->validated();
         session($data);
-        return view('home.step.step_2');
+        return view('home.step.step-2');
 
     }
 
     public function step3(CheckDataStep2Request $request)
     {
         if (FacadesRequest::isMethod('get') && !session('step2')) {
-            return redirect()->route('step.step_2');
+            return redirect()->route('step.step-2');
         }
         // Storing data to session
         $data = $request->validated();
@@ -57,7 +57,7 @@ class StepController extends Controller
         $certification = Certification::where('user_id', $user_id)->get();
         $experience = Experience::where('user_id', $user_id)->get();
         dd($certification);
-        return view('home.step.step_3', [
+        return view('home.step.step-3', [
             'p_type' => $p_type,
         ]);
     }
@@ -65,7 +65,7 @@ class StepController extends Controller
     public function step4(Request $request)
     {
         if (FacadesRequest::isMethod('get') && !session('step3')) {
-            return redirect()->route('step.step_3');
+            return redirect()->route('step.step-3');
         }
 
         if (FacadesRequest::isMethod('get') && session('step3')) {
@@ -75,7 +75,7 @@ class StepController extends Controller
             $data = $query->get();
                 // ->appends($request->all());
 
-            return view('home.step.step_4', [
+            return view('home.step.step-4', [
                 'social' => $data,
                 'platform' => $platform,
             ]);
