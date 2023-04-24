@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\File;
 class SocialController extends Controller
 {
     use ResponseTrait;
-    private object $model ;
+    private object $model;
 
     public function __construct()
     {

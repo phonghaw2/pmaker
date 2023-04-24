@@ -24,4 +24,11 @@ class Certification extends Model
         $data = static::where('user_id', $user_id)->get();
         return $data;
     }
+
+    public static function checkExists(array $certification) {
+        return static::where('user_id', $certification['user_id'])
+                    ->where('name', $certification['name'])
+                    ->where('organization', $certification['organization'])
+                    ->exists();
+    }
 }

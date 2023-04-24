@@ -56,9 +56,10 @@ class ApiStepController extends Controller
     public function insertCertification(CheckDataRenderCertification $request)
     {
         try {
-            $data = $request->validated()['certification'];
-            $data['user_id'] = 3;
-            if (Certification::where('user_id', $data['user_id'])->where('name', $data['name'])->where('organization', $data['organization'])->exists()) {
+            $data = $request->validated();
+            $data_cert = $data['certification'];
+            $data_cert['user_id'] = 3;
+            if (Certification::checkExists($data_cert)) {
                 return $this->errorResponse("This content has already been added");
             }
             Certification::create($data);
@@ -71,18 +72,17 @@ class ApiStepController extends Controller
 
     }
 
-    public function insertExperience(CheckDataRenderExperience $request, Experience $experience)
+    public function insertExperience(CheckDataRenderExperience $request)
     {
         try {
             $data = $request->validated();
-            $data = $data['experience'];
-            $data['user_id'] = 3;
-            $experience = new Experience;
+            $data_exp = $data['experience'];
+            $data_exp['user_id'] = 3;
 
-            if ($experience->checkExists($data)) {
+            if (Experience::checkExists($data_exp)) {
                 return $this->errorResponse("This content has already been added");
             }
-            Experience::create($experience);
+            Experience::create($data);
             return $this->successResponse();
         } catch (\Throwable $th) {
             return $this->errorResponse($th->getMessage());
