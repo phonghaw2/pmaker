@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Step\StepController;
@@ -59,3 +60,11 @@ Route::group([
 Route::get('/main/api/test', [HomeController::class, 'check'])->name('check');
 
 Route::get('/main/preview', [HomeController::class, 'preview'])->name('preview');
+
+
+Route::group([
+    'as' => 'article.',
+    'prefix' => 'article',
+], static function () {
+    Route::get('/draft', [ArticleController::class, 'draft'])->name('draft');
+});
