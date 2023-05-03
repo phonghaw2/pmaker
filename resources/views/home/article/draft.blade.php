@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/icon.png') }}">
     {{-- <link rel="stylesheet" href="{{ asset('css/home/article/base.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/home/article/draft.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('css/home/article/responsive.css') }}"> --}}
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/icon.png') }}">
     <title>Draft Maker</title>
     <style>
         [data-radix-scroll-area-viewport] {
@@ -19,6 +19,7 @@
             display:none
         }
     </style>
+     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css">
 </head>
 <body>
     <div class="draft-container">
@@ -86,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <div class="draft-content">
+        <div class="draft-main">
             <div class="draft-header">
                 <div class="draft-header-c">
                     <button type="button" id="drafts-options-button" aria-label="Toggle more options" variant="transparent" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R1hqkall36:" data-state="closed" class="css-n4l9fj"><svg class="css-hvybmk" fill="none" viewBox="0 0 20 20"><path d="m5 7.5 5 5 5-5" stroke="stroke-current" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
@@ -111,15 +112,58 @@
                 </button>
                 <button type="button" variant="primary" class="css-z17ftt"><span>Publish</span></button>
             </div>
+            <div class="draft-content">
+                <div class="dasdwqea">
+                    <div class="css-hsxbts">
+                        <button type="button" variant="transparent" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r2g:" data-state="closed" class="css-1asqrf2">
+                            <svg class="css-9xgk1k" fill="none" viewBox="0 0 24 24"><path d="M17.8828 11.0741L13.8013 16.0424L10.1085 12.0823L5.699 16.504M14.1999 8.08994C14.1999 8.31085 14.0208 8.48994 13.7999 8.48994C13.579 8.48994 13.3999 8.31085 13.3999 8.08994M14.1999 8.08994C14.1999 7.86902 14.0208 7.68994 13.7999 7.68994C13.579 7.68994 13.3999 7.86902 13.3999 8.08994M14.1999 8.08994H13.3999M6 21H18C19.6569 21 21 19.6569 21 18V6C21 4.34315 19.6569 3 18 3H6C4.34315 3 3 4.34315 3 6V18C3 19.6569 4.34315 21 6 21Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                            <span>Add Cover</span>
+                        </button>
+                        <button type="button" variant="transparent" class="css-134l51w">
+                                <svg class="css-9xgk1k" fill="none" viewBox="0 0 18 18"><path d="M11.25 11.953h-9m1.2-2.906h11.1c.42 0 .63 0 .79-.082a.75.75 0 0 0 .328-.328c.082-.16.082-.37.082-.79v-.6c0-.42 0-.63-.082-.79a.75.75 0 0 0-.327-.328c-.16-.082-.371-.082-.791-.082H3.45c-.42 0-.63 0-.79.082a.75.75 0 0 0-.328.327c-.082.16-.082.37-.082.79v.6c0 .42 0 .63.082.791a.75.75 0 0 0 .328.328c.16.082.37.082.79.082Z" stroke="stroke-current" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <span>Add Subtitle</span>
+                        </button>
+                    </div>
+                    <div class="css-bjn8wh">
+                        <textarea maxlength="150" placeholder="Article Title…" id="title-input" class="css-ecmr4t" style="height: 50px !important;"></textarea>
+                        <div class="css-gnohp">
+                            <div contenteditable="true" translate="no" tabindex="0" class="ProseMirror prose conentedit" spellcheck="false" id="body-content">
+                                <p>Write something!</p>
+                            </div>
+                        <div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/draft.js') }}"></script>
     <script>
+
+        $("#title-input").keypress(function(e) {
+
+            // Get the code of pressed key
+            const keyCode = e.which || e.keyCode;
+
+            // 13 represents the Enter key
+            if (keyCode === 13 || e.shiftKey) {
+                // Don't generate a new line
+                e.preventDefault();
+                console.log('Enter key pressed');
+                $('#body-content').focus();
+                $('#body-content').setSelectionRange(0, 0);
+
+            }
+        });
         $('#drafts-options-button').click(function (e) {
-            console.log($(this));
             e.preventDefault();
             $('.header-menu').toggleClass('open');
         });
+
+        // const dom  = document.getElementsByClassName('conentedit')[0];
+        const dom  = document.getElementById('body-content');
+        phongQuery(dom).addToolbar();
+
     </script>
 </body>
 </html>
