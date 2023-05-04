@@ -741,6 +741,7 @@ textarea {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
     grid-auto-flow: column;
     padding: 0.25rem;
+    transition: .8s;
 }
 
 .css-119rivw {
