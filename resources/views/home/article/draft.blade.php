@@ -127,7 +127,7 @@
                     <div class="css-bjn8wh">
                         <textarea maxlength="150" placeholder="Article Title…" id="title-input" class="css-ecmr4t" style="height: 50px !important;"></textarea>
                         <div class="css-gnohp">
-                            <div contenteditable="true" translate="no" tabindex="0" class="ProseMirror prose conentedit" spellcheck="false" id="body-content">
+                            <div contenteditable="true" translate="no" tabindex="0" class="ProseMirror prose" spellcheck="false" id="body-content">
                                 <p>Write something!</p>
                             </div>
                         <div>
@@ -162,7 +162,7 @@
 
         // const dom  = document.getElementsByClassName('conentedit')[0];
         const dom  = document.getElementById('body-content');
-        phongQuery(dom).addToolbar();
+        draftQuery(dom).addToolbar();
 
     </script>
 </body>

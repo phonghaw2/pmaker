@@ -63,6 +63,11 @@ textarea {
     resize: vertical;
 }
 
+code, kbd, samp, pre {
+    font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    font-size: 1em;
+}
+
 .draft-container {
     display: flex;
     width: 100vw;
@@ -749,4 +754,14 @@ textarea {
     width: 1rem;
     fill: transparent;
     stroke: currentcolor;
+}
+
+.prose code {
+    border-radius: .25rem;
+    font-weight: 400!important;
+    padding: .25rem;
+    --tw-text-opacity: 1;
+    color: rgba(0,0,0,var(--tw-text-opacity));
+    font-size: 80%;
+    background: #f0efed;
 }

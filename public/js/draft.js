@@ -1,9 +1,8 @@
 
 (function () {
-    function phongQuery(selector) {
-        if (!(this instanceof phongQuery))
-            // console.log(selector)
-            return new phongQuery(selector)
+    function draftQuery(selector) {
+        if (!(this instanceof draftQuery))
+            return new draftQuery(selector)
         if (selector === typeof '') {
             this.elements = document.querySelectorAll(selector) // it 's array element
         }
@@ -13,13 +12,13 @@
         }
         return this
     }
-    phongQuery.fn = phongQuery.prototype
+    draftQuery.fn = draftQuery.prototype
 
-    phongQuery.prototype.each = function (...args) {
+    draftQuery.prototype.each = function (...args) {
         this.elements.forEach(...args)
         return this
     }
-    phongQuery.prototype.addClass = function (className) {
+    draftQuery.prototype.addClass = function (className) {
         this.each(element => {
             className.split(' ').forEach(oneClass => {
                 element.classList.add(oneClass)
@@ -28,14 +27,13 @@
         return this
     }
 
-    phongQuery.prototype.addToolbar = function () {
-        // document.execCommand()
+    draftQuery.prototype.addToolbar = function () {
         let CSS = ``;
-        if (window.getSelection() && window.getSelection().hasOwnProperty('getRangeAt')) {
-            const { top, left } = getSelection().getRangeAt(0).getBoundingClientRect()
-            CSS = `top : ${top}; left : ${left}; position :absolute; `
+        // if (window.getSelection() && window.getSelection().hasOwnProperty('getRangeAt')) {
+        //     const { top, left } = getSelection().getRangeAt(0).getBoundingClientRect()
+        //     CSS = `top : ${top}; left : ${left}; position :absolute; `
 
-        }
+        // }
 
         if (this.CSS) {
             CSS += this.CSS;
@@ -63,25 +61,31 @@
         <button data-command='strike' class='css-1pulk9m'>
             <svg fill="none" xmlns="http://www.w3.org/2000/svg" class="css-119rivw" viewBox="0 0 24 24"><path d="M11.0121 12H12.9874C15.1693 12 16.938 13.7909 16.938 16C16.938 18.2091 15.1693 20 12.9874 20H11.0121C8.83024 20 7.06149 18.2091 7.06149 16M16.938 8C16.938 5.79086 15.1693 4 12.9874 4H11.0121C8.83024 4 7.06149 5.79086 7.06149 8C7.06149 8.3453 7.1047 8.68038 7.18595 9M4 12H20" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </button>
+        <button data-command='inline-code' class='css-1pulk9m'>
+            <svg class="css-9v3hhm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.5 16.5L21 12L16.5 7.50002M7.5 7.50002L3 12L7.5 16.5M13.8 3.90002L10.2 20.1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+        <button data-command='link' class='css-1pulk9m'>
+            <svg class="css-9v3hhm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.1898 12.9051C10.5785 13.4247 11.0744 13.8547 11.6439 14.1659C12.2134 14.477 12.8431 14.662 13.4904 14.7084C14.1377 14.7547 14.7874 14.6613 15.3954 14.4345C16.0034 14.2077 16.5555 13.8528 17.0143 13.3938L19.7296 10.6785C20.554 9.825 21.0101 8.68183 20.9998 7.49525C20.9895 6.30867 20.5136 5.17361 19.6745 4.33453C18.8354 3.49546 17.7004 3.01952 16.5138 3.0092C15.3272 2.99889 14.184 3.45504 13.3305 4.27941L11.7737 5.82714M13.8102 11.0949C13.4215 10.5752 12.9256 10.1452 12.3561 9.83411C11.7866 9.52297 11.1569 9.33795 10.5096 9.2916C9.86232 9.24524 9.21264 9.33863 8.60462 9.56544C7.99661 9.79224 7.44449 10.1472 6.9857 10.6061L4.27037 13.3214C3.44601 14.175 2.98986 15.3181 3.00017 16.5047C3.01048 17.6913 3.48643 18.8264 4.3255 19.6654C5.16457 20.5045 6.29964 20.9804 7.48622 20.9908C8.6728 21.0011 9.81596 20.5449 10.6695 19.7206L12.2172 18.1728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
         </div>`;
 
         this.elements.parentNode.appendChild(parent);
         this.parentDOM = parent;
 
         this.elements.addEventListener('mouseout' , (e) => {
-            console.log('mouseout')
+            // console.log('mouseout')
         })
         this.elements.addEventListener('mouseup' , (e) => {
-            this.selection();
+            console.log('mouseup');
+            this.selection(e);
         })
-
-        this.elements.addEventListener('focus' ,  e => {
-            // console.log('focus')
+        this.elements.addEventListener('click' ,  e => {
+            console.log('click')
         })
         this.elements.addEventListener('keypress' , e => {
             switch(e.keyCode){
                 case 13 :
-                    this.turnOffToolbar()
+                    this.turnOffToolbar();
                     // document.createTextNode('sabcjahsbc');
                     // e.stopPropagation();
                     // e.preventDefault();
@@ -104,31 +108,40 @@
         })
         return this
     };
-    phongQuery.prototype.mouseoutEvent = ()  => {
+    draftQuery.prototype.mouseoutEvent = ()  => {
         const dom = document.getElementById('toolbar-editor')
         // dom.style.display = 'none'
 
     }
 
-    phongQuery.prototype.turnOffToolbar = function () {
+    draftQuery.prototype.turnOffToolbar = function () {
         const dom = document.getElementById('toolbar-editor')
         CSS = `display : none; `
         dom.style = dom.style.cssText + CSS
     }
 
-    phongQuery.prototype.selection = function () {
-        if(window.getSelection().type === 'Range'){
-            console.log('range')
+    draftQuery.prototype.insertAt = function (innerHTML, search, replace, start, end) {
+        return innerHTML.slice(0, start)
+    	+ innerHTML.slice(start, end).replace(search, replace)
+        + innerHTML.slice(end);
+    }
 
+    draftQuery.prototype.selection = function (e) {
+        // console.log(e);
+        if (!window.getSelection().isCollapsed && window.getSelection().type === 'Range') {
+            this.elements.addEventListener('keypress' , e => {
+                this.turnOffToolbar();
+                return this;
+            });
             const dom = document.getElementById('toolbar-editor')
             const { top, left , width } = getSelection().getRangeAt(0).getBoundingClientRect()
             CSS = `top : ${top - 60}px; left : ${left + width/2}px; position :absolute; display: grid;`
             dom.style = dom.style.cssText + CSS;
 
-            $('#toolbar-editor a').click( function(e) {
-                e.preventDefault()
+            $('#toolbar-editor button').click( function(e) {
+                e.preventDefault();
                 let command = $(this).data('command');
-                console.log(command);
+                // console.log(command);
                 switch (command) {
                     case 'h1':
                         document.execCommand('formatBlock', false, 'h1');
@@ -142,16 +155,41 @@
                     case 'italic':
                         document.execCommand('italic');
                         break;
+                    case 'strike':
+                        document.execCommand('strikethrough');
+                        break;
+                    case 'inline-code':
+                        let string = window.getSelection().toString()
+                        // replace = `<code>${string}</code>`,
+                        // range = window.getSelection().getRangeAt(0),
+                        // start = range.startOffset,
+                        // end = range.endOffset,
+                        // parentNode = range.commonAncestorContainer.parentNode
+                        // parentNode.innerHTML = draftQuery.fn.insertAt(parentNode.innerHTML, string, replace ,start, end);
+                        // const parent = window.getSelection().focusNode;
+                        document.execCommand("insertHTML", false, '<text>text</text>');
+                        let phong = document.createElement('code');
+                        phong.innerHTML = string;
+                        // if (window.getSelection().focusNode.parentNode.parentNode.nodeName == 'CODE') {
+                        //     console.log('test');
+                        // }
+                        window.getSelection().focusNode.parentNode.replaceWith(phong);
+                        // window.getSelection().focusNode.parentNode.childNodes[0].replaceWith(phong);
+                        break;
+                        // console.log(window.getSelection());
+                    case 'link':
+                        document.execCommand('createLink', false, 'pre');
+                        break;
                     default:
                         break;
                 }
             });
         } else {
-            this.turnOffToolbar()
+            this.turnOffToolbar();
         }
-        return this
+        return this;
     }
-    window.phongQuery = phongQuery
-    return phongQuery;
+    window.draftQuery = draftQuery;
+    return draftQuery;
 
 })();
