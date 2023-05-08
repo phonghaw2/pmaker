@@ -83,27 +83,8 @@
             console.log('click')
         })
         this.elements.addEventListener('keypress' , e => {
-            switch(e.keyCode){
-                case 13 :
-                    this.turnOffToolbar();
-                    // document.createTextNode('sabcjahsbc');
-                    // e.stopPropagation();
-                    // e.preventDefault();
-                    // if(getSelection()  && getSelection().rangeCount){
-                    //     const dom = document.createElement('span')
-                    //     dom.innerHTML = "innertext ?"
-                    //     const selection = getSelection() , range = getSelection().getRangeAt(0)
-                    //     const br = document.createElement('br')
-                    //     range.insertNode(br)
-                    //     range.setStartAfter(br)
-                    //     range.collapse(true)
-
-                    //     range.removeAllRanges()
-                    //     selection.addRange(range)
-                    //     range.collapse(true)
-                    //     break;
-
-                    // }
+            if (e.keyCode == 13) {
+                this.turnOffToolbar();
             }
         })
         return this
@@ -150,6 +131,7 @@
                         document.execCommand('formatBlock', false, 'h2');
                         break;
                     case 'bold':
+                        console.log('bold');
                         document.execCommand('bold');
                         break;
                     case 'italic':
@@ -168,13 +150,47 @@
                         // parentNode.innerHTML = draftQuery.fn.insertAt(parentNode.innerHTML, string, replace ,start, end);
                         // const parent = window.getSelection().focusNode;
                         document.execCommand("insertHTML", false, '<text>text</text>');
-                        let phong = document.createElement('code');
-                        phong.innerHTML = string;
+
                         // if (window.getSelection().focusNode.parentNode.parentNode.nodeName == 'CODE') {
                         //     console.log('test');
                         // }
-                        window.getSelection().focusNode.parentNode.replaceWith(phong);
+                        const selParent = window.getSelection().focusNode.parentNode
+                        if (!selParent.nextSibling) {
+                            let phong = document.createElement('code');
+                            phong.innerHTML = string;
+                            window.getSelection().focusNode.parentNode.replaceWith(phong);
+                            break;
+                        }
+                        switch (selParent) {
+                            case selParent.nextSibling.parentNode.nodeName == 'CODE' && selParent.previousSibling.parentNode.nodeName == 'CODE':
+
+                                break;
+                            case selParent.parentNode.nodeName == 'CODE':
+
+                                break;
+                            case selParent.parentNode.nodeName == 'CODE':
+
+                                break;
+
+                            default:
+                                break;
+                        }
+                        // if (selParent) {
+                        //     if (selParent.parentNode.nodeName == 'CODE') {
+                        //         window.getSelection().focusNode.parentNode.nextSibling.insertData(0, string);
+                        //         window.getSelection().focusNode.remove();
+                        //     } else {
+                        //         let phong = document.createElement('code');
+                        //         phong.innerHTML = string;
+                        //         window.getSelection().focusNode.parentNode.replaceWith(phong);
+                        //     }
+                        // }  else {
+                        //     let phong = document.createElement('code');
+                        //     phong.innerHTML = string;
+                        //     window.getSelection().focusNode.parentNode.replaceWith(phong);
+                        // }
                         // window.getSelection().focusNode.parentNode.childNodes[0].replaceWith(phong);
+
                         break;
                         // console.log(window.getSelection());
                     case 'link':
