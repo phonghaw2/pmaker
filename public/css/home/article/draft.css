@@ -668,10 +668,12 @@ code, kbd, samp, pre {
     outline: none;
     min-height: 100vh;
     padding-bottom: 150px;
-    font-size: 1.25rem;
-    line-height: 1.8;
     overflow-wrap: break-word;
     max-width: 65ch;
+    color: rgb(17, 17, 17);
+    font-size: 1.125rem;
+    line-height: 1.77778;
+
 }
 #body-content {
     position: relative;
@@ -688,6 +690,21 @@ code, kbd, samp, pre {
     margin-bottom: 1.2em;
 }
 
+.css-gnohp :where(h3 + *):not(:where([class~="not-prose"] *)) {
+    margin-top: 0px;
+}
+
+@media (min-width: 1280px) {
+
+    .css-gnohp :where(p):not(:where([class~="not-prose"] *)) {
+        margin-top: 1.2em;
+        margin-bottom: 1.2em;
+    }
+
+    .css-dwkwov :where(h3 + *):not(:where([class~="not-prose"] *)) {
+        margin-top: 0px;
+    }
+}
 .css-1pulk9m {
     border-radius: 9999px;
     border-width: 1px;
@@ -764,4 +781,11 @@ code, kbd, samp, pre {
     color: rgba(0,0,0,var(--tw-text-opacity));
     font-size: 80%;
     background: #f0efed;
+}
+
+
+.css-104epv6 {
+    height: 0.875rem;
+    width: 0.875rem;
+    fill: currentcolor;
 }

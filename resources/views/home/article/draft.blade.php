@@ -129,6 +129,7 @@
                         <div class="css-gnohp">
                             <div contenteditable="true" translate="no" tabindex="0" class="ProseMirror prose" spellcheck="false" id="body-content">
                                 <p>Write something!</p>
+                                <a href="#">test the a</a>
                             </div>
                         <div>
                     </div>
