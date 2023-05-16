@@ -8,21 +8,24 @@
     var STRIKE_SVG = `<svg fill="none" xmlns="http://www.w3.org/2000/svg" class="css-119rivw" viewBox="0 0 24 24"><path d="M11.0121 12H12.9874C15.1693 12 16.938 13.7909 16.938 16C16.938 18.2091 15.1693 20 12.9874 20H11.0121C8.83024 20 7.06149 18.2091 7.06149 16M16.938 8C16.938 5.79086 15.1693 4 12.9874 4H11.0121C8.83024 4 7.06149 5.79086 7.06149 8C7.06149 8.3453 7.1047 8.68038 7.18595 9M4 12H20" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
     var INLINE_SVG = `<svg class="css-9v3hhm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.5 16.5L21 12L16.5 7.50002M7.5 7.50002L3 12L7.5 16.5M13.8 3.90002L10.2 20.1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
     var LINK_SVG = `<svg class="css-9v3hhm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.1898 12.9051C10.5785 13.4247 11.0744 13.8547 11.6439 14.1659C12.2134 14.477 12.8431 14.662 13.4904 14.7084C14.1377 14.7547 14.7874 14.6613 15.3954 14.4345C16.0034 14.2077 16.5555 13.8528 17.0143 13.3938L19.7296 10.6785C20.554 9.825 21.0101 8.68183 20.9998 7.49525C20.9895 6.30867 20.5136 5.17361 19.6745 4.33453C18.8354 3.49546 17.7004 3.01952 16.5138 3.0092C15.3272 2.99889 14.184 3.45504 13.3305 4.27941L11.7737 5.82714M13.8102 11.0949C13.4215 10.5752 12.9256 10.1452 12.3561 9.83411C11.7866 9.52297 11.1569 9.33795 10.5096 9.2916C9.86232 9.24524 9.21264 9.33863 8.60462 9.56544C7.99661 9.79224 7.44449 10.1472 6.9857 10.6061L4.27037 13.3214C3.44601 14.175 2.98986 15.3181 3.00017 16.5047C3.01048 17.6913 3.48643 18.8264 4.3255 19.6654C5.16457 20.5045 6.29964 20.9804 7.48622 20.9908C8.6728 21.0011 9.81596 20.5449 10.6695 19.7206L12.2172 18.1728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
-
-    var CONTAINER_ID = 'toolbar-editor'
+    var CONTAINER_ID = 'toolbar-editor';
+    var OPEN_LINK_SVG = `<svg class="css-104epv6" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z"></path></svg>`;
+    var EDIT_LINK_SVG = `<svg class="css-104epv6" viewBox="0 0 512 512"><path fill="currentColor" d="m493.2 56.26-37.51-37.51C443.2 6.252 426.8 0 410.5 0c-16.38 0-32.76 6.25-45.26 18.75L45.11 338.9a63.91 63.91 0 0 0-17.18 31.21L.32 492.91C-1.7 502.1 6.158 512 15.95 512a16.26 16.26 0 0 0 3.198-.32s84.61-17.95 122.8-26.93c11.54-2.717 21.87-8.523 30.25-16.9l321.2-321.2C518.3 121.7 518.2 81.26 493.2 56.26zM149.5 445.2c-4.219 4.219-9.252 7.039-14.96 8.383-24.68 5.811-69.64 15.55-97.46 21.52l22.04-98.01a31.942 31.942 0 0 1 8.594-15.6l247.6-247.6 82.76 82.76L149.5 445.2zM470.7 124l-50.03 50.02-82.76-82.76 49.93-49.93c6.06-6 14.06-9.33 22.66-9.33s16.58 3.33 22.63 9.375l37.51 37.51C483.1 91.37 483.1 111.6 470.7 124z"></path></svg>`;
+    var UNLINK_SVG = `<svg class="css-104epv6" viewBox="0 0 640 512"><path d="M633.9 483.4c7 5.5 8.1 14.7 2.7 22.5-5.5 7-15.6 8.1-22.5 2.7L6.086 28.56C-.849 23.08-2.033 13.02 3.443 6.086 8.918-.849 18.98-2.033 25.91 3.443L633.9 483.4zM591.5 256l-74.2 74.2-25.3-19.9 76.9-76.9c37.5-37.5 37.5-98.3 0-135.79-37.5-37.49-98.3-37.49-135.8 0l-22.6 22.59c-6.2 6.3-16.4 6.3-22.6 0-6.3-7.1-6.3-16.3 0-22.59l22.6-22.63c50-49.99 131-49.99 181 0 50 49.12 50 131.02 0 181.02zM286.2 380.6c-27.1-27.1-39.6-63.5-37.2-99.1l33.4 26.3c3.4 18.4 12.2 36 26.4 50.1 19.9 19.9 46.4 29.3 72.4 28l33.4 26.3c-43.9 13.7-93.7 3.1-128.4-31.6zm-27.4-254.5-33.4-26.34c43.9-13.64 93.7-3.07 128.4 31.64 27.1 27.1 39.6 63.5 36.3 99.1l-32.5-26.3c-3.4-18.4-12.2-36-26.4-50.1-19.9-19.9-46.4-29.3-72.4-28zM71.1 278.6c-37.49 37.5-37.49 98.3 0 135.8 37.5 37.5 98.3 37.5 135.8 0l22.6-22.6c6.2-6.3 16.4-6.3 22.6 0 6.3 6.2 6.3 16.3 0 22.6L229.5 437c-50 50-131.04 50-181.03 0-49.988-50-49.988-131.9 0-181l74.23-74.2 24.4 19.9-76 76.9z"></path></svg>`;
     function draftQuery(selector) {
         if (!(this instanceof draftQuery))
-            return new draftQuery(selector)
+        return new draftQuery(selector)
         if (selector === typeof '') {
             this.elements = document.querySelectorAll(selector) // it 's array element
         }
-        else if (selector.nodeName) {<svg fill="none" xmlns="http://www.w3.org/2000/svg" class="css-9v3hhm" viewBox="0 0 24 24"><path d="M10.8571 4H17.7142M6.28564 20H13.1428M14.2856 4L9.71422 20" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-            this.elements = selector
+        else if (selector.nodeName) {
+        this.elements = selector
 
-        }
+    }
         return this
     }
     draftQuery.fn = draftQuery.prototype
+
 
     draftQuery.prototype.addToolbar = function () {
 
@@ -35,17 +38,19 @@
 
         //     this.selection()
         // })
-        this.elements.addEventListener('mouseup' , (e) => {
-            console.log('mouseup');
+        this.elements.addEventListener('click' , (e) => {
+            console.log('click');
             this.selection();
             e.stopPropagation();
             event.stopPropagation();
         })
+
+        window.addEventListener('mouseup', this.selection)
         // this.selection();
 
-        this.elements.addEventListener('click' ,  e => {
-            console.log('click')
-        })
+        // this.elements.addEventListener('click' ,  e => {
+        //     console.log('click')
+        // })
         this.elements.addEventListener('message' ,  e => {
             console.log('message')
         })
@@ -80,20 +85,16 @@
         <button type="button" data-command='strike' class='css-1pulk9m'>${STRIKE_SVG}</button>
         <button type="button" data-command='inline-code' class='css-1pulk9m'>${INLINE_SVG}</button>
         <button type="button" data-command='link' class='css-1pulk9m'>${LINK_SVG}</button>`;
+
         return innerHTML;
     }
 
     draftQuery.prototype.renderLinkTool = function () {
         let innerHTML = `
-        <button type="button" data-command="open link" class="css-1pulk9m">
-            <svg class="css-104epv6" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z"></path></svg>
-        </button>
-        <button type="button" data-command="edit link" class="css-1pulk9m">
-            <svg class="css-104epv6" viewBox="0 0 512 512"><path fill="currentColor" d="m493.2 56.26-37.51-37.51C443.2 6.252 426.8 0 410.5 0c-16.38 0-32.76 6.25-45.26 18.75L45.11 338.9a63.91 63.91 0 0 0-17.18 31.21L.32 492.91C-1.7 502.1 6.158 512 15.95 512a16.26 16.26 0 0 0 3.198-.32s84.61-17.95 122.8-26.93c11.54-2.717 21.87-8.523 30.25-16.9l321.2-321.2C518.3 121.7 518.2 81.26 493.2 56.26zM149.5 445.2c-4.219 4.219-9.252 7.039-14.96 8.383-24.68 5.811-69.64 15.55-97.46 21.52l22.04-98.01a31.942 31.942 0 0 1 8.594-15.6l247.6-247.6 82.76 82.76L149.5 445.2zM470.7 124l-50.03 50.02-82.76-82.76 49.93-49.93c6.06-6 14.06-9.33 22.66-9.33s16.58 3.33 22.63 9.375l37.51 37.51C483.1 91.37 483.1 111.6 470.7 124z"></path></svg>
-        </button>
-        <button type="button" data-command="unlink" class="css-1pulk9m">
-            <svg class="css-104epv6" viewBox="0 0 640 512"><path d="M633.9 483.4c7 5.5 8.1 14.7 2.7 22.5-5.5 7-15.6 8.1-22.5 2.7L6.086 28.56C-.849 23.08-2.033 13.02 3.443 6.086 8.918-.849 18.98-2.033 25.91 3.443L633.9 483.4zM591.5 256l-74.2 74.2-25.3-19.9 76.9-76.9c37.5-37.5 37.5-98.3 0-135.79-37.5-37.49-98.3-37.49-135.8 0l-22.6 22.59c-6.2 6.3-16.4 6.3-22.6 0-6.3-7.1-6.3-16.3 0-22.59l22.6-22.63c50-49.99 131-49.99 181 0 50 49.12 50 131.02 0 181.02zM286.2 380.6c-27.1-27.1-39.6-63.5-37.2-99.1l33.4 26.3c3.4 18.4 12.2 36 26.4 50.1 19.9 19.9 46.4 29.3 72.4 28l33.4 26.3c-43.9 13.7-93.7 3.1-128.4-31.6zm-27.4-254.5-33.4-26.34c43.9-13.64 93.7-3.07 128.4 31.64 27.1 27.1 39.6 63.5 36.3 99.1l-32.5-26.3c-3.4-18.4-12.2-36-26.4-50.1-19.9-19.9-46.4-29.3-72.4-28zM71.1 278.6c-37.49 37.5-37.49 98.3 0 135.8 37.5 37.5 98.3 37.5 135.8 0l22.6-22.6c6.2-6.3 16.4-6.3 22.6 0 6.3 6.2 6.3 16.3 0 22.6L229.5 437c-50 50-131.04 50-181.03 0-49.988-50-49.988-131.9 0-181l74.23-74.2 24.4 19.9-76 76.9z"></path></svg>
-        </button>`;
+        <button type="button" data-command="open link" class="css-1pulk9m">${OPEN_LINK_SVG}</button>
+        <button type="button" data-command="edit link" class="css-1pulk9m">${EDIT_LINK_SVG}</button>
+        <button type="button" data-command="unlink" class="css-1pulk9m">${UNLINK_SVG}</button>`;
+
         return innerHTML;
     }
 
@@ -132,6 +133,32 @@
         return innerHTML;
     }
 
+    draftQuery.prototype.request = function () {
+        var elm = document.getElementById("animated");
+        var stopped;
+        var requestId = 0;
+        var starttime;
+
+        function render(time) {
+            // set left style to a function of time.
+          if (!stopped) {
+            elm.style.left = ((Date.now() - starttime) / 4 % 600) + "px";
+            requestId = window.requestAnimationFrame(render);
+            }
+        }
+
+        function start() {
+            starttime = Date.now();
+            requestId = window.requestAnimationFrame(render);
+            stopped = false;
+        }
+        function stop() {
+            if (requestId) {
+                window.cancelAnimationFrame(requestId);
+            }
+            stopped = true;
+        }
+    }
     draftQuery.prototype.insertAt = function (innerHTML, search, replace, start, end) {
         return innerHTML.slice(0, start)
     	+ innerHTML.slice(start, end).replace(search, replace)
