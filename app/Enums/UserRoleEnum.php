@@ -15,4 +15,8 @@ final class UserRoleEnum extends Enum
     const DEVELOPER     =   1;
     const BUSINESS      =   2;
     const BLOGGER       =   3;
+
+
+     // ROLE
+    const ADMIN = 99;
 }
