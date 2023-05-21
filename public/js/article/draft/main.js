@@ -169,7 +169,7 @@
         // console.log(e);
         if (!window.getSelection().isCollapsed && window.getSelection().type === 'Range') {
             this.elements.addEventListener('keypress' , e => {
-                this.turnOffToolbar();
+                draftQuery.turnOffToolbar();
                 return this;
             });
 
@@ -267,7 +267,7 @@
                 }
             });
         } else {
-            this.turnOffToolbar();
+            draftQuery.turnOffToolbar;
         }
         return this;
     }

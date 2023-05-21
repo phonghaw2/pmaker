@@ -113,9 +113,16 @@
                 <button type="button" variant="primary" class="css-z17ftt"><span>Publish</span></button>
             </div>
             <div class="draft-content">
-                <div class="dasdwqea">
+                <div class="dasdwqea" >
+                    <div wire:poll.10s='draft'>
+                        {{-- @if ($saved)
+                            Save at
+                        @endif --}}
+                    </div>
+                    <form wire:submit.prevent='publish'>
+
                     <div class="css-hsxbts">
-                        <button type="button" variant="transparent" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r2g:" data-state="closed" class="css-1asqrf2">
+                        <button type="button" variant="transparent" class="css-1asqrf2" id="add-cover">
                             <svg class="css-9xgk1k" fill="none" viewBox="0 0 24 24"><path d="M17.8828 11.0741L13.8013 16.0424L10.1085 12.0823L5.699 16.504M14.1999 8.08994C14.1999 8.31085 14.0208 8.48994 13.7999 8.48994C13.579 8.48994 13.3999 8.31085 13.3999 8.08994M14.1999 8.08994C14.1999 7.86902 14.0208 7.68994 13.7999 7.68994C13.579 7.68994 13.3999 7.86902 13.3999 8.08994M14.1999 8.08994H13.3999M6 21H18C19.6569 21 21 19.6569 21 18V6C21 4.34315 19.6569 3 18 3H6C4.34315 3 3 4.34315 3 6V18C3 19.6569 4.34315 21 6 21Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                             <span>Add Cover</span>
                         </button>
@@ -123,6 +130,28 @@
                                 <svg class="css-9xgk1k" fill="none" viewBox="0 0 18 18"><path d="M11.25 11.953h-9m1.2-2.906h11.1c.42 0 .63 0 .79-.082a.75.75 0 0 0 .328-.328c.082-.16.082-.37.082-.79v-.6c0-.42 0-.63-.082-.79a.75.75 0 0 0-.327-.328c-.16-.082-.371-.082-.791-.082H3.45c-.42 0-.63 0-.79.082a.75.75 0 0 0-.328.327c-.082.16-.082.37-.082.79v.6c0 .42 0 .63.082.791a.75.75 0 0 0 .328.328c.16.082.37.082.79.082Z" stroke="stroke-current" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         <span>Add Subtitle</span>
                         </button>
+                    </div>
+                    <div class="css-1xhyxl4" id="upload-cover">
+                        <div class="css-gu4ls9" style="outline: none;" >
+                            <button type="button" role="tab" class="css-1roftes" tabindex="0" data-orientation="horizontal" data-radix-collection-item="">
+                                <span>Upload</span>
+                            </button>
+                            <button type="button" id="close-upload-cover" class="css-1ug4ag9">
+                                <svg class="css-12cnxdc" viewBox="0 0 320 512"><path d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"></path></svg>
+                            </button>
+                        </div>
+                        <div data-state="active" role="tabpanel" tabindex="0" class="css-1dvcxr3">
+                            <div class="css-1jbrjri">
+                                <button type="button" variant="transparent-outline" class="css-37n1p2" onclick="open_file()">
+                                    <svg class="css-pbhbmr" viewBox="0 0 15 10" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.25281 3.00282C7.38844 2.86501 7.61156 2.86501 7.74719 3.00282L9.49719 4.75282C9.635 4.88844 9.635 5.11157 9.49719 5.24719C9.36156 5.38501 9.13844 5.38501 9.00281 5.24719L7.85 4.09438V7.45001C7.85 7.64251 7.6925 7.80001 7.5 7.80001C7.3075 7.80001 7.15 7.64251 7.15 7.45001V4.09438L5.99719 5.24719C5.86156 5.38501 5.63844 5.38501 5.50281 5.24719C5.365 5.11157 5.365 4.88844 5.50281 4.75282L7.25281 3.00282ZM6.45 0.100006C7.75156 0.100006 8.90219 0.746412 9.6 1.73626C9.91719 1.58466 10.2737 1.50001 10.65 1.50001C12.0041 1.50001 13.1 2.59594 13.1 3.95001C13.1 4.18407 13.0672 4.38969 13.0059 4.62376C13.8941 5.09188 14.5 6.02594 14.5 7.10001C14.5 8.64657 13.2466 9.90001 11.7 9.90001H3.65C1.91028 9.90001 0.5 8.48907 0.5 6.75001C0.5 5.37626 1.37828 4.21032 2.60372 3.77719C2.69406 1.73188 4.38063 0.100006 6.45 0.100006ZM6.45 0.800006C4.75688 0.800006 3.37656 2.13438 3.30219 3.80782C3.29125 4.09438 3.10531 4.32407 2.83625 4.43782C1.88206 4.77469 1.2 5.68251 1.2 6.75001C1.2 8.10407 2.29681 9.20001 3.65 9.20001H11.7C12.8594 9.20001 13.8 8.25938 13.8 7.10001C13.8 6.29501 13.3472 5.59501 12.68 5.24282C12.3869 5.06782 12.2425 4.74844 12.3322 4.41157C12.3759 4.27813 12.4 4.11844 12.4 3.95001C12.4 2.98313 11.6169 2.20001 10.65 2.20001C10.3809 2.20001 10.1272 2.26126 9.89969 2.36844C9.59344 2.51501 9.22375 2.41657 9.02687 2.13876C8.45594 1.32763 7.51531 0.800006 6.45 0.800006Z"></path>
+                                    </svg>
+                                    <span class="css-h9aq5x">Upload Image</span>
+                                </button>
+                                <input type="file" tabindex="-1" id="inputUpload" data-id="upload-cover" accept="image/*, image/avif, image/gif, image/jpeg, image/png, image/svg, image/svg+xml, image/webp, image/bmp, image/x, image/tiff, image/vnd, image/xbm" class="css-eivff4">
+                                <p class="css-n5h5ty">Recommended dimension is 1600 x 840</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="css-bjn8wh">
                         <textarea maxlength="150" placeholder="Article Title…" id="title-input" class="css-ecmr4t" style="height: 50px !important;"></textarea>
@@ -133,12 +162,14 @@
                             </div>
                         <div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/draft.js') }}"></script>
+    <script src="{{ asset('js/article/draft/main.js') }}"></script>
+    <script src="{{ asset('js/article/draft/app.js') }}"></script>
     <script>
 
         $("#title-input").keypress(function(e) {
