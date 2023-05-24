@@ -20,7 +20,7 @@
                         <img class="w-4 h-4" src="/vendor/shuffle/img/icons/alternatives_logo.svg" alt="">
                     </div>
                     <span class="text-sm font-bold">
-                        <a href="/alternatives">
+                        <a href="https://github.com/phonghaw2/pmaker" target="_blank">
                             This is my pet project
                             <span class="ml-1 mr-2 font-medium text-alternatives-button-text">— Hope it works!</span>
                             <span class="underline hover:no-underline">Github→</span>

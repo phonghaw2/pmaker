@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Step\StepController;
 use Illuminate\Support\Facades\Route;
@@ -67,4 +68,13 @@ Route::group([
     'prefix' => 'article',
 ], static function () {
     Route::get('/draft', [ArticleController::class, 'draft'])->name('draft');
+});
+
+// DASHBOARD
+Route::group([
+    'as' => 'dashboard.',
+    'prefix' => 'dashboard',
+], static function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
+
 });
