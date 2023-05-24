@@ -69,6 +69,10 @@ code, kbd, samp, pre {
 }
 
 
+.col-span-4 {
+    grid-column: span 4/span 4;
+}
+
 .py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -79,6 +83,21 @@ code, kbd, samp, pre {
     background-color: rgb(255 255 255/var(--tw-bg-opacity));
 }
 
+.justify-end {
+    justify-content: flex-end;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex {
+    display: flex;
+}
 
 @media (min-width: 1280px) {
 
@@ -94,6 +113,22 @@ code, kbd, samp, pre {
     .lg\:min-w-0 {
         min-width: 0;
     }
+
+    .xl\:pr-2 {
+        padding-right: .5rem;
+    }
+
+    .xl\:w-44 {
+        width: 11rem;
+    }
+
+    .xl\:col-span-3 {
+        grid-column: span 3/span 3;
+    }
+
+    .lg\:justify-between {
+        justify-content: space-between;
+    }
 }
 
 .gap-4 {
@@ -106,4 +141,17 @@ code, kbd, samp, pre {
 
 .grid {
     display: grid;
+}
+
+.text-slate-900 {
+    --tw-text-opacity: 1;
+    color: rgb(15 23 42/var(--tw-text-opacity));
+}
+
+.block {
+    display: block;
+}
+
+.fill-current {
+    fill: currentColor;
 }
