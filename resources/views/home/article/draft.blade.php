@@ -26,7 +26,7 @@
         <div class="draft-nav">
             <div class="draft-back">
                 <div class="css-0">
-                    <a href="/" variant="transparent" class="draft-back-a">
+                    <a href="{{ route('dashboard.index') }}" variant="transparent" class="draft-back-a">
                         <svg class="draft-back-svg" fill="none" viewBox="0 0 8 12">
                             <path d="m6.667 1-5 5 5 5" stroke="stroke-current" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>

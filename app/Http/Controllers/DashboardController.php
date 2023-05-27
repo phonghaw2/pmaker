@@ -12,4 +12,11 @@ class DashboardController extends Controller
             'content' => 'general'
         ]);
     }
+
+    public function appearance() {
+        return view('home.dashboard.index',[
+            'title' => 'Dashboard',
+            'content' => 'appearance'
+        ]);
+    }
 }
