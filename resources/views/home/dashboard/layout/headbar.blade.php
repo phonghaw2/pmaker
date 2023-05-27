@@ -8,13 +8,13 @@
                     </div>
                     <div class="pr-1 font-bold truncate font-heading">Phonghaw2 Blog</div>
                 </div>
-                <div>
+                <div id="open-headbar-site">
                     <svg class="w-5 h-5 opacity-50 fill-current transform duration-100 false" viewBox="0 0 512 512">
                     <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm216 248c0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216 0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216zm-207.5 86.6l115-115.1c4.7-4.7 4.7-12.3 0-17l-7.1-7.1c-4.7-4.7-12.3-4.7-17 0L256 303l-99.5-99.5c-4.7-4.7-12.3-4.7-17 0l-7.1 7.1c-4.7 4.7-4.7 12.3 0 17l115 115.1c4.8 4.6 12.4 4.6 17.1-.1z"></path>
                     </svg>
                 </div>
             </div>
-            <div class="absolute left-0 z-10 w-full mt-1 overflow-hidden bg-white border shadow-xl rounded-2xl dark:border-slate-700 dark:bg-slate-800 top-100">
+            <div id="headbar-site" class="absolute left-0 z-10 w-full mt-1 overflow-hidden bg-white border shadow-xl rounded-2xl dark:border-slate-700 dark:bg-slate-800 top-100 hidden">
                 <div class="flex flex-row items-center flex-1 min-w-0 px-5 py-3 font-semibold cursor-pointer text-blue-600 hover:bg-slate-100">
                     <div class="flex flex-row items-center justify-center mr-2 w-9 h-9 ">
                         <img class="block" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1660713301728/6uuIj2Dzq.png?w=200&amp;h=200&amp;fit=crop&amp;crop=faces&amp;auto=compress">

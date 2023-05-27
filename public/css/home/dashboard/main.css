@@ -68,10 +68,26 @@ code, kbd, samp, pre {
     font-size: 1em;
 }
 
+.my-2 {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
 .font-bold {
     font-weight: 700;
 }
 
+.font-medium {
+    font-weight: 500;
+}
+.text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
 .border {
     border-width: 1px;
 }
@@ -83,11 +99,32 @@ code, kbd, samp, pre {
 .leading-normal {
     line-height: 1.5;
 }
-
+/* MARGIN */
 .mt-5 {
     margin-top: 1.25rem;
 }
-
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+.mb-10 {
+    margin-bottom: 2.5rem;
+}
+.mb-2 {
+    margin-bottom: .5rem;
+}
+.-mx-5 {
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+}
+/* PADDING */
+.py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.py-5 {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
 .hsh-card {
     border-radius: .5rem;
     border-width: 1px;
@@ -106,12 +143,22 @@ code, kbd, samp, pre {
     --tw-bg-opacity: 1;
     background-color: rgb(241 245 249/var(--tw-bg-opacity));
 }
-
+.text-slate-600 {
+    --tw-text-opacity: 1;
+    color: rgb(71 85 105/var(--tw-text-opacity));
+}
 .text-slate-700 {
     --tw-text-opacity: 1;
     color: rgb(51 65 85/var(--tw-text-opacity));
 }
 
+.border-slate-300 {
+    --tw-border-opacity: 1;
+    border-color: rgb(203 213 225/var(--tw-border-opacity));
+}
+.col-span-full {
+    grid-column: 1/-1;
+}
 .bg-slate-300 {
     --tw-bg-opacity: 1;
     background-color: rgb(203 213 225/var(--tw-bg-opacity));
@@ -132,10 +179,6 @@ code, kbd, samp, pre {
     min-width: 0;
 }
 
-.py-4 {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
 
 .pr-1 {
     padding-right: .25rem;
@@ -153,6 +196,10 @@ code, kbd, samp, pre {
     height: 2.25rem;
 }
 
+.min-h-16 {
+    min-height: 16vh;
+}
+
 .mr-3 {
     margin-right: .75rem;
 }
@@ -165,9 +212,13 @@ code, kbd, samp, pre {
 .justify-end {
     justify-content: flex-end;
 }
-
+/* FLEX */
 .flex-row {
     flex-direction: row;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
 }
 
 .flex-shrink-0, .shrink-0 {
@@ -205,6 +256,9 @@ code, kbd, samp, pre {
     border-radius: 1rem;
 }
 
+.rounded-lg {
+    border-radius: .5rem;
+}
 .shadow-xl {
     --tw-shadow: 0 20px 25px -5px rgb(0 0 0/0.1),0 8px 10px -6px rgb(0 0 0/0.1);
     --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color),0 8px 10px -6px var(--tw-shadow-color);
@@ -274,8 +328,14 @@ code, kbd, samp, pre {
     color: rgb(51 65 85/var(--tw-text-opacity));
 }
 
+.gap-5 {
+    gap: 1.25rem;
+}
 @media (min-width: 768px) {
 
+    .md\:col-span-3 {
+        grid-column: span 3/span 3;
+    }
     .md\:p-10 {
         padding: 2.5rem;
     }
@@ -303,12 +363,27 @@ code, kbd, samp, pre {
     .md\:ml-2 {
         margin-left: .5rem;
     }
+    .md\:mb-0 {
+        margin-bottom: 0;
+    }
+    .md\:block {
+        display: block;
+    }
+    .md\:col-span-7 {
+        grid-column: span 7/span 7;
+    }
 }
 
 @media (min-width: 1024px) {
     .lg\:mb-0 {
         margin-bottom: 0;
-}
+    }
+    .lg\:gap-6 {
+        gap: 1.5rem;
+    }
+    .lg\:w-1\/2 {
+        width: 50%;
+    }
 }
 
 @media (min-width: 1280px) {
@@ -324,6 +399,10 @@ code, kbd, samp, pre {
 
     .lg\:min-w-0 {
         min-width: 0;
+    }
+    .xl\:text-4xl {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
     }
 
     .xl\:pr-2 {
@@ -343,6 +422,19 @@ code, kbd, samp, pre {
     }
     .xl\:col-span-9 {
         grid-column: span 9/span 9;
+    }
+    .xl\:gap-8 {
+        gap: 2rem;
+    }
+    .xl\:col-span-8 {
+        grid-column: span 8/span 8;
+    }
+
+    .xl\:col-span-2 {
+        grid-column: span 2/span 2;
+    }
+    .xl\:p-10 {
+        padding: 2.5rem;
     }
 }
 
@@ -383,3 +475,134 @@ code, kbd, samp, pre {
 .h-10 {
     height: 2.5rem;
 }
+
+.open {
+    display: block!important;
+}
+
+.pb-20 {
+    padding-bottom: 5rem;
+}
+
+.grid-cols-10 {
+    grid-template-columns: repeat(10,minmax(0,1fr));
+}
+.grid-flow-col {
+    grid-auto-flow: column;
+}
+
+.admin-menu {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding: .75rem 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    line-height: 1.375;
+    letter-spacing: -.025em;
+    --tw-text-opacity: 1;
+    color: rgb(0 0 0/var(--tw-text-opacity));
+}
+
+
+.admin-menu svg {
+    margin-right: 1.25rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    fill: currentColor;
+    opacity: .75;
+}
+
+.admin-menu:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(241 245 249/var(--tw-bg-opacity));
+}
+
+.admin-menu.active, .dark .admin-menu.active {
+    --tw-bg-opacity: 1;
+    background-color: rgb(37 99 235/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255/var(--tw-text-opacity));
+}
+
+.input-text {
+    width: 100%;
+    border-radius: .5rem;
+    border-width: 1px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(248 250 252/var(--tw-bg-opacity));
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    --tw-text-opacity: 1;
+    color: rgb(15 23 42/var(--tw-text-opacity));
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+
+.p-func-right {
+    background: transparent;
+    position: fixed;
+    z-index: 999;
+    bottom: 7vw;
+    right: 0;
+    pointer-events: none;
+    transform: translateX(40px);
+}
+
+.f-next {
+    pointer-events: all;
+    transition: calc(.2s * 4);
+    transform: translateX(40px);
+    text-decoration: none;
+    text-rendering: optimizeLegibility;
+}
+
+#cssda-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    background: #333;
+    -webkit-transition: all .25s cubic-bezier(.615,.19,.305,.91);
+    -moz-transition: all .25s cubic-bezier(.615,.19,.305,.91);
+    transition: all .25s cubic-bezier(.615,.19,.305,.91);
+    cursor: pointer;
+}
+
+.p-func-right:hover span {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.p-func-right .bagde-text{
+    color: #F6F3F3;
+    transform: rotate(-90deg);
+    cursor: pointer;
+    text-transform: uppercase;
+    position: absolute;
+    right: 1.5em;
+}
+
+.p-func-right:hover .bagde-text {
+    display: block;
+    transform: rotate(0deg)!important;
+    right: .6em!important;
+}
+
+.p-func-right:hover, .p-func-left:hover {
+    -webkit-animation: bounce .75s linear both;
+    -moz-animation: bounce .75s linear both;
+    animation: bounce .75s linear both;
+    background: transparent;
+}
+.p-func-right:hover {
+    transform: translateX(-12px);
+}
+

@@ -9,6 +9,7 @@ class DashboardController extends Controller
     public function index() {
         return view('home.dashboard.index',[
             'title' => 'Dashboard',
+            'content' => 'general'
         ]);
     }
 }

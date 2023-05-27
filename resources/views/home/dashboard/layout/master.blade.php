@@ -13,10 +13,23 @@
     <div class="container mx-auto mt-5">
         <div class="z-40 col-span-12 md:pt-2 md:col-span-9 lg:col-span-10 xl:col-span-7">
             @include('home.dashboard.layout.headbar')
-            @yield('content')
+            <div class="grid grid-flow-col grid-cols-10 gap-5 pb-20 lg:gap-6 xl:gap-8">
+                @include('home.dashboard.layout.navbar-blog')
+                @yield($content)
+            </div>
+            <div class="p-func-right">
+                <a class="f-next">
+                    <div id="cssda-badge">
+                        <span class="bagde-text font-bold">update</span>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 
     @include('home.layouts.footer')
+
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/dashboard/main.js') }}"></script>
 </body>
 </html>
