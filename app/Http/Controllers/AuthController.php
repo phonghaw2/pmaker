@@ -73,6 +73,6 @@ class AuthController extends Controller
 
         $request->session()->invalidate();
         session()->flush();
-        return redirect()->back();
+        return redirect()->route('index');
     }
 }

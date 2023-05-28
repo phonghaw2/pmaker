@@ -79,5 +79,6 @@ Route::group([
 ], static function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::get('/appearance', [DashboardController::class, 'appearance'])->name('appearance');
+    Route::get('/navbar', [DashboardController::class, 'navbar'])->name('navbar');
     Route::get('/article', [DashboardController::class, 'article'])->name('article');
 });

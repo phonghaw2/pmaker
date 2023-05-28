@@ -4,31 +4,50 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View as FacadesView;
 
 class DashboardController extends Controller
 {
-    public function index() {
-        $user_id = auth()->user()->id;
-        $user = User::where('id', $user_id)->first();
-        // dd($user->name);
+    private object $user;
+
+    public function __construct()
+    {
+        if (auth()->check()) {
+            $user_id = auth()->user()->id;
+            $this->user = User::where('id', $user_id)->first();
+            FacadesView::share('data', $this->user);
+        }
+    }
+
+    public function index()
+    {
         return view('home.dashboard.index',[
-            'title' => 'Dashboard',
-            'content' => 'general',
-            'data' => $user,
+            'title'     => 'Dashboard',
+            'content'   => 'general',
         ]);
     }
 
-    public function appearance() {
+    public function appearance()
+    {
         return view('home.dashboard.index',[
-            'title' => 'Dashboard',
-            'content' => 'appearance'
+            'title'     => 'Dashboard',
+            'content'   => 'appearance',
         ]);
     }
 
-    public function article() {
+    public function navbar()
+    {
         return view('home.dashboard.index',[
-            'title' => 'Dashboard',
-            'content' => 'article',
+            'title'     => 'Dashboard',
+            'content'   => 'navbar',
+        ]);
+    }
+
+    public function article()
+    {
+        return view('home.dashboard.index',[
+            'title'     => 'Dashboard',
+            'content'   => 'article',
         ]);
     }
 }
