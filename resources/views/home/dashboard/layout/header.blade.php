@@ -1,7 +1,7 @@
-<div class="relative z-20 flex w-full py-4 bg-white border-b dark:bg-slate-900 dark:lg:bg-slate-900 dark:text-white dark:border-slate-800">
+<div class="relative z-20 flex w-full py-4 bg-white border-b dark:bg-slate-900 dark:lg:bg-slate-900  dark:border-slate-800">
     <div class="container grid min-w-full grid-cols-12 gap-4 px-4 mx-auto lg:px-6 xl:px-8 2xl:px-4 lg:max-w-full xl:max-w-full 2xl:max-w-[1536px] lg:min-w-0">
        <div class="relative z-20 flex flex-row items-center justify-start col-span-8 xl:col-span-9">
-          <a aria-label="Hashnode Logo" class="block w-36 md:w-44 xl:w-44 xl:pr-2 text-slate-900 dark:text-white" href="/">
+          <a aria-label="Hashnode Logo" class="block w-36 md:w-44 xl:w-44 xl:pr-2 text-slate-900 " href="/">
             <svg class="o-logo" width="168" height="29" viewBox="0 0 724 139" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.14401 138.256C0.664011 137.104 0.424011 134.56 0.424011 130.624C0.424011 126.688 2.29601 116.128 6.04001 98.944C9.78401 81.664 11.656 68.368 11.656 59.056C11.656 57.232 11.224 55.312 10.36 53.296C9.49601 51.184 8.58401 49.552 7.62401 48.4L6.32801 46.816L6.47201 44.944C10.984 43.504 18.952 42.784 30.376 42.784C31.432 44.8 32.104 47.632 32.392 51.28C39.784 45.232 45.928 42.208 50.824 42.208C55.816 42.208 59.8 44.272 62.776 48.4C65.848 52.528 67.384 58.576 67.384 66.544C67.384 80.464 64.84 90.832 59.752 97.648C54.664 104.368 48.232 107.728 40.456 107.728C36.424 107.728 33.064 107.152 30.376 106L28.936 105.424L29.944 99.808C30.808 100 31.816 100.096 32.968 100.096C35.464 100.096 37.624 98.944 39.448 96.64C41.368 94.336 42.808 91.408 43.768 87.856C45.688 80.752 46.648 74.176 46.648 68.128C46.648 59.488 44.872 55.168 41.32 55.168C38.536 55.168 35.56 56.272 32.392 58.48C32.008 65.2 30.04 76.96 26.488 93.76C22.936 110.56 21.16 124.096 21.16 134.368C15.976 136.48 9.30401 137.776 1.14401 138.256Z" fill="black"></path>
                 <path d="M76.825 106.432H75.817C75.625 105.664 75.529 103.936 75.529 101.248C75.529 98.464 76.825 91.072 79.417 79.072C82.009 67.072 83.305 60.208 83.305 58.48C83.305 55.504 81.961 52.24 79.273 48.688L77.977 46.96L78.121 45.088C83.305 43.648 91.609 42.928 103.033 42.928C104.185 45.424 104.761 48.928 104.761 53.44C105.817 51.712 108.025 49.408 111.385 46.528C114.745 43.648 118.201 42.208 121.753 42.208C126.937 42.208 129.529 46.72 129.529 55.744C129.049 56.32 128.377 57.088 127.513 58.048C126.745 58.912 125.113 60.16 122.617 61.792C120.217 63.424 117.865 64.432 115.561 64.816C115.465 64.816 114.649 63.52 113.113 60.928C111.577 58.336 110.425 57.04 109.657 57.04C107.257 57.904 105.145 59.344 103.321 61.36C98.905 81.232 96.697 94.096 96.697 99.952C96.697 102.064 96.745 103.552 96.841 104.416C93.481 105.76 86.809 106.432 76.825 106.432Z" fill="black"></path>
@@ -32,7 +32,65 @@
                    </svg>
                 </a>
              </div>
-             <div class="relative w-10 h-10"><button type="button" aria-label="Profile Dropdown" class="block w-full h-full overflow-hidden bg-slate-300 rounded-full focus:outline-none"><img alt="Ha Quoc Phong" class="block w-full" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1658477717687/TfdhfyaOM.png?w=200&amp;h=200&amp;fit=crop&amp;crop=faces&amp;auto=compress"></button></div>
+             <div class="relative w-10 h-10">
+                <button type="button" aria-label="Profile Dropdown" id="profile-dropdown" class="block w-full h-full overflow-hidden bg-slate-300 rounded-full focus:outline-none">
+                    <img alt="Ha Quoc Phong" class="block w-full" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1658477717687/TfdhfyaOM.png?w=200&amp;h=200&amp;fit=crop&amp;crop=faces&amp;auto=compress">
+                </button>
+                <div id="profile-area" class="hidden absolute right-0 mt-4 overflow-hidden bg-white border rounded-lg shadow-xl top-100 w-72 dark:bg-black dark:border-slate-800">
+                    <div class="relative z-20 flex bg-white rounded-lg w-144 dark:bg-black transition-all ">
+                    <section class="transform translate-x-0 visible opacity-100 flex flex-col flex-1 transition-all">
+                        <a href="/@Phonghaw2" aria-label="User Profile" class="flex flex-row items-center p-6 hover:bg-slate-200 dark:hover:bg-slate-700" style="max-width: 18rem;">
+                            <div class="shrink-0 mr-4 overflow-hidden rounded-full w-14 h-14"><img alt="Ha Quoc Phong" class="block" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1658477717687/TfdhfyaOM.png?w=200&amp;h=200&amp;fit=crop&amp;crop=faces&amp;auto=compress"></div>
+                            <div class="flex-1 min-w-0 leading-tight">
+                                <div class="flex flex-row items-center">
+                                <h2 title="Ha Quoc Phong" class="text-base font-bold text-slate-900 truncate ">{{ $data->name }}</h2>
+                                </div>
+                                <p class="text-sm text-slate-600 truncate dark:text-slate-200">@Phonghaw2</p>
+                            </div>
+                        </a>
+                        <hr class="flex-1 h-px mx-6 dark:border-slate-800">
+                        <button type="button" class="relative flex flex-row items-center w-full p-6 hover:bg-slate-200 dark:hover:bg-slate-700" style="max-width: 18rem;">
+                            <div class="self-start flex-1 min-w-0 mr-4 text-left">
+                                <p class="mb-2 text-sm text-slate-600 dark:text-slate-200">Your blog</p>
+                                <p class="font-bold text-slate-900 truncate ">phonghaw2coder.hashnode.dev</p>
+                            </div>
+                        </button>
+                        <hr class="flex-1 h-px mx-6 dark:border-slate-800">
+                        <a href="{{ route('article.draft') }}" aria-label="My Drafts" class="flex flex-row items-center px-6 py-4 font-semibold text-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700">
+                            <svg class="w-6 h-6 mr-2 fill-current " css="" viewBox="0 0 384 512">
+                                <path fill="currentColor" d="M365.3 125.3 258.8 18.8C246.7 6.742 230.5 0 213.5 0H64C28.65 0 0 28.65 0 64l.006 384c0 35.35 28.65 64 64 64H320c35.35 0 64-28.65 64-64V170.5c0-17-6.7-33.2-18.7-45.2zM224 34.08c4.477 1.566 8.666 3.846 12.12 7.299l106.5 106.5c3.48 3.421 5.78 7.621 7.28 12.121H240c-8.8 0-16-7.2-16-16V34.08zM352 448c0 17.64-14.36 32-32 32H64c-17.64 0-32-14.36-32-32V64c0-17.64 14.36-32 32-32h128v112c0 26.5 21.5 48 48 48h112v256zM96.82 360.1a15.883 15.883 0 0 0-4.342 8.113l-12.16 60.79c-2.217 11.11 7.574 20.91 18.69 18.68l60.79-12.15a15.867 15.867 0 0 0 8.109-4.344l122.2-122.2c7.559-7.555 12.82-17.37 13.76-28.02 1.158-13.14-3.432-25.7-12.62-34.88l-8.172-8.176c-7.559-7.559-17.37-12.83-28.01-13.78-13.14-1.172-25.7 3.414-34.89 12.59L96.82 360.1zm51.98 45.2-32.72 6.539 6.543-32.71 86.22-86.23 26.18 26.18L148.8 405.3zm93.8-146.1c4.652-4.645 12.19-4.652 16.84.004l9.338 9.336c4.641 4.64 4.668 12.18-.004 16.84l-11.22 11.22-26.18-26.18L242.6 259.2z"></path>
+                            </svg>
+                            <span class="">My Drafts</span>
+                        </a>
+                        <a href="/bookmarks" aria-label="My Bookmarks" class="flex flex-row items-center px-6 py-4 font-semibold text-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700">
+                            <svg class="w-6 h-6 mr-2 fill-current " css="" viewBox="0 0 448 512">
+                                <path fill="currentColor" d="M448 368V48c0-26.51-21.5-48-48-48H80C35.82 0 0 35.82 0 80v368c0 35.35 28.66 64 64 64h368c8.844 0 16-7.156 16-16s-7.2-16-16-16h-16v-66.95c18.6-6.65 32-24.25 32-45.05zM320 32v174.7l-54.9-43.2c-2-2.3-5.6-3.5-9.1-3.5s-7.062 1.172-10 3.5l-54 43.2V32h128zm64 448H64c-17.64 0-32-14.36-32-32s14.36-32 32-32h320v64zm16-96H64c-11.71 0-22.55 3.389-32 8.9V80c0-26.51 21.49-48 48-48h80v208c0 6.156 3.531 11.75 9.062 14.42 5.562 2.672 12.09 1.891 16.94-1.922L256 196.5l69.1 56.02c3.8 2.28 7.3 3.48 10.9 3.48 2.344 0 4.719-.516 6.938-1.578C348.5 251.8 352 246.2 352 240V32h48c8.8 0 16 7.16 16 16v320c0 8.8-7.2 16-16 16z"></path>
+                            </svg>
+                            <span class="">My Bookmarks</span>
+                        </a>
+                        <a href="/settings" aria-label="Account Settings" class="flex flex-row items-center px-6 py-4 font-semibold text-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700">
+                            <svg class="w-6 h-6 mr-2 fill-current " css="" viewBox="0 0 496 512">
+                                <path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm128 421.6c-35.9 26.5-80.1 42.4-128 42.4s-92.1-15.9-128-42.4V416c0-35.3 28.7-64 64-64 11.1 0 27.5 11.4 64 11.4 36.6 0 52.8-11.4 64-11.4 35.3 0 64 28.7 64 64v13.6zm30.6-27.5c-6.8-46.4-46.3-82.1-94.6-82.1-20.5 0-30.4 11.4-64 11.4S204.6 320 184 320c-48.3 0-87.8 35.7-94.6 82.1C53.9 363.6 32 312.4 32 256c0-119.1 96.9-216 216-216s216 96.9 216 216c0 56.4-21.9 107.6-57.4 146.1zM248 120c-48.6 0-88 39.4-88 88s39.4 88 88 88 88-39.4 88-88-39.4-88-88-88zm0 144c-30.9 0-56-25.1-56-56s25.1-56 56-56 56 25.1 56 56-25.1 56-56 56z"></path>
+                            </svg>
+                            <span class="">Account Settings</span>
+                        </a>
+                        <a href="/settings/blogs" aria-label="Manage your blogs" class="flex flex-row items-center px-6 py-4 font-semibold text-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700">
+                            <svg class="w-6 h-6 mr-2 fill-current " css="" aria-hidden="true" data-icon="browser" data-prefix="fal" viewBox="0 0 512 512">
+                                <path fill="currentColor" d="M0 96c0-35.35 28.65-64 64-64h384c35.3 0 64 28.65 64 64v320c0 35.3-28.7 64-64 64H64c-35.35 0-64-28.7-64-64V96zm160 32h320V96c0-17.67-14.3-32-32-32H160v64zm-32-64H64c-17.67 0-32 14.33-32 32v32h96V64zm-96 96v256c0 17.7 14.33 32 32 32h384c17.7 0 32-14.3 32-32V160H32z"></path>
+                            </svg>
+                            <span class="">Manage your blogs</span>
+                        </a>
+                        <hr class="flex-1 h-px mx-6 dark:border-slate-800">
+                        <a href="{{ route('account.logout_action') }}" class="flex flex-row items-center px-6 py-4 font-semibold text-red-500 hover:bg-slate-200 dark:hover:bg-slate-700">
+                            <svg class="w-6 h-6 mr-2 fill-current" viewBox="0 0 512 512">
+                                <path d="M48 64h132c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H48c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h132c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48zm279 19.5l-7.1 7.1c-4.7 4.7-4.7 12.3 0 17l132 131.4H172c-6.6 0-12 5.4-12 12v10c0 6.6 5.4 12 12 12h279.9L320 404.4c-4.7 4.7-4.7 12.3 0 17l7.1 7.1c4.7 4.7 12.3 4.7 17 0l164.5-164c4.7-4.7 4.7-12.3 0-17L344 83.5c-4.7-4.7-12.3-4.7-17 0z"></path>
+                            </svg>
+                            <span>Log out</span>
+                        </a>
+                    </section>
+                    </div>
+                 </div>
+            </div>
           </div>
        </div>
     </div>
