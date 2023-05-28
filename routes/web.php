@@ -42,6 +42,7 @@ Route::group([
     Route::post('/login-action', [AuthController::class, 'loginAction'])->name('login_action');
     Route::get('/signup', [AuthController::class, 'signup'])->name('signup');
     Route::post('/signup-action', [AuthController::class, 'signupAction'])->name('signup_action');
+    Route::get('/logout-action', [AuthController::class, 'logoutAction'])->name('logout_action');
 });
 
 Route::group([
@@ -78,4 +79,5 @@ Route::group([
 ], static function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::get('/appearance', [DashboardController::class, 'appearance'])->name('appearance');
+    Route::get('/draft', [DashboardController::class, 'draft'])->name('draft');
 });
