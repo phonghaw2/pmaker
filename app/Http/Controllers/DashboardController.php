@@ -7,19 +7,14 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    private $user_id;
-
-    public function __construct()
-    {
-        $this->user_id = auth()->user()->id;
-    }
-
     public function index() {
-        $user = User::where('id', $this->user_id)->first();
-        dd($user);
+        $user_id = auth()->user()->id;
+        $user = User::where('id', $user_id)->first();
+        // dd($user->name);
         return view('home.dashboard.index',[
             'title' => 'Dashboard',
-            'content' => 'general'
+            'content' => 'general',
+            'data' => $user,
         ]);
     }
 
@@ -27,6 +22,13 @@ class DashboardController extends Controller
         return view('home.dashboard.index',[
             'title' => 'Dashboard',
             'content' => 'appearance'
+        ]);
+    }
+
+    public function article() {
+        return view('home.dashboard.index',[
+            'title' => 'Dashboard',
+            'content' => 'article',
         ]);
     }
 }
