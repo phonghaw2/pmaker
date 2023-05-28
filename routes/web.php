@@ -74,7 +74,8 @@ Route::group([
 Route::group([
     'as' => 'dashboard.',
     'prefix' => 'dashboard',
+    'middleware' => 'hasLogged',
 ], static function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
-
+    Route::get('/appearance', [DashboardController::class, 'appearance'])->name('appearance');
 });
