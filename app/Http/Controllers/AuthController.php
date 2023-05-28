@@ -66,4 +66,13 @@ class AuthController extends Controller
         ]);
         return redirect()->route('index');
     }
+
+    public function logoutAction(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        session()->flush();
+        return redirect()->back();
+    }
 }
