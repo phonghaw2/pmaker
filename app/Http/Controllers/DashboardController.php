@@ -50,4 +50,20 @@ class DashboardController extends Controller
             'content'   => 'article',
         ]);
     }
+
+    public function series()
+    {
+        return view('home.dashboard.index',[
+            'title'     => 'Dashboard',
+            'content'   => 'series',
+        ]);
+    }
+
+    public function pages()
+    {
+        return view('home.dashboard.index',[
+            'title'     => 'Dashboard',
+            'content'   => 'pages',
+        ]);
+    }
 }

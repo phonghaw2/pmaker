@@ -81,4 +81,6 @@ Route::group([
     Route::get('/appearance', [DashboardController::class, 'appearance'])->name('appearance');
     Route::get('/navbar', [DashboardController::class, 'navbar'])->name('navbar');
     Route::get('/article', [DashboardController::class, 'article'])->name('article');
+    Route::get('/series', [DashboardController::class, 'series'])->name('series');
+    Route::get('/pages', [DashboardController::class, 'pages'])->name('pages');
 });

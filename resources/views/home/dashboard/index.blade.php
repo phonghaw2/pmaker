@@ -11,5 +11,11 @@
 @section('article')
     @include('home.dashboard.layout.article')
 @endsection
+@section('series')
+    @include('home.dashboard.layout.series')
+@endsection
+@section('pages')
+    @include('home.dashboard.layout.pages')
+@endsection
 
 
