@@ -12,6 +12,6 @@ class Draft extends Model
     protected $fillable = [
         'id',
         'context',
-        'draft_id',
+        'author_id',
     ];
 }
