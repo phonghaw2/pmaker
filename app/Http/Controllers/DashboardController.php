@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View as FacadesView;
@@ -21,6 +22,12 @@ class DashboardController extends Controller
 
     public function index()
     {
+        $user_id = auth()->user()->id;
+        $test = User::find($user_id)->getBlog();
+
+        $user = Blog::find(1)->user;
+        // $user = Blog::where('id', 1)->first();
+        dd($test);
         return view('home.dashboard.index',[
             'title'     => 'Dashboard',
             'content'   => 'general',
