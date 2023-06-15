@@ -50,6 +50,27 @@ class PostController extends Controller
         try {
             Post::create($request->validated());
 
+            // Try attach relationship
+            $post = Post::create([
+                'title' => $request->title,
+                'slug' => Str::slug($request->title),
+                'image' => 'image.jpg',
+                'description' => $request->description,
+                'category_id' => $request->category,
+                'user_id' => auth()->user()->id,
+                'published_at' => Carbon::now(),
+            ]);
+
+            $post->tags()->attach($request->tags);
+
+            if($request->hasFile('image')){
+                $image = $request->image;
+                $image_new_name = time() . '.' . $image->getClientOriginalExtension();
+                $image->move('storage/post/', $image_new_name);
+                $post->image = '/storage/post/' . $image_new_name;
+                $post->save();
+            }
+
             return $this->successResponse(message:'Successfully Posted');
         } catch (\Throwable $th) {
             return $this->errorResponse();
