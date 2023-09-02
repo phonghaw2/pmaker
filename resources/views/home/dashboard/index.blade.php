@@ -1,21 +1,29 @@
 @extends('home.dashboard.layout.master')
-@section('general')
-    @include('home.dashboard.layout.general')
+@section($content)
+    @switch($content)
+        @case('general')
+            @include('home.dashboard.layout.general')
+            @break
+        @case('appearance')
+            @include('home.dashboard.layout.appearance')
+            @break
+        @case('navbar')
+            @include('home.dashboard.layout.navbar-setting')
+            @break
+        @case('article')
+            @include('home.dashboard.layout.article')
+            @break
+        @case('series')
+            @include('home.dashboard.series.index')
+            @break
+        @case('create-series')
+            @include('home.dashboard.series.create')
+            @break
+        @case('pages')
+            @include('home.dashboard.layout.pages')
+            @break
+        @default
+            @include('home.dashboard.layout.general')
+            @break
+    @endswitch
 @endsection
-@section('appearance')
-    @include('home.dashboard.layout.appearance')
-@endsection
-@section('navbar')
-    @include('home.dashboard.layout.navbar-setting')
-@endsection
-@section('article')
-    @include('home.dashboard.layout.article')
-@endsection
-@section('series')
-    @include('home.dashboard.layout.series')
-@endsection
-@section('pages')
-    @include('home.dashboard.layout.pages')
-@endsection
-
-

@@ -5,6 +5,12 @@
     border-color: rgb(226 232 240 / 80%);
 }
 
+:root {
+    --tw-ring-offset-shadow: 0 0 transparent;
+    --tw-ring-shadow: 0 0 transparent;
+    --tw-shadow: 0 1px 3px 0 rgb(0 0 0/0.1),0 1px 2px -1px rgb(0 0 0/0.1);
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -733,13 +739,15 @@ code, kbd, samp, pre {
     cursor: pointer;
     text-transform: uppercase;
     position: absolute;
-    right: 1.5em;
+    right: 1.6em;
+    font-size: .9rem;
 }
 
 .p-func-right:hover .bagde-text {
     display: block;
     transform: rotate(0deg)!important;
     right: .6em!important;
+    font-size: 1rem;
 }
 
 .p-func-right:hover, .p-func-left:hover {
@@ -754,4 +762,24 @@ code, kbd, samp, pre {
 
 .tracking-wide {
     letter-spacing: .025em;
+}
+
+.btn-primary {
+    border-radius: 9999px;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(37 99 235/var(--tw-border-opacity));
+    padding: .75rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    line-height: 1.375;
+    --tw-text-opacity: 1;
+    color: rgb(37 99 235/var(--tw-text-opacity));
+    --tw-shadow: 0 1px 3px 0 rgb(0 0 0/0.1),0 1px 2px -1px rgb(0 0 0/0.1);
+    --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color);
+}
+
+.btn-primary, .btn-primary.active {
+    box-shadow: var(--tw-ring-offset-shadow,0 0 transparent),var(--tw-ring-shadow,0 0 transparent),var(--tw-shadow);
 }

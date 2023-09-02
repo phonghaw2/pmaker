@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 trait ResponseTrait
 {
-    public function successResponse($data = [] , $message = ''):JsonResponse
+    public function successResponse($data = [], $message = ''): JsonResponse
     {
         return response()->json([
             'success' => true,
@@ -15,7 +14,7 @@ trait ResponseTrait
             'message' => $message,
         ]);
     }
-    public function errorResponse($message = '' ,$status = 400):JsonResponse
+    public function errorResponse($message = '', $status = 400): JsonResponse
     {
         return response()->json([
             'success' => false,

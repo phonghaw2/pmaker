@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Series;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View as FacadesView;
@@ -16,6 +17,7 @@ class DashboardController extends Controller
         if (auth()->check()) {
             $user_id = auth()->user()->id;
             $this->user = User::where('id', $user_id)->first();
+            $this->user->user_code = md5($this->user->name . 'salt' . $this->user->id);
             FacadesView::share('data', $this->user);
         }
     }
@@ -60,9 +62,11 @@ class DashboardController extends Controller
 
     public function series()
     {
+        $series = Series::all();
         return view('home.dashboard.index',[
             'title'     => 'Dashboard',
             'content'   => 'series',
+            'series'    => $series
         ]);
     }
 

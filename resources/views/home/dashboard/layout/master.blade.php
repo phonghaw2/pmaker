@@ -31,5 +31,6 @@
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/dashboard/main.js') }}"></script>
+    @stack('js-dashboard')
 </body>
 </html>

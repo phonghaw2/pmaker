@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Dashboard\SeriesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Step\StepController;
@@ -81,6 +82,12 @@ Route::group([
     Route::get('/appearance', [DashboardController::class, 'appearance'])->name('appearance');
     Route::get('/navbar', [DashboardController::class, 'navbar'])->name('navbar');
     Route::get('/article', [DashboardController::class, 'article'])->name('article');
+    // Series
     Route::get('/series', [DashboardController::class, 'series'])->name('series');
+    Route::get('/series/create', [SeriesController::class, 'create'])->name('create-series');
+    Route::post('/series/store', [SeriesController::class, 'store'])->name('store-series');
+    // Page
     Route::get('/pages', [DashboardController::class, 'pages'])->name('pages');
 });
+
+Route::get('{user-code}/series/{series-slug}', [SeriesController::class, 'pageSeries'])->name('page-series');

@@ -12,25 +12,24 @@
     var OPEN_LINK_SVG = `<svg class="css-104epv6" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z"></path></svg>`;
     var EDIT_LINK_SVG = `<svg class="css-104epv6" viewBox="0 0 512 512"><path fill="currentColor" d="m493.2 56.26-37.51-37.51C443.2 6.252 426.8 0 410.5 0c-16.38 0-32.76 6.25-45.26 18.75L45.11 338.9a63.91 63.91 0 0 0-17.18 31.21L.32 492.91C-1.7 502.1 6.158 512 15.95 512a16.26 16.26 0 0 0 3.198-.32s84.61-17.95 122.8-26.93c11.54-2.717 21.87-8.523 30.25-16.9l321.2-321.2C518.3 121.7 518.2 81.26 493.2 56.26zM149.5 445.2c-4.219 4.219-9.252 7.039-14.96 8.383-24.68 5.811-69.64 15.55-97.46 21.52l22.04-98.01a31.942 31.942 0 0 1 8.594-15.6l247.6-247.6 82.76 82.76L149.5 445.2zM470.7 124l-50.03 50.02-82.76-82.76 49.93-49.93c6.06-6 14.06-9.33 22.66-9.33s16.58 3.33 22.63 9.375l37.51 37.51C483.1 91.37 483.1 111.6 470.7 124z"></path></svg>`;
     var UNLINK_SVG = `<svg class="css-104epv6" viewBox="0 0 640 512"><path d="M633.9 483.4c7 5.5 8.1 14.7 2.7 22.5-5.5 7-15.6 8.1-22.5 2.7L6.086 28.56C-.849 23.08-2.033 13.02 3.443 6.086 8.918-.849 18.98-2.033 25.91 3.443L633.9 483.4zM591.5 256l-74.2 74.2-25.3-19.9 76.9-76.9c37.5-37.5 37.5-98.3 0-135.79-37.5-37.49-98.3-37.49-135.8 0l-22.6 22.59c-6.2 6.3-16.4 6.3-22.6 0-6.3-7.1-6.3-16.3 0-22.59l22.6-22.63c50-49.99 131-49.99 181 0 50 49.12 50 131.02 0 181.02zM286.2 380.6c-27.1-27.1-39.6-63.5-37.2-99.1l33.4 26.3c3.4 18.4 12.2 36 26.4 50.1 19.9 19.9 46.4 29.3 72.4 28l33.4 26.3c-43.9 13.7-93.7 3.1-128.4-31.6zm-27.4-254.5-33.4-26.34c43.9-13.64 93.7-3.07 128.4 31.64 27.1 27.1 39.6 63.5 36.3 99.1l-32.5-26.3c-3.4-18.4-12.2-36-26.4-50.1-19.9-19.9-46.4-29.3-72.4-28zM71.1 278.6c-37.49 37.5-37.49 98.3 0 135.8 37.5 37.5 98.3 37.5 135.8 0l22.6-22.6c6.2-6.3 16.4-6.3 22.6 0 6.3 6.2 6.3 16.3 0 22.6L229.5 437c-50 50-131.04 50-181.03 0-49.988-50-49.988-131.9 0-181l74.23-74.2 24.4 19.9-76 76.9z"></path></svg>`;
-    function draftQuery(selector) {
-        if (!(this instanceof draftQuery))
-        return new draftQuery(selector)
-        if (selector === typeof '') {
-            this.elements = document.querySelectorAll(selector) // it 's array element
-        }
-        else if (selector.nodeName) {
-        this.elements = selector
 
-    }
+    var requestId = 0;
+
+    function draftQuery(selector) {
+        if (!(this instanceof draftQuery)) return new draftQuery(selector);
+        if (selector === typeof '') {
+            this.elements = document.querySelectorAll(selector); // it 's array element
+        } else if (selector.nodeName) {
+            this.elements = selector;
+        }
         return this
     }
     draftQuery.fn = draftQuery.prototype
 
-
     draftQuery.prototype.addToolbar = function () {
 
         let parent = document.createElement('div');
-        parent.id = CONTAINER_ID
+        parent.id = CONTAINER_ID;
         parent.setAttribute("style", "");
         this.elements.parentNode.appendChild(parent);
         // this.parentDOM = parent;
@@ -38,24 +37,35 @@
 
         //     this.selection()
         // })
-        this.elements.addEventListener('click' , (e) => {
-            console.log('click');
-            this.selection();
-            e.stopPropagation();
-            event.stopPropagation();
+
+
+        function show() {
+            // console.log(this)
+        }
+        this.elements.addEventListener('click', (e) => {
+            if (requestId) {
+                window.cancelAnimationFrame(requestId);
+                this.turnOffToolbar();
+                requestId = 0;
+            } else {
+                requestId =  window.requestAnimationFrame(this.selection.bind(this));
+            }
         })
 
-        window.addEventListener('mouseup', this.selection)
-        // this.selection();
+        // window.addEventListener('mouseup', this.selection)
+        //     this.selection();
 
-        // this.elements.addEventListener('click' ,  e => {
-        //     console.log('click')
-        // })
-        this.elements.addEventListener('message' ,  e => {
-            console.log('message')
+        this.elements.addEventListener('click', e => {
+            console.log("click")
+        })
+        this.elements.addEventListener('mouseout', e => {
+            console.log("mouseout")
+        })
+        this.elements.addEventListener('mouseup', e => {
+            console.log("mouseup")
         })
 
-        this.elements.addEventListener('keypress' , e => {
+        this.elements.addEventListener('keypress', e => {
             if (e.keyCode == 13) {
                 this.turnOffToolbar();
             }
@@ -169,7 +179,7 @@
         // console.log(e);
         if (!window.getSelection().isCollapsed && window.getSelection().type === 'Range') {
             this.elements.addEventListener('keypress' , e => {
-                draftQuery.turnOffToolbar();
+                this.turnOffToolbar();
                 return this;
             });
 
