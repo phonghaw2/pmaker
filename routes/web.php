@@ -86,6 +86,7 @@ Route::group([
     Route::get('/series', [DashboardController::class, 'series'])->name('series');
     Route::get('/series/create', [SeriesController::class, 'create'])->name('create-series');
     Route::post('/series/store', [SeriesController::class, 'store'])->name('store-series');
+    Route::delete('/series/delete/{seriesId}', [SeriesController::class, 'destroy'])->name('delete-series');
     // Page
     Route::get('/pages', [DashboardController::class, 'pages'])->name('pages');
 });

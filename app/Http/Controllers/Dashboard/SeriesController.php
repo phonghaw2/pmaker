@@ -8,6 +8,7 @@ use App\Http\Requests\Series\StoreRequest;
 use App\Models\Series;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View as FacadesView;
 
 class SeriesController extends Controller
@@ -39,14 +40,13 @@ class SeriesController extends Controller
     {
         try {
             $arr = $request->validated();
-            // $arr['cover'] = optional($request->file('image'))->store('cover-series');
 
             $series = Series::create($arr);
             if($request->hasFile('cover')){
                 $cover = $request->cover;
-                $image_new_name = time() . '.' . $cover->getClientOriginalExtension();
-                $cover->move('storage/app/cover-series/', $image_new_name);
-                $series->cover = '/storage/app/cover-series/' . $image_new_name;
+                $image_new_name = $this->user->id . time() . '.' . $cover->getClientOriginalExtension();
+                $cover->move('storage/cover-series/', $image_new_name);
+                $series->cover = '/storage/cover-series/' . $image_new_name;
                 $series->save();
             }
 
@@ -54,5 +54,18 @@ class SeriesController extends Controller
         } catch (\Throwable $th) {
             return $this->errorResponse($th->getMessage());
         }
+    }
+
+    public function destroy($seriesId)
+    {
+        $series = Series::getSeries($this->user->id, $seriesId);
+        if ($series) {
+            $cover_path = public_path('storage/cover-series/' . $series->cover);
+            if (File::exists($cover_path)) {
+                File::delete($cover_path);
+            }
+            $series->delete();
+        }
+        return redirect()->back()->with('status', 'clgt!');;
     }
 }

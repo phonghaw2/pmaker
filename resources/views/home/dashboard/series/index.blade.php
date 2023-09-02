@@ -5,6 +5,7 @@
         <span>Create new Series</span>
     </a>
     </div>
+
     @foreach ($series as $serie)
         <div class="flex flex-row flex-wrap items-center justify-between py-6 mb-4 border-b dark:border-slate-800">
             <div class="flex-1 w-full mb-2 mr-4 md:w-auto md:mb-0">
@@ -19,7 +20,11 @@
                 <span>View Series</span>
             </a>
             <a class="mr-2 button-transparent" href="">Edit Series</a>
-            <button class="button-transparent hover:text-red-600">Delete</button>
+            <form action="{{ route('dashboard.delete-series', $serie->id) }}" method="POST">
+                @csrf
+                @method('delete')
+                <button class="button-transparent hover:text-red-600">Delete</button>
+            </form>
             </div>
         </div>
     @endforeach
@@ -56,4 +61,12 @@
           <button class="button-transparent hover:text-red-600">Delete</button>
        </div>
     </div> --}}
+    @if (session('status'))
+    <div>
+        <h1>hehe</h1>
+    </div>
+        <script>
+            alert({{ session('status') }})
+        </script>
+    @endif
  </div>

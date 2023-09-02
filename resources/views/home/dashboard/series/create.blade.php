@@ -74,7 +74,7 @@
                     enctype: 'multipart/form-data', // serializes the form's elements.
                     success: function(data)
                     {
-                        document.location.href = '{{ route('dashboard.appearance') }}';
+                        document.location.href = '{{ route('dashboard.series') }}';
                     },
                     error: function (res)
                     {

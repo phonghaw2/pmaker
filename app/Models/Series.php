@@ -25,4 +25,8 @@ class Series extends Model
     {
         return SortNameEnum::getKey($this->layout_id);
     }
+
+    public static function getSeries($user_id, $series_id) {
+        return static::where('user_id', $user_id)->where('id',  $series_id)->first();
+    }
 }
