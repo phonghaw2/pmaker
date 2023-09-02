@@ -42,13 +42,18 @@ class SeriesController extends Controller
             $arr = $request->validated();
 
             $series = Series::create($arr);
+            $series->cover = '';
+            $series->user_id = $this->user->id;
+
+            // If have cover of series, save it on storage and get a name of pic
             if($request->hasFile('cover')){
                 $cover = $request->cover;
                 $image_new_name = $this->user->id . time() . '.' . $cover->getClientOriginalExtension();
                 $cover->move('storage/cover-series/', $image_new_name);
                 $series->cover = '/storage/cover-series/' . $image_new_name;
-                $series->save();
             }
+            // Insert
+            $series->save();
 
             return $this->successResponse();
         } catch (\Throwable $th) {
@@ -65,7 +70,9 @@ class SeriesController extends Controller
                 File::delete($cover_path);
             }
             $series->delete();
+            return redirect()->back();
+        } else {
+            return redirect()->back()->with('error', 'clgt!');
         }
-        return redirect()->back()->with('status', 'clgt!');;
     }
 }

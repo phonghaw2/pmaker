@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/home/dashboard/main.css') }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
+    @stack('css-dashboard')
 </head>
 <body  class="leading-normal bg-slate-50 dark:bg-black" style="overflow: auto;">
     @include('home.dashboard.layout.header')
