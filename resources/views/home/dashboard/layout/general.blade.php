@@ -5,16 +5,13 @@
         </div>
         <div class="mb-6">
             <label for="pubName" class="block mb-2 text-lg font-medium text-slate-600 dark:text-slate-300">Publication Name</label>
-            <input type="text" class="input-text" id="pubName" placeholder="Publication Name" value="Phonghaw2 Blog">
+            <input type="text" class="input-text" id="pubName" placeholder="Publication Name" value="{{ $blog->username }}">
         </div>
         <div class="mb-6">
             <label for="pubAbout" class="block mb-2 text-lg font-medium text-slate-600 dark:text-slate-300">
-                About <!-- -->Me
+                About Me
             </label>
-            <textarea class="input-text min-h-16" id="pubAbout" placeholder="Tell the world the best thing about you…" style="height: 130px !important;">
-                "Hi, My name is Phong. I'm a PHP Developer and a weightlifter.
-                I’m currently learning : Laravel , VueJS"
-            </textarea>
+            <textarea class="input-text min-h-16" id="pubAbout" placeholder="Tell the world the best thing about you…" style="height: 130px !important;">{{ $blog->aboutme }}</textarea>
         </div>
     <div class="flex flex-row flex-wrap -mx-5">
         <div class="w-full px-5 lg:w-1/2">
@@ -25,29 +22,7 @@
                 </svg>
                 <span>Twitter Profile</span>
                 </label>
-                <input type="url" pattern="(http|https)://twitter\.com\/(.+)|(http|https)://www\.twitter\.com\/(.+)" class="input-text }" id="pubTwitter" placeholder="https://twitter.com/username" value="https://twitter.com/HPhong24261595">
-            </div>
-        </div>
-        <div class="w-full px-5 lg:w-1/2">
-            <div class="mb-6">
-                <label for="pubMastodon" class="flex flex-row items-center mb-2 text-lg font-medium text-slate-600 dark:text-slate-300">
-                <svg class="w-5 h-5 mr-2 fill-current" css="" viewBox="0 0 448 512">
-                    <path d="M433 179.11c0-97.2-63.71-125.7-63.71-125.7-62.52-28.7-228.56-28.4-290.48 0 0 0-63.72 28.5-63.72 125.7 0 115.7-6.6 259.4 105.63 289.1 40.51 10.7 75.32 13 103.33 11.4 50.81-2.8 79.32-18.1 79.32-18.1l-1.7-36.9s-36.31 11.4-77.12 10.1c-40.41-1.4-83-4.4-89.63-54a102.54 102.54 0 0 1-.9-13.9c85.63 20.9 158.65 9.1 178.75 6.7 56.12-6.7 105-41.3 111.23-72.9 9.8-49.8 9-121.5 9-121.5zm-75.12 125.2h-46.63v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.33V197c0-58.5-64-56.6-64-6.9v114.2H90.19c0-122.1-5.2-147.9 18.41-175 25.9-28.9 79.82-30.8 103.83 6.1l11.6 19.5 11.6-19.5c24.11-37.1 78.12-34.8 103.83-6.1 23.71 27.3 18.4 53 18.4 175z"></path>
-                </svg>
-                <span>Mastodon Profile</span>
-                </label>
-                <input type="url" class="input-text }" id="pubMastodon" placeholder="https://mastodon.social/@username" value="">
-            </div>
-        </div>
-        <div class="w-full px-5 lg:w-1/2">
-            <div class="mb-6">
-                <label for="pubInstagram" class="flex flex-row items-center mb-2 text-lg font-medium text-slate-600 dark:text-slate-300">
-                <svg class="w-5 h-5 mr-2 fill-current" viewBox="0 0 24 24">
-                    <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
-                </svg>
-                <span>Instagram Profile</span>
-                </label>
-                <input type="url" pattern="(http|https)://instagram\.com\/(.+)|(http|https)://www\.instagram\.com\/(.+)" class="input-text }" id="pubInstagram" placeholder="https://instagram.com/username" value="">
+                <input type="url" pattern="{{ $pattern['X'] }}" class="input-text" id="pubTwitter" placeholder="https://twitter.com/username" value="{{ $blog->x_link }}">
             </div>
         </div>
         <div class="w-full px-5 lg:w-1/2">
@@ -58,7 +33,7 @@
                 </svg>
                 <span>GitHub Profile</span>
                 </label>
-                <input type="url" pattern="(http|https)://github\.com\/(.+)|(http|https)://www\.github\.com\/(.+)" class="input-text }" id="pubGithub" placeholder="https://github.com/username" value="https://github.com/phonghaw2">
+                <input type="url" pattern="{{ $pattern['GITHUB'] }}" class="input-text" id="pubGithub" placeholder="https://github.com/username" value="{{ $blog->github_link }}">
             </div>
         </div>
         <div class="w-full px-5 lg:w-1/2">
@@ -69,7 +44,7 @@
                 </svg>
                 <span>Your website</span>
                 </label>
-                <input type="url" class="input-text }" id="pubWebsite" placeholder="https://something.com" value="">
+                <input type="url" class="input-text" id="pubWebsite" placeholder="https://something.com" value="{{ $blog->your_website }}">
             </div>
         </div>
         <div class="w-full px-5 lg:w-1/2">
@@ -78,9 +53,9 @@
                 <svg class="w-5 h-5 mr-2 fill-current" viewBox="0 0 200 200" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M13.742 66.824c-18.323 18.323-18.323 48.029 0 66.352l53.082 53.082c18.323 18.323 48.029 18.323 66.352 0l53.082-53.082c18.323-18.323 18.323-48.03 0-66.352l-53.082-53.082c-18.323-18.323-48.03-18.323-66.352 0L13.742 66.824zm109.481 56.399c12.826-12.826 12.826-33.62 0-46.446s-33.62-12.826-46.446 0-12.826 33.62 0 46.446 33.62 12.826 46.446 0z"></path>
                 </svg>
-                <span>Hashnode Profile</span>
+                <span>Profilemaker</span>
                 </label>
-                <input type="url" pattern="(http|https)://hashnode\.com\/(.+)|(http|https)://www\.hashnode\.com\/(.+)" class="input-text }" id="pubHashnode" placeholder="https://hashnode.com/@username" value="https://hashnode.com/@Phonghaw2">
+                <input type="url" pattern="{{ $pattern['PROFILE_MAKER'] }}" class="input-text" id="pubHashnode" placeholder="https://hashnode.com/@username" value="{{ $blog->pmaker }}">
             </div>
         </div>
         <div class="w-full px-5 lg:w-1/2">
@@ -91,7 +66,7 @@
                 </svg>
                 <span>YouTube Channel</span>
                 </label>
-                <input type="url" pattern="(http|https)://youtube\.com\/channel\/(.+)|(http|https)://www\.youtube\.com\/channel\/(.+)|(http|https)://youtube\.com\/c\/(.+)|(http|https)://www\.youtube\.com\/c\/(.+)|(http|https)://youtube\.com\/@([a-zA-Z0-9._-]+)|(http|https)://www\.youtube\.com\/@([a-zA-Z0-9._-]+)" class="input-text }" id="pubYoutube" placeholder="https://www.youtube.com/channel/channel-name" value="https://www.youtube.com/@phonghaw2">
+                <input type="url" pattern="{{ $pattern['YOUTUBE'] }}" class="input-text" id="pubYoutube" placeholder="https://www.youtube.com/channel/channel-name" value="{{ $blog->youtube_link }}">
             </div>
         </div>
         <div class="w-full px-5 lg:w-1/2">
@@ -105,7 +80,7 @@
                 </svg>
                 <span>Daily.dev Profile</span>
                 </label>
-                <input type="url" pattern="(http|https)://app\.daily\.dev\/(.+)" class="input-text }" id="pubDaily" placeholder="https://app.daily.dev/username" value="">
+                <input type="url" pattern="{{ $pattern['DAILY'] }}" class="input-text" id="pubDaily" placeholder="https://app.daily.dev/username" value="{{ $blog->daily_link }}">
             </div>
         </div>
         <div class="w-full px-5 lg:w-1/2">
@@ -116,7 +91,7 @@
                 </svg>
                 <span>LinkedIn Profile</span>
                 </label>
-                <input type="url" pattern="(http|https)://linkedin\.com\/in\/(.+)|(http|https)://www\.linkedin\.com\/in/(.+)|(http|https)://linkedin\.com\/company\/(.+)|(http|https)://www\.linkedin\.com\/company/(.+)" class="input-text }" id="pubLinkedIn" placeholder="https://www.linkedin.com/in/johndoe" value="https://www.linkedin.com/in/phonghaw2/">
+                <input type="url" pattern="{{ $pattern['LINKED'] }}" class="input-text" id="pubLinkedIn" placeholder="https://www.linkedin.com/in/johndoe" value="{{ $blog->linked_link }}">
             </div>
         </div>
     </div>

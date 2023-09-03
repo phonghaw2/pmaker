@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home/dashboard/main.css') }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @stack('dashboard-font')
     <title>{{ $title }}</title>
     @stack('css-dashboard')
 </head>

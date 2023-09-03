@@ -20,6 +20,13 @@ class Blog extends Model
         'tech_stack',
         'education',
         'layout_id',
+        'your_website',
+        'x_link',
+        'linked_link',
+        'youtube_link',
+        'github_link',
+        'daily_link',
+        'pmaker',
     ];
 
     public function getLayoutNameAttribute()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PatternLinkEnum;
 use App\Models\Blog;
 use App\Models\Series;
 use App\Models\User;
@@ -24,15 +25,15 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $user_id = auth()->user()->id;
-        $test = User::find($user_id)->getBlog();
-
-        $user = Blog::find(1)->user;
-        // $user = Blog::where('id', 1)->first();
-        dd($test);
+        // Get pattern of link social media
+        $pattern = PatternLinkEnum::asArray();
+        // Get user blog information
+        $blog_info = Blog::whereUserId($this->user->id)->first();
         return view('home.dashboard.index',[
             'title'     => 'Dashboard',
             'content'   => 'general',
+            'blog'   => $blog_info,
+            'pattern'   => $pattern,
         ]);
     }
 
@@ -77,4 +78,6 @@ class DashboardController extends Controller
             'content'   => 'pages',
         ]);
     }
+
+    
 }

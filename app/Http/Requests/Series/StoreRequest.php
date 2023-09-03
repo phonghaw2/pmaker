@@ -43,6 +43,7 @@ class StoreRequest extends FormRequest
                 'required',
                 'file',
                 'image',
+                'mimes:jpg,bmp,png'
                 // 'max:50',
             ],
             'sort' => [
