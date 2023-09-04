@@ -29,7 +29,7 @@ class AuthController extends Controller
         ]);
         $user = User::where('email', $request->email)->first();
         if ($user) {
-            if (hash::check($request->password,$user->password)) {
+            if (hash::check($request->password, $user->password)) {
                 auth()->login($user, true);
                 return redirect()->route('step.step_1');
             } else {

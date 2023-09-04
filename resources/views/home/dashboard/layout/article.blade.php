@@ -7,29 +7,47 @@
 
 <div class="p-5 col-span-full md:col-span-7 xl:col-span-8 xl:p-10 hsh-card">
     <div class="flex flex-row flex-wrap items-center justify-between">
-       <h2 class="text-3xl mb-10 font-bold text-slate-600 xl:text-4xl font-heading dark:text-white">Published (22)</h2>
-       <div class="flex flex-row mb-10 text-base"><button class="flex flex-row items-center button-transparent md:px-3 md:mr-2 text-blue-600 dark:text-blue-600 focus:border-red-600"><span class="capitalize">published</span></button><button class="flex flex-row items-center button-transparent md:px-3 md:mr-2  focus:border-red-600"><span class="capitalize">scheduled</span></button><button class="flex flex-row items-center button-transparent md:px-3 md:mr-2  focus:border-red-600"><span class="capitalize">deleted</span></button></div>
+        <h2 class="text-3xl mb-10 font-bold text-slate-600 xl:text-4xl font-heading dark:text-white">Published (22)</h2>
+        <div class="flex flex-row mb-10 text-base">
+            <button data-button-active="published" class="flex flex-row items-center button-transparent md:px-3 md:mr-2 text-blue-600 dark:text-blue-600 focus:border-red-600">
+                <span class="capitalize">published</span>
+            </button>
+            <button data-button-active="scheduled" class="flex flex-row items-center button-transparent md:px-3 md:mr-2 focus:border-red-600">
+                <span class="capitalize">scheduled</span>
+            </button>
+            <button data-button-active="deleted" class="flex flex-row items-center button-transparent md:px-3 md:mr-2 focus:border-red-600">
+                <span class="capitalize">deleted</span>
+            </button>
+        </div>
     </div>
     <div class="flex flex-row justify-between mb-2"><span class="text-lg font-semibold text-slate-600 font-heading dark:text-white">Article</span><span class="hidden md:block pr-24 text-lg font-semibold text-slate-600 font-heading dark:text-white">Status</span></div>
     <div style="height:1px" class="w-full mb-2 bg-slate-100 dark:bg-slate-700"></div>
+
+    <div id="scheduled-article-div" class="empty-container d-flex flex-column align-items-center" hidden>
+        <h2 class="text-2xl font-medium text-slate-500 text-center my-8">You haven't scheduled any articles yet.</h2>
+        <img class="block w-64 mx-auto" src="{{ asset('images/img_copywriter.png') }}">
+    </div>
+
+    <div id="published-article-div">
     @foreach ($articles as $article)
         <div class="flex flex-row flex-wrap items-start justify-between py-6 mb-4 border-b dark:border-slate-800/80">
-        <div class="w-full mb-4 mr-4 md:w-auto md:mb-0 md:flex-1">
-            <h1 class="mb-1 text-2xl font-extrabold text-slate-900 dark:text-slate-100 font-heading">
-                <a href="https://phonghaw2coder.hashnode.dev/title-too-short" target="_blank">{{ $article->title }}</a>
-            </h1>
-            <p class="text-slate-500">{{ $article->time_read }} min read - <span class="font-semibold">Published on {{ $article->publish_time }}</span></p>
-        </div>
-        <div class="relative flex flex-row items-center md:justify-start h-30px">
-            <div class="flex flex-col" data-published="{{ $article->publish_tag }}"><span class="bg-slate-200 text-slate-700 cursor-pointer text-sm uppercase font-bold w-28 text-center rounded-lg px-2 py-1">published</span></div>
-            <button data-article-id="" class="flex flex-row rounded-lg ml-8 px-2 py-3 border border-transparent hover:bg-slate-100 dark:hover:bg-slate-800 focus:border-red-600">
-                <div class="rounded-full bg-black dark:bg-white" style="height: 4px; width: 4px;"></div>
-                <div class="rounded-full bg-black dark:bg-white ml-1" style="height: 4px; width: 4px;"></div>
-                <div class="rounded-full bg-black dark:bg-white ml-1" style="height: 4px; width: 4px;"></div>
-            </button>
-        </div>
+            <div class="w-full mb-4 mr-4 md:w-auto md:mb-0 md:flex-1">
+                <h1 class="mb-1 text-2xl font-extrabold text-slate-900 dark:text-slate-100 font-heading">
+                    <a href="https://phonghaw2coder.hashnode.dev/title-too-short" target="_blank">{{ $article->title }}</a>
+                </h1>
+                <p class="text-slate-500">{{ $article->time_read }} min read - <span class="font-semibold">Published on {{ $article->publish_time }}</span></p>
+            </div>
+            <div class="relative flex flex-row items-center md:justify-start h-30px">
+                <div class="flex flex-col" data-published="{{ $article->publish_tag }}"><span class="bg-slate-200 text-slate-700 cursor-pointer text-sm uppercase font-bold w-28 text-center rounded-lg px-2 py-1">published</span></div>
+                <button data-article-id="" class="flex flex-row rounded-lg ml-8 px-2 py-3 border border-transparent hover:bg-slate-100 dark:hover:bg-slate-800 focus:border-red-600">
+                    <div class="rounded-full bg-black dark:bg-white" style="height: 4px; width: 4px;"></div>
+                    <div class="rounded-full bg-black dark:bg-white ml-1" style="height: 4px; width: 4px;"></div>
+                    <div class="rounded-full bg-black dark:bg-white ml-1" style="height: 4px; width: 4px;"></div>
+                </button>
+            </div>
         </div>
     @endforeach
+    </div>
     <span style="font-size: 0px;"></span>
 </div>
 
@@ -64,6 +82,25 @@
                 this.parentElement.appendChild(article_action);
             }
         });
+
+        $('[data-button-active]').click(function (e) {
+            $( "[data-button-active]" ).each(function() {
+                $(this).removeClass('text-blue-600');
+                let ele_hidden = $(this).data('button-active');
+                hiddenArticle(ele_hidden);
+            });
+            $(this).addClass('text-blue-600');
+            let ele = $(this).data('button-active');
+            showArticle(ele);
+        });
+
+        function hiddenArticle(ele) {
+            $(`#${ele}-article-div`).hide();
+        }
+
+        function showArticle(ele) {
+            $(`#${ele}-article-div`).show();
+        }
     });
 </script>
 @endpush

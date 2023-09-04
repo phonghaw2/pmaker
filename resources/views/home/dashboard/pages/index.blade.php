@@ -24,8 +24,8 @@
        <div class="flex-1 w-full mb-2 mr-4 md:w-auto md:mb-0">
           <h1 class="mb-1 text-2xl font-extrabold text-slate-900 dark:text-slate-100 font-heading">
             <a href="">
-                <span>Badges</span>
-                <small class="block italic font-normal opacity-50">Auto generated page by Hashnode</small>
+                <span>Portfolio</span>
+                <small class="block italic font-normal opacity-50">Auto generated page by profilemaker</small>
             </a>
         </h1>
        </div>

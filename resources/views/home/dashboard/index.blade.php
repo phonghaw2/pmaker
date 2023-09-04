@@ -20,7 +20,10 @@
             @include('home.dashboard.series.create')
             @break
         @case('pages')
-            @include('home.dashboard.layout.pages')
+            @include('home.dashboard.pages.index')
+            @break
+        @case('create-pages')
+            @include('home.dashboard.pages.create')
             @break
         @default
             @include('home.dashboard.layout.general')
