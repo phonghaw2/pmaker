@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\PatternLinkEnum;
+use App\Models\Article;
 use App\Models\Blog;
 use App\Models\Series;
 use App\Models\User;
@@ -55,9 +56,11 @@ class DashboardController extends Controller
 
     public function article()
     {
+        $articles = Article::getArticleInfo($this->user->id);
         return view('home.dashboard.index',[
             'title'     => 'Dashboard',
             'content'   => 'article',
+            'articles'   => $articles,
         ]);
     }
 
@@ -79,5 +82,5 @@ class DashboardController extends Controller
         ]);
     }
 
-    
+
 }

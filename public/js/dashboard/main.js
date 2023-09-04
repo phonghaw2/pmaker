@@ -20,6 +20,10 @@ $( document ).ready(function() {
         if (!headbar) {
             $("#headbar-site").removeClass("open")
         }
+        const article_div = event.target.closest('[data-article-id]');
+        if (!article_div) {
+            $("#article-action").remove();
+        }
     });
 
     function popup() {
