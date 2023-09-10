@@ -4,6 +4,12 @@
         @case('appearance')
             @include('home.dashboard.layout-portfolio.appearance')
             @break
+        @case('information')
+            @include('home.dashboard.layout-portfolio.information')
+            @break
+        @case('links')
+            @include('home.dashboard.links.index')
+            @break
         @default
             @include('home.dashboard.layout.appearance')
             @break

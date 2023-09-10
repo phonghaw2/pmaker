@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div id="headbar-site" class="absolute left-0 z-10 w-full mt-1 overflow-hidden bg-white border shadow-xl rounded-2xl dark:border-slate-700 dark:bg-slate-800 top-100 hidden">
-                <div class="flex flex-row items-center flex-1 min-w-0 px-5 py-3 font-semibold cursor-pointer text-blue-600 hover:bg-slate-100">
+                <div id="portfolio-location" class="flex flex-row items-center flex-1 min-w-0 px-5 py-3 font-semibold cursor-pointer text-blue-600 hover:bg-slate-100">
                     <div class="flex flex-row items-center justify-center mr-2 w-9 h-9 ">
                         <img class="block" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1660713301728/6uuIj2Dzq.png?w=200&amp;h=200&amp;fit=crop&amp;crop=faces&amp;auto=compress">
                     </div>
@@ -57,3 +57,12 @@
        </div>
     </div>
  </div>
+@push('js-dashboard')
+<script>
+    $(document).ready(function () {
+        $('#portfolio-location').click(function (e) {
+            document.location.href = '{{ route('dashboard.portfolio.index') }}';
+        });
+    });
+</script>
+@endpush

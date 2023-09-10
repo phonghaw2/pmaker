@@ -28,10 +28,17 @@ class PortfolioController extends Controller
         ]);
     }
 
-    public function link() {
+    public function links() {
         return view('home.dashboard.index-portfolio',[
             'title'     => 'Dashboard | Portfolio',
-            'content'   => 'link',
+            'content'   => 'links',
+        ]);
+    }
+
+    public function information() {
+        return view('home.dashboard.index-portfolio',[
+            'title'     => 'Dashboard | Portfolio',
+            'content'   => 'information',
         ]);
     }
 }

@@ -6,7 +6,7 @@
                     <div class="shrink-0 p-1 mr-3 overflow-hidden bg-white rounded-lg w-9 h-9 dark:border-slate-700">
                         <img class="block" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1660713301728/6uuIj2Dzq.png?w=200&amp;h=200&amp;fit=crop&amp;crop=faces&amp;auto=compress">
                     </div>
-                    <div class="pr-1 font-bold truncate font-heading">Phonghaw2 Blog</div>
+                    <div class="pr-1 font-bold truncate font-heading">Phonghaw2 Portfolio</div>
                 </div>
                 <div id="open-headbar-site">
                     <svg class="w-5 h-5 opacity-50 fill-current transform duration-100 false" viewBox="0 0 512 512">
@@ -15,11 +15,11 @@
                 </div>
             </div>
             <div id="headbar-site" class="absolute left-0 z-10 w-full mt-1 overflow-hidden bg-white border shadow-xl rounded-2xl dark:border-slate-700 dark:bg-slate-800 top-100 hidden">
-                <div class="flex flex-row items-center flex-1 min-w-0 px-5 py-3 font-semibold cursor-pointer text-blue-600 hover:bg-slate-100">
+                <div id="blog-location" class="flex flex-row items-center flex-1 min-w-0 px-5 py-3 font-semibold cursor-pointer text-blue-600 hover:bg-slate-100">
                     <div class="flex flex-row items-center justify-center mr-2 w-9 h-9 ">
                         <img class="block" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1660713301728/6uuIj2Dzq.png?w=200&amp;h=200&amp;fit=crop&amp;crop=faces&amp;auto=compress">
                     </div>
-                    <span>Portfolio</span>
+                    <span>Blog</span>
                 </div>
                 <div id="create-new" class="flex flex-row items-center flex-1 min-w-0 px-5 py-3 font-semibold cursor-pointer text-blue-600 dark:text-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 hover:bg-slate-100">
                     <div class="flex flex-row items-center justify-center mr-2 w-9 h-9 ">
@@ -48,4 +48,13 @@
             <span>Visit Portfolio</span>
         </a>
     </div>
- </div>
+</div>
+ @push('js-dashboard')
+ <script>
+    $(document).ready(function () {
+        $('#blog-location').click(function (e) {
+            document.location.href = '{{ route('dashboard.index') }}';
+        });
+    });
+ </script>
+ @endpush
