@@ -1,0 +1,11 @@
+@extends('home.dashboard.layout-portfolio.master')
+@section($content)
+    @switch($content)
+        @case('appearance')
+            @include('home.dashboard.layout-portfolio.appearance')
+            @break
+        @default
+            @include('home.dashboard.layout.appearance')
+            @break
+    @endswitch
+@endsection

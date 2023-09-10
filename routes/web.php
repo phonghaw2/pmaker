@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Dashboard\PortfolioController;
 use App\Http\Controllers\Dashboard\SeriesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -92,3 +93,13 @@ Route::group([
 });
 
 Route::get('{user-code}/series/{series-slug}', [SeriesController::class, 'pageSeries'])->name('page-series');
+
+// DASHBOARD-PORTFOLIO
+Route::group([
+    'as' => 'dashboard.portfolio.',
+    'prefix' => 'dashboard/portfolio',
+    'middleware' => 'hasLogged',
+], static function () {
+    Route::get('/', [PortfolioController::class, 'index'])->name('index');
+    Route::get('/link', [PortfolioController::class, 'link'])->name('link');
+});
