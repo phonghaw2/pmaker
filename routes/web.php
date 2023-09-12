@@ -101,5 +101,6 @@ Route::group([
     'middleware' => 'hasLogged',
 ], static function () {
     Route::get('/', [PortfolioController::class, 'index'])->name('index');
-    Route::get('/link', [PortfolioController::class, 'link'])->name('link');
+    Route::get('/links', [PortfolioController::class, 'links'])->name('links');
+    Route::get('/information', [PortfolioController::class, 'information'])->name('information');
 });
