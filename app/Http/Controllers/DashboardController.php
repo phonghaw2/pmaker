@@ -82,5 +82,13 @@ class DashboardController extends Controller
         ]);
     }
 
-
+    public function tagMultiLink()
+    {
+        $tags = '';
+        return view('home.dashboard.index',[
+            'title'     => 'Dashboard',
+            'content'   => 'tag-multi-link',
+            'tags'   => $tags,
+        ]);
+    }
 }
