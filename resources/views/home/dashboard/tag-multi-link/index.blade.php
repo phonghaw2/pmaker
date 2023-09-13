@@ -5,24 +5,24 @@
         <span>Create new</span>
     </a>
     </div>
+    @foreach ($tags as $tag)
     <div class="flex flex-row flex-wrap items-flex-start justify-between py-6 mb-4 border-b dark:border-slate-800">
         <div class="flex-1 w-full mb-2 mr-4 md:w-auto md:mb-0">
             <h1 class="mb-1 text-2xl font-extrabold text-slate-900 dark:text-slate-100 font-heading">
                 <a href="">
-                    <span>Những đứa trẻ tăng động</span>
-                    <small class="block italic font-normal opacity-50">Hope u enjoyable!</small>
+                    <span>{{ $tag->name }}</span>
+                    <small class="block italic font-normal opacity-50">{{ $tag->sub_name }}</small>
                 </a>
             </h1>
             <ul class="list-link">
+                @foreach ($tag->children as $link)
                 <li>
-                    <a href="">Link1</a>
+                    <a href="{{ $link->link }}" class="link-url">
+                        <h6>{{ $link->link }}</h6>
+                        <svg width="14" height="13" fill="none" class="link-svg"><path fill="#F9FDFE" fill-rule="evenodd" d="M1.002.5h12v12h-1V2.207L1.356 12.854l-.708-.708L11.295 1.5H1.002v-1Z" clip-rule="evenodd"></path></svg>
+                    </a>
                 </li>
-                <li>
-                    <a href="">Link1</a>
-                </li>
-                <li>
-                    <a href="">Link1</a>
-                </li>
+                @endforeach
             </ul>
         </div>
         <div class="flex flex-row items-center w-full md:w-auto">
@@ -36,5 +36,6 @@
             <button class="button-transparent small hover:text-red-600 tooltip-handle" data-title="You cannot delete this page" disabled="">Delete</button>
         </div>
     </div>
+    @endforeach
 </div>
 

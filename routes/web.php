@@ -90,6 +90,8 @@ Route::group([
     Route::delete('/series/delete/{seriesId}', [SeriesController::class, 'destroy'])->name('delete-series');
     // Page
     Route::get('/pages', [DashboardController::class, 'pages'])->name('pages');
+    // Tag & multi link
+    Route::get('/tag-multi-link', [DashboardController::class, 'tagMultiLink'])->name('tag-multi-link');
 });
 
 Route::get('{user-code}/series/{series-slug}', [SeriesController::class, 'pageSeries'])->name('page-series');

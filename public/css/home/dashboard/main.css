@@ -991,18 +991,38 @@ code, kbd, samp, pre {
     overflow: hidden;
 }
 
-
-.list-link li a:after {
-    background-color: #000;
-    border-radius: 100%;
-    content: "";
-    height: .5rem;
-    left: 0;
-    position: absolute;
-    top: 50%;
-    transform: translate(-.75rem,-50%);
-    width: .5rem;
+.link-url {
+    border-bottom: 1px solid var(--grey);
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 20px;
+    padding: 5px 10px 5px 10px;
+    display: flex;
 }
-.list-link li a{
-    position: relative;
+
+.link-svg {
+    mix-blend-mode: difference;
+    min-width: 14px;
+    min-height: 14px;
+}
+
+.link-url h6 {
+    color: #000;
+    width: 410px;
+    font-family: NeueHaasDisplay,Arial,Helvetica,sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    transition: color .3s ease-in-out;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.link-url:hover {
+    background-color: #000;
+    transition: background-color .3s ease-in-out;
+}
+
+.link-url:hover> h6 {
+    color: #fff;
 }
