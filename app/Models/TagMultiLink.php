@@ -65,4 +65,38 @@ class TagMultiLink extends Model
 
         return $result;
     }
+
+    /**
+     * Count total number of links in a tag.
+     *
+     * @return static
+     */
+    static function getTags($userId, $tagId)
+    {
+        return static::where('user_id', $userId)->where('id',  $tagId)->first();
+    }
+
+    /**
+     * Count total number of links in a tag.
+     *
+     * @return static
+     */
+    static function getLinksByTagId($tagId)
+    {
+        return static::where('parent_tag_id', $tagId)->get();
+    }
+
+    /**
+     * Count total number of links in a tag.
+     *
+     * @return static
+     */
+    static function deleteTags($userId, $tagId)
+    {
+        return static::where('user_id', $userId)
+                ->where('id', $tagId)
+                ->whereNull('parent_tag_id')
+                ->orWhere('parent_tag_id', $tagId)
+                ->delete();
+    }
 }
