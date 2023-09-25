@@ -5,6 +5,11 @@
     border-color: rgb(226 232 240 / 80%);
 }
 
+:root {
+    --rounded-normal: 8px;
+    --rounded-small: 4px;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -1165,7 +1170,7 @@ code, kbd, samp, pre {
     height: 40px;
     padding: 0 6px;
     text-align: center;
-    border-radius: 8px;
+    border-radius: var(--rounded-normal);
     overflow: hidden;
 }
 
@@ -1182,9 +1187,107 @@ code, kbd, samp, pre {
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 0 12px;
+    padding: 0 10px;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
+    font-size: 14px;
+}
+
+.menu-float__filters li {
+    border-left: 1px solid rgba(34 34 34, 0.1);
+}
+
+.menu-float__arrow {
+    display: inline-block;
+    fill: #a7a7a7;
+    margin-left: 12px;
+    width:12px;
+    height:12px;
+    position: relative;
+    transition: all .3s;
+}
+
+.menu-float__top {
+    max-height: 500px;
+    overflow: hidden;
+    transition: all .4s;
+}
+
+.menu-float__bottom {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-float__title-section {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin: 0 20px 0 6px;
+    line-height: 100%;
+}
+
+.menu-float__menu {
+    display: block;
+    width: 100%;
+    margin-bottom: 6px;
+    padding: 16px;
+    background: #2c2c2c;
+    color: #fff;
+    border-radius: var(--rounded-normal);
+    z-index: -1;
+    transition: all .4s;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--rounded-normal);
+    transition: all .3s;
+    z-index: -1;
+    pointer-events: all;
+}
+
+.filters__tab {
+    display: block;
+}
+
+.filters__search {
+    display: flex;
+    height: 40px;
+    margin-bottom: 20px;
+    background: #383838;
+    border-radius: var(--rounded-small);
+}
+
+.filters__search input {
+    flex: 1;
+    padding: 0 16px;
+    background: rgba(0,0,0,0);
+    font-size: 16px;
+    color: #fff;
+}
+
+.filters__search button {
+    width: 40px;
+    background: rgba(0,0,0,0);
+    border: none;
+}
+
+.ico-svg {
+    position: relative;
+    display: inline-block;
+    height: auto;
+    fill: currentColor;
+    transition: all .3s;
+}
+
+.filters__search .ico-svg {
+    fill: #fff;
+}
+
+.filters__search input:focus {
+    outline: none;
 }
