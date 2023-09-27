@@ -285,3 +285,8 @@
     return draftQuery;
 
 })();
+
+$('.menu-float__filters li').click(function (e) {
+    let action = $(this).data('action');
+    $('.menu-float__wrapper').toggleClass("is-open");
+});

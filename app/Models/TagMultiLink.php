@@ -30,6 +30,18 @@ class TagMultiLink extends Model
         return $this->hasMany(TagMultiLink::class, 'parent_tag_id');
     }
 
+     /**
+     * Get all tags by user id.
+     *
+     * @return static
+     */
+    static function allTags($userId)
+    {
+        return static::where('user_id', $userId)
+                ->whereNull('parent_tag_id')
+                ->get();
+    }
+
     /**
      * Count total number of links in a tag.
      *
