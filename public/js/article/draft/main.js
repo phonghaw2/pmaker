@@ -286,7 +286,97 @@
 
 })();
 
-$('.menu-float__filters li').click(function (e) {
-    let action = $(this).data('action');
-    $('.menu-float__wrapper').toggleClass("is-open");
+$(document).ready(function () {
+    $('.menu-float__filters li').click(function (e) {
+        let action = $(this).data('action');
+        $('.menu-float__wrapper').toggleClass("is-open");
+    });
+
+    $('[data-tag-id]').click(function (e) {
+        let tagId = $(this).data('tag-id');
+        let tagInfo = {
+            id: tagId,
+            name: $(this).data('name'),
+            subName: $(this).data('sub-name'),
+        }
+        $.ajax({
+            type: "GET",
+            url: '/api/get-multi-links/' + tagId,
+            dataType: 'json',
+            success: function (response) {
+                if (!$(`.tag-multi-link[data-id="${tagId}"]`).length) {
+                    genderTagMultiLinks(tagInfo, response.data);
+                }
+                $('.menu-float__wrapper').removeClass("is-open");
+            },
+            error: function (response) {
+                console.log(response.responseJSON.message)
+            }
+        });
+    });
+
+    function removeTag(tagId) {
+        let tag = $(`.tag-multi-link[data-id="${tagId}"]`);
+        if (tag) tag.remove();
+    }
+
+    function genderTagMultiLinks(tags, links) {
+        //
+        var div = $(
+                `<div class="tag-multi-link" data-id="${tags.id}">
+                    <button onclick="removeTag(${tags.id})" class="remove-tag-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 48 48">
+                        <path fill="#90caf9" d="M14.149,18.39l2.66,24.823C16.917,44.229,17.775,45,18.797,45h18.405	c1.022,0,1.879-0.771,1.988-1.787l2.661-24.823c0.077-0.72-0.487-1.348-1.211-1.348H15.36C14.636,17.043,14.072,17.67,14.149,18.39z"></path><path fill="none" stroke="#18193f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="3" d="M36.249,29.839L38,13.5"></path><path fill="none" stroke="#18193f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="3" d="M10.608,19.171l2.009,18.755c0.218,2.033,1.933,3.574,3.977,3.574h14.811c2.044,0,3.759-1.541,3.977-3.574l0.373-3.48"></path><line x1="7.5" x2="40.5" y1="13.5" y2="13.5" fill="none" stroke="#18193f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="3"></line><line x1="20.5" x2="27.5" y1="5.5" y2="5.5" fill="none" stroke="#18193f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="3"></line><path fill="none" stroke="#18193f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="3" d="M10,13.5l2.813-4.219c0.741-1.113,1.99-1.781,3.328-1.781H31.86c1.337,0,2.586,0.668,3.328,1.781L38,13.5"></path>
+                        </svg>
+                    </button>
+                    <h2>
+                        <span>${tags.name}</span>
+                        <small class="block italic font-normal opacity-50">${tags.subName}</small>
+                    </h2>
+                </div>`
+            );
+        //
+        var ul = $('<ul>', {
+                id: 'some-id',
+                class: 'list-link',
+            }).appendTo(div);
+        //
+        $.each(links, function(index, each){
+            $(
+                `<li>
+                    <a href="${each.link}" class="link-url">
+                        <h6>${each.link}</h6>
+                        <svg width="14" height="13" fill="none" class="link-svg"><path fill="#F9FDFE" fill-rule="evenodd" d="M1.002.5h12v12h-1V2.207L1.356 12.854l-.708-.708L11.295 1.5H1.002v-1Z" clip-rule="evenodd"></path></svg>
+                    </a>
+                </li>`
+            ).appendTo(ul);
+        });
+        // Append [TagMultiLink] to the end of the main-container
+        $('.dasdwqea').append(div);
+    }
+
+    function escapeMarkup () {
+        var replaceMap = {
+            '\\': '&#92;',
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            '\'': '&#39;',
+            '/': '&#47;'
+          };
+
+        // Do not try to escape the markup if it's not a string
+        if (typeof markup !== 'string') {
+        return markup;
+        }
+
+        return String(markup).replace(/[&<>"'\/\\]/g, function (match) {
+            return replaceMap[match];
+        });
+    }
+
+    // var optionText = (option.text || '').toUpperCase();
+    // var paramsTerm = (params.term || '').toUpperCase();
 });
+

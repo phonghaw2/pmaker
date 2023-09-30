@@ -180,7 +180,7 @@
                                                             <div class="filters__label">tags & multi link</div>
                                                             <ul class="filters__list">
                                                                 @foreach ($tags as $tag)
-                                                                    <li class="js-filter-item">
+                                                                    <li class="js-filter-item" data-tag-id="{{ $tag->id }}" data-sub-name="{{ $tag->sub_name}}" data-name="{{ $tag->name}}">
                                                                         <span class="filters__item">{{ $tag->name }}</span>
                                                                     </li>
                                                                 @endforeach

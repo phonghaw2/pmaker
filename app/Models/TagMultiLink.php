@@ -79,7 +79,7 @@ class TagMultiLink extends Model
     }
 
     /**
-     * Count total number of links in a tag.
+     * Get information of tag
      *
      * @return static
      */
@@ -89,18 +89,22 @@ class TagMultiLink extends Model
     }
 
     /**
-     * Count total number of links in a tag.
+     * Get all links by tag id & user id
      *
+     * @param int $userId
+     * @param int $tagId
      * @return static
      */
-    static function getLinksByTagId($tagId)
+    static function getLinksByTagId($userId, $tagId)
     {
-        return static::where('parent_tag_id', $tagId)->get();
+        return static::where('user_id', $userId)->where('parent_tag_id', $tagId)->get('link');
     }
 
     /**
-     * Count total number of links in a tag.
+     * Delete a tag and all link of tag.
      *
+     * @param int $userId
+     * @param int $tagId
      * @return static
      */
     static function deleteTags($userId, $tagId)
@@ -111,4 +115,6 @@ class TagMultiLink extends Model
                 ->orWhere('parent_tag_id', $tagId)
                 ->delete();
     }
+
+    // // asdda/*  */
 }
