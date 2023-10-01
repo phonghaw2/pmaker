@@ -12,7 +12,7 @@ class TagMultiLinkController extends Controller
     use ResponseTrait;
 
     /**
-     * Get the "after" validation callables for the request.
+     * Get multi links of a tag.
      */
     public function getMultiLinks($tagId)
     {
@@ -22,6 +22,8 @@ class TagMultiLinkController extends Controller
         //
         $links = TagMultiLink::getLinksByTagId(auth()->user()->id, $tagId);
         if (!$links) {
+            // If tag don't have any links and u don't want to return the results
+            // Use $links->isEmpty() instead of this condition
             return $this->errorResponse("NoExecuteFunction!");
         }
 

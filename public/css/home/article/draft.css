@@ -1269,7 +1269,11 @@ code, kbd, samp, pre {
 }
 
 .filters__tab {
-    display: block;
+    display: none;
+}
+
+.filters__tab.is-active {
+    display: block!important;
 }
 
 .filters__search {
@@ -1353,14 +1357,12 @@ code, kbd, samp, pre {
 }
 
 .filters__item {
-    display: inline-flex;
-    align-items: center;
-    height: 26px;
     padding: 0 8px;
     color: var(--color-white);
     border-radius: 26px;
     cursor: pointer;
     transition: all .3s;
+    line-height: 26px;
 }
 
 .menu-float__menu span {
@@ -1441,3 +1443,4 @@ code, kbd, samp, pre {
     padding: 2px;
     border-radius: 6px;
 }
+

@@ -166,7 +166,7 @@
                                     <div class="menu-float__menu" id="menu-filters" style="display: block;">
                                         <div class="menu-float__menu-content">
                                             <div class="filters">
-                                                <div class="filters__tab" id="filter-tags" data-controller="searchable-filter" style="display: block;">
+                                                <div class="filters__tab" id="filter-tags" data-controller="searchable-filter">
                                                     <div class="filters__search">
                                                         <input type="text" class="js-input-filter-search" placeholder="Search ..." data-searchable-filter-target="input" data-action="keyup->searchable-filter#searchEvent">
                                                         <button type="submit" data-action="click->searchable-filter#doSearch">
@@ -188,6 +188,21 @@
                                                          </div>
                                                     </div>
                                                 </div>
+                                                {{-- series --}}
+                                                <div class="filters__tab" id="filter-series" data-controller="searchable-filter">
+                                                    <div class="filters__content" data-searchable-filter-target="filters">
+                                                        <div class="js-filter-section">
+                                                            <div class="filters__label">Series</div>
+                                                            <ul class="filters__list">
+                                                                @foreach ($series as $se)
+                                                                    <li class="js-filter-item" data-series-id="{{ $se->id }}" data-series-name="{{ $se->name}}">
+                                                                        <span class="filters__item">{{ $se->name }}</span>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                         </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -196,26 +211,26 @@
                                     <div class="menu-float__content">
                                         <strong class="menu-float__title-section">PMaker</strong>
                                         <ul class="menu-float__filters">
-                                            <li data-action="tags">
-                                                <span class="menu-float__filter js-menufloat-filter" data-id="filter-winners-award">
+                                            <li>
+                                                <span class="menu-float__filter js-menufloat-filter" data-action="tags">
                                                 Tags
                                                 <svg style="width:12px;height:12px;fill:#a7a7a" class="menu-float__arrow" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><title/><path d="M81.8457,25.3876a6.0239,6.0239,0,0,0-8.45.7676L48,56.6257l-25.396-30.47a5.999,5.999,0,1,0-9.2114,7.6879L43.3943,69.8452a5.9969,5.9969,0,0,0,9.2114,0L82.6074,33.8431A6.0076,6.0076,0,0,0,81.8457,25.3876Z"/></svg>
                                                 </span>
                                             </li>
                                             <li>
-                                                <span class="menu-float__filter js-menufloat-filter" data-id="filter-winners-award">
+                                                <span class="menu-float__filter js-menufloat-filter" data-action="series">
                                                 Series
                                                 <svg style="width:12px;height:12px;fill:#a7a7a" class="menu-float__arrow" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><title/><path d="M81.8457,25.3876a6.0239,6.0239,0,0,0-8.45.7676L48,56.6257l-25.396-30.47a5.999,5.999,0,1,0-9.2114,7.6879L43.3943,69.8452a5.9969,5.9969,0,0,0,9.2114,0L82.6074,33.8431A6.0076,6.0076,0,0,0,81.8457,25.3876Z"/></svg>
                                                 </span>
                                             </li>
                                             <li>
-                                                <span class="menu-float__filter js-menufloat-filter" data-id="filter-winners-award">
+                                                <span class="menu-float__filter js-menufloat-filter">
                                                 Awards
                                                 <svg style="width:12px;height:12px;fill:#a7a7a" class="menu-float__arrow" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><title/><path d="M81.8457,25.3876a6.0239,6.0239,0,0,0-8.45.7676L48,56.6257l-25.396-30.47a5.999,5.999,0,1,0-9.2114,7.6879L43.3943,69.8452a5.9969,5.9969,0,0,0,9.2114,0L82.6074,33.8431A6.0076,6.0076,0,0,0,81.8457,25.3876Z"/></svg>
                                                 </span>
                                             </li>
                                             <li>
-                                                <span class="menu-float__filter js-menufloat-filter" data-id="filter-winners-award">
+                                                <span class="menu-float__filter js-menufloat-filter">
                                                 Awards
                                                 <svg style="width:12px;height:12px;fill:#a7a7a" class="menu-float__arrow" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><title/><path d="M81.8457,25.3876a6.0239,6.0239,0,0,0-8.45.7676L48,56.6257l-25.396-30.47a5.999,5.999,0,1,0-9.2114,7.6879L43.3943,69.8452a5.9969,5.9969,0,0,0,9.2114,0L82.6074,33.8431A6.0076,6.0076,0,0,0,81.8457,25.3876Z"/></svg>
                                                 </span>
@@ -234,27 +249,10 @@
     <script src="{{ asset('js/article/draft/main.js') }}"></script>
     <script src="{{ asset('js/article/draft/app.js') }}"></script>
     <script>
-
-        $("#title-input").keypress(function(e) {
-
-            // Get the code of pressed key
-            const keyCode = e.which || e.keyCode;
-
-            // 13 represents the Enter key
-            if (keyCode === 13 || e.shiftKey) {
-                // Don't generate a new line
-                e.preventDefault();
-                console.log('Enter key pressed');
-                $('#body-content').focus();
-                $('#body-content').setSelectionRange(0, 0);
-
-            }
-        });
-        $('#drafts-options-button').click(function (e) {
-            e.preventDefault();
-            $('.header-menu').toggleClass('open');
-        });
-
+        function removeTag(tagId) {
+            let tag = $(`.tag-multi-link[data-id="${tagId}"]`);
+            if (tag) tag.remove();
+        }
         // const dom  = document.getElementsByClassName('conentedit')[0];
         const dom  = document.getElementById('body-content');
         draftQuery(dom).addToolbar();

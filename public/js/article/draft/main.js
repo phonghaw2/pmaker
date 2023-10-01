@@ -286,10 +286,51 @@
 
 })();
 
+jQuery.fn.extend({
+	cook: function( value ) {
+        let str = value || 'is-active';
+        self = jQuery( this );
+		self.removeClass( str );
+        return this
+	}
+});
+
 $(document).ready(function () {
-    $('.menu-float__filters li').click(function (e) {
+    $("#title-input").keypress(function(e) {
+        // Get the code of pressed key
+        const keyCode = e.which || e.keyCode;
+
+        // 13 represents the Enter key
+        if (keyCode === 13 || e.shiftKey) {
+            // Don't generate a new line
+            e.preventDefault();
+            $('#body-content').focus();
+            $('#body-content').setSelectionRange(0, 0);
+
+        }
+    });
+
+    $('#drafts-options-button').click(function (e) {
+        e.preventDefault();
+        $('.header-menu').toggleClass('open');
+    });
+
+    $('.js-menufloat-filter').click(function (e) {
+        // Toggle button menu float filter
+        if ($(this).hasClass('is-active')) {
+            $('.menu-float__wrapper').removeClass("is-open");
+            $(this).cook();
+            return;
+        }
+
         let action = $(this).data('action');
-        $('.menu-float__wrapper').toggleClass("is-open");
+        // Remove the active status of the element
+        $('.js-menufloat-filter.is-active').cook();
+        $('.filters__tab.is-active').cook();
+        // Active filter
+        $(this).addClass("is-active");
+        $('.menu-float__wrapper').addClass("is-open");
+        $('#filter-' + action).addClass("is-active");
     });
 
     $('[data-tag-id]').click(function (e) {
@@ -313,6 +354,12 @@ $(document).ready(function () {
                 console.log(response.responseJSON.message)
             }
         });
+    });
+
+    $('[data-series-id]').click(function (e) {
+        let seriesId = $(this).data('series-id');
+        let seriesName = $(this).data('series-name');
+        // Add [#Series] on top of content
     });
 
     function removeTag(tagId) {
