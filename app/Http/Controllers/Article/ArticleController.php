@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
+use App\Models\Series;
 use App\Models\TagMultiLink;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,10 @@ class ArticleController extends Controller
     public function draft()
     {
         $tags = TagMultiLink::allTags(auth()->user()->id);
+        $series = Series::getAllSeriesByUser(auth()->user()->id);
         return view('home.article.draft',[
-            'tags'    => $tags
+            'tags'    => $tags,
+            'series'    => $series,
         ]);
     }
 }
