@@ -4,6 +4,7 @@ use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Dashboard\PortfolioController;
 use App\Http\Controllers\Dashboard\SeriesController;
+use App\Http\Controllers\Dashboard\TagMultiLinkController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Step\StepController;
@@ -90,6 +91,11 @@ Route::group([
     Route::delete('/series/delete/{seriesId}', [SeriesController::class, 'destroy'])->name('delete-series');
     // Page
     Route::get('/pages', [DashboardController::class, 'pages'])->name('pages');
+    // Tag & multi link
+    Route::get('/tag-multi-link', [DashboardController::class, 'tagMultiLink'])->name('tag-multi-link');
+    Route::get('/tags/create', [TagMultiLinkController::class, 'create'])->name('create-tag-multi-link');
+    Route::get('/tags/store', [TagMultiLinkController::class, 'store'])->name('store-tag-multi-link');
+    Route::get('/tag/delete', [TagMultiLinkController::class, 'destroy'])->name('delete-tag');
 });
 
 Route::get('{user-code}/series/{series-slug}', [SeriesController::class, 'pageSeries'])->name('page-series');

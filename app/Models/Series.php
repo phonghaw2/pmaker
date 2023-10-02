@@ -13,6 +13,7 @@ class Series extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'user_id',
         'name',
         'slug',
         'describe',
@@ -26,7 +27,24 @@ class Series extends Model
         return SortNameEnum::getKey($this->layout_id);
     }
 
+    /**
+     * Get a series of user
+     *
+     * @param int $user_id
+     * @param int $series_id
+     * @return static
+     */
     public static function getSeries($user_id, $series_id) {
-        return static::where('user_id', $user_id)->where('id',  $series_id)->first();
+        return static::where('user_id', $user_id)->where('id', $series_id)->first();
+    }
+
+    /**
+     * Get all information series of user
+     *
+     * @param int $user_id
+     * @return static
+     */
+    public static function getAllSeriesByUser($user_id) {
+        return static::where('user_id', $user_id)->get();
     }
 }

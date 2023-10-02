@@ -25,6 +25,12 @@
         @case('create-pages')
             @include('home.dashboard.pages.create')
             @break
+        @case('tag-multi-link')
+            @include('home.dashboard.tag-multi-link.index')
+            @break
+        @case('create-tag')
+            @include('home.dashboard.tag-multi-link.create')
+            @break
         @default
             @include('home.dashboard.layout.general')
             @break
