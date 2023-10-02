@@ -42,28 +42,29 @@
         function show() {
             // console.log(this)
         }
-        this.elements.addEventListener('click', (e) => {
-            if (requestId) {
-                window.cancelAnimationFrame(requestId);
-                this.turnOffToolbar();
-                requestId = 0;
-            } else {
-                requestId =  window.requestAnimationFrame(this.selection.bind(this));
-            }
-        })
 
-        // window.addEventListener('mouseup', this.selection)
-        //     this.selection();
+        document.addEventListener("selectionchange", () => {
+            this.selection();
+        });
+        // this.elements.addEventListener('click', (e) => {
+        //     if (requestId) {
+        //         window.cancelAnimationFrame(requestId);
+        //         this.turnOffToolbar();
+        //         requestId = 0;
+        //     } else {
+        //         requestId =  window.requestAnimationFrame(this.selection.bind(this));
+        //     }
+        // })
 
-        this.elements.addEventListener('click', e => {
-            console.log("click")
-        })
-        this.elements.addEventListener('mouseout', e => {
-            console.log("mouseout")
-        })
-        this.elements.addEventListener('mouseup', e => {
-            console.log("mouseup")
-        })
+        // this.elements.addEventListener('mouseup', e => {
+        //     this.selection()
+        //     // Collapse the range after the code element
+        //     // range.collapse(true);
+
+        //     // // Restore the selection
+        //     // selection.removeAllRanges();
+        //     // selection.addRange(range);
+        // })
 
         this.elements.addEventListener('keypress', e => {
             if (e.keyCode == 13) {
@@ -84,17 +85,26 @@
         dom.style = dom.style.cssText + CSS
     }
 
-    draftQuery.prototype.renderToolbar = function () {
-        let innerHTML = `
-        <button type="button" data-command='h1' class='css-1pulk9m'>${H1_SVG}</button>
-        <button type="button" data-command='h2' class='css-1pulk9m'>${H2_SVG}</button>
-        <button type="button" data-command='h3' class='css-1pulk9m'>${H3_SVG}</button>
-        <div data-orientation="vertical" aria-orientation="vertical" role="separator" class="css-picdfb"></div>
-        <button type="button" data-command='bold' class='css-1pulk9m'>${BOLD_SVG}</button>
-        <button type="button" data-command='italic' class='css-1pulk9m'>${ITALIC_SVG}</button>
-        <button type="button" data-command='strike' class='css-1pulk9m'>${STRIKE_SVG}</button>
-        <button type="button" data-command='inline-code' class='css-1pulk9m'>${INLINE_SVG}</button>
-        <button type="button" data-command='link' class='css-1pulk9m'>${LINK_SVG}</button>`;
+    draftQuery.prototype.renderToolbar = function (command) {
+        let innerHTML= '';
+        const obj = {
+            'h1' : H1_SVG,
+            'h2' : H2_SVG,
+            'h3' : H3_SVG,
+            'bold' : BOLD_SVG,
+            'italic' : ITALIC_SVG,
+            'strike' : STRIKE_SVG,
+            'inline-code' : INLINE_SVG,
+            'link' : LINK_SVG,
+        }
+
+        for (const [com, svg] of Object.entries(obj)) {
+            let classname = (command && com == command) ? 'css-14if4mz' : 'css-1pulk9m';
+            innerHTML += '<button type="button" data-command="' + com + '" class="' + classname + '">' + svg + '</button>';
+            if (com == 'h3') {
+                innerHTML += '<div data-orientation="vertical" aria-orientation="vertical" role="separator" class="css-picdfb"></div>';
+            }
+        }
 
         return innerHTML;
     }
@@ -175,29 +185,72 @@
         + innerHTML.slice(end);
     }
 
+    function resetButtonToolbar() {
+        $('[data-command]').each( function() {
+            $(this).attr( "class", "css-1pulk9m" )
+        })
+    }
+
+    function insertCodeBlock(code) {
+        // Get the selected text or the current cursor position
+        var selection = window.getSelection();
+        var range = selection.getRangeAt(0);
+
+        // Create a code element and set its text content to the code parameter
+        var codeElement = document.createElement('code');
+        codeElement.textContent = code;
+
+        // Delete the selected text or any text at the cursor position
+        range.deleteContents();
+
+        // Insert the code element at the cursor position
+        range.insertNode(codeElement);
+
+        // Collapse the range after the code element
+        range.collapse(false);
+
+        // Restore the selection
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+
     draftQuery.prototype.selection = function () {
-        // console.log(e);
-        if (!window.getSelection().isCollapsed && window.getSelection().type === 'Range') {
+        // Get the selected text or the current cursor position
+        var sel = window.getSelection()
+        var range = sel.getRangeAt(0)
+        // var {anchorNode, anchorOffset, focusNode, focusOffset} = sel;
+        // var focus_offset = `${focusNode?.data}, offset ${focusOffset}`;
+        //
+        if (sel.toString().length > 0 && !sel.isCollapsed && sel.type === 'Range') {
+            // if (focus_offset == 'undefined, offset 0') {
+            //     this.turnOffToolbar();
+            //     return this;
+            // }
             this.elements.addEventListener('keypress' , e => {
                 this.turnOffToolbar();
                 return this;
             });
 
-            const { top, left , width } = getSelection().getRangeAt(0).getBoundingClientRect()
-            CSS = `top : ${top - 50}px; left : ${left + width/2}px; position :absolute; display: grid;`
-            let dom = document.getElementById('toolbar-editor');
-            let innerHTMl;
-            if (window.getSelection().anchorNode.parentNode.nodeName == 'A') {
+            const { top, left , width } = range.getBoundingClientRect();
+            var dom = document.getElementById('toolbar-editor');
+            var innerHTMl;
+            var nodeCur = sel.anchorNode.parentNode.nodeName
+            //
+            CSS = `top : ${top - 50}px; left : ${left + width/2}px; position :absolute; display: grid;`;
+            //
+            if (nodeCur == 'A') {
                 innerHTML = this.renderLinkTool()
             } else {
-                innerHTML = this.renderToolbar()
+                innerHTML = this.renderToolbar(nodeCur.toLowerCase())
             }
             dom.innerHTML = innerHTML;
             dom.style = dom.style.cssText + CSS;
 
             $('#toolbar-editor button').click( function(e) {
                 e.preventDefault();
+                resetButtonToolbar();
                 let command = $(this).data('command');
+                $(this).attr( "class", "css-14if4mz" );
                 // console.log(command);
                 switch (command) {
                     case 'h1':
@@ -205,6 +258,9 @@
                         break;
                     case 'h2':
                         document.execCommand('formatBlock', false, 'h2');
+                        break;
+                    case 'h3':
+                        document.execCommand('formatBlock', false, 'h3');
                         break;
                     case 'bold':
                         console.log('bold');
@@ -277,7 +333,7 @@
                 }
             });
         } else {
-            draftQuery.turnOffToolbar;
+            this.turnOffToolbar();
         }
         return this;
     }
@@ -296,6 +352,7 @@ jQuery.fn.extend({
 });
 
 $(document).ready(function () {
+    test();
     $("#title-input").keypress(function(e) {
         // Get the code of pressed key
         const keyCode = e.which || e.keyCode;
@@ -423,6 +480,24 @@ $(document).ready(function () {
         });
     }
 
+    function test (command) {
+        const obj = {
+            'h1' : 'H1_SVG',
+            'h2' : 'H2_SVG',
+            'h3' : 'H3_SVG',
+            'bold' : 'BOLD_SVG',
+            'italic' : 'ITALIC_SVG',
+            'strike' : 'STRIKE_SVG',
+            'inline-code' : 'INLINE_SVG',
+            'link' : 'LINK_SVG',
+        }
+        const commandList1 = ['h1','h2','h3','bold'];
+        const commandList2 = ['italic','strike','inline-code','link'];
+        const test1 = function (...obj) {
+            console.log(obj.keys());
+        }
+        return test1(obj);
+    }
     // var optionText = (option.text || '').toUpperCase();
     // var paramsTerm = (params.term || '').toUpperCase();
 });

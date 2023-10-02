@@ -255,10 +255,25 @@
             let tag = $(`.tag-multi-link[data-id="${tagId}"]`);
             if (tag) tag.remove();
         }
+
         // const dom  = document.getElementsByClassName('conentedit')[0];
         const dom  = document.getElementById('body-content');
-        draftQuery(dom).addToolbar();
+        const draft = draftQuery(dom);
+        draft.addToolbar();
 
+        // document.onselectionchange = function() {
+        //     let selection = document.getSelection();
+
+        //     let {anchorNode, anchorOffset, focusNode, focusOffset} = selection;
+
+        //     // anchorNode and focusNode are text nodes usually
+        //     let focus_offset = `${focusNode?.data}, offset ${focusOffset}`;
+        //     if (focus_offset != 'undefined, offset 0') {
+        //         draft.selection();
+        //         // draft.turnOffToolbar();
+        //         // return this;
+        //     }
+        // };
     </script>
 </body>
 </html>
