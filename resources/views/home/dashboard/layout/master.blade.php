@@ -29,6 +29,7 @@
         </div>
     </div>
 
+    @include('home.dashboard.layout.chat-area')
     @include('home.layouts.footer')
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
