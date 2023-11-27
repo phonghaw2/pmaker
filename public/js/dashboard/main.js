@@ -33,4 +33,34 @@ $( document ).ready(function() {
     $('#create-new').click(function (e) {
         window.location.href = 'http://www.google.com';
     });
+
+
+
+    $("#message-content").on('keydown', function(ev) {
+        if (ev.keyCode === 13) {
+            let context = this.children.message.innerHTML;
+            if (context == '') {
+                return;
+            } else {
+                let incoming_id = this.parentElement.parentElement.children.incoming_id.value;
+                send_message(incoming_id, context);
+            }
+        }
+    });
+
+    function send_message(imcoming_id, context) {
+        $.ajax({
+            type: "method",
+            url: "url",
+            data: "data",
+            dataType: "dataType",
+            success: function (response) {
+
+            }
+        });
+    }
+    $('#test-chat').submit(function (e) {
+        e.preventDefault();
+        console.log('submit');
+    });
 });
