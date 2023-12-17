@@ -9,6 +9,15 @@
     @stack('dashboard-font')
     <title>{{ $title }}</title>
     @stack('css-dashboard')
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1PWF1GF69W"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-1PWF1GF69W');
+    </script>
 </head>
 <body  class="leading-normal bg-slate-50 dark:bg-black" style="overflow: auto;">
     @include('home.dashboard.layout.header')

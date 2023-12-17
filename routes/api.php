@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\DraftController;
 use App\Http\Controllers\Api\TagMultiLinkController;
 use App\Http\Controllers\Gms\ApiController;
 use App\Http\Controllers\Step\ApiStepController;
@@ -37,3 +38,6 @@ Route::post('/step/render-experience', [ApiStepController::class, 'insertExperie
 
 // Get MultiLink by tag id
 Route::get('/get-multi-links/{tagId}', [TagMultiLinkController::class, 'getMultiLinks'])->name('get-multi-links');
+
+// Save draft
+Route::post('/draft/save-data', [DraftController::class, 'save'])->name('draft.save-data');

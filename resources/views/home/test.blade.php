@@ -1,20 +1,32 @@
-<div><span style="color: var(--c-black_900);">
-    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 172 172" style="fill:#26e07f;">
-        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-            font-family="none" font-weight="none" font-size="none" text-anchor="none"
-            style="mix-blend-mode: normal">
-            <path d="M0,172v-172h172v172z" fill="none"></path>
-            <g fill="#1fb141">
-                <path
-                    d="M21.5,21.5v129h64.5v-32.25v-64.5v-32.25zM86,53.75c0,17.7805
-                    14.4695,32.25 32.25,32.25c17.7805,0 32.25,-14.4695 32.25,-32.25c0,-17.7805 -14.4695,-32.25
-                    -32.25,-32.25c-17.7805,0 -32.25,14.4695 -32.25,32.25zM118.25,86c-17.7805,0 -32.25,14.4695
-                    -32.25,32.25c0,17.7805 14.4695,32.25 32.25,32.25c17.7805,0 32.25,-14.4695 32.25,-32.25c0,-17.7805
-                    -14.4695,-32.25
-                    -32.25,-32.25z">
-                </path>
-            </g>
-        </g>
-    </svg>
-</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home/dashboard/main.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <section class="chat-area">
+            <div class="py-3" style="max-width: 18rem;">
+                <a href="/@Phonghaw2" aria-label="User Profile" class="flex flex-row items-center px-4 py-1 hover:bg-slate-100 dark:hover:bg-slate-700" >
+                    <div class="shrink-0 mr-4 overflow-hidden rounded-full w-9 h-9">
+                        <img alt="Ha Quoc Phong" class="block" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1658477717687/TfdhfyaOM.png?w=200&amp;h=200&amp;fit=crop&amp;crop=faces&amp;auto=compress">
+                    </div>
+                    <div class="flex-1 min-w-0 leading-tight">
+                        <div class="flex flex-row items-center">
+                            <h2 title="Ha Quoc Phong" class="text-base font-semibold text-slate-900 truncate ">user name</h2>
+                        </div>
+                        <p class="text-sm text-slate-600 truncate dark:text-slate-200">active now</p>
+                    </div>
+                    <div class="flex"><span class="status-dot offline"></span></div>
+                </a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
