@@ -16,12 +16,10 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        if (auth()->check()) {
-            $user_id = auth()->user()->id;
-            $this->user = User::where('id', $user_id)->first();
-            $this->user->user_code = md5($this->user->name . 'salt' . $this->user->id);
-            FacadesView::share('data', $this->user);
-        }
+        $user_id = auth()->user()->id;
+        $this->user = User::where('id', $user_id)->first();
+        $this->user->user_code = md5($this->user->name . 'salt' . $this->user->id);
+        FacadesView::share('data', $this->user);
     }
 
     public function index()
@@ -30,6 +28,11 @@ class DashboardController extends Controller
         $pattern = PatternLinkEnum::asArray();
         // Get user blog information
         $blog_info = Blog::whereUserId($this->user->id)->first();
+
+        // Handle case pass url? nếu chưa đăng ký loại người dùng thì ....
+        if (!$blog_info) {
+            return redirect()->route('step.step_1');
+        }
         return view('home.dashboard.index',[
             'title'     => 'Dashboard',
             'content'   => 'general',

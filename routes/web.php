@@ -39,13 +39,14 @@ Route::get('/test', [HomeController::class, 'test'])->name('test');
 Route::group([
     'as' => 'account.',
     'prefix' => 'account',
+    'middleware' => 'alreadyLoggedIn',
 ], static function () {
     Route::get('/recover', [AuthController::class, 'recover'])->name('recover');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login-action', [AuthController::class, 'loginAction'])->name('login_action');
     Route::get('/signup', [AuthController::class, 'signup'])->name('signup');
     Route::post('/signup-action', [AuthController::class, 'signupAction'])->name('signup_action');
-    Route::get('/logout-action', [AuthController::class, 'logoutAction'])->name('logout_action');
+    Route::get('/logout-action', [AuthController::class, 'logoutAction'])->name('logout_action')->withoutMiddleware(['alreadyLoggedIn']);;
 });
 
 Route::group([

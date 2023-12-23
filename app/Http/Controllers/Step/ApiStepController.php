@@ -15,7 +15,6 @@ class ApiStepController extends Controller
 {
     use ResponseTrait;
     use StepTrait;
-    use ArticleService;
 
     public function renderSocialField(Request $request, ArticleService $articleService)
     {
@@ -58,11 +57,11 @@ class ApiStepController extends Controller
         try {
             $data = $request->validated();
             $data_cert = $data['certification'];
-            $data_cert['user_id'] = 3;
+            $data_cert['user_id'] = auth()->user()->id;
             if (Certification::checkExists($data_cert)) {
                 return $this->errorResponse("This content has already been added");
             }
-            Certification::create($data);
+            Certification::create($data_cert);
 
             return $this->successResponse();
 

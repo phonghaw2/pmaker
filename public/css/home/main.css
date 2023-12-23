@@ -624,9 +624,8 @@ a {
 .f-back {
     position: absolute;
     left: 0vw;
-    top: auto;
+    top: 103px;
     right: auto;
-    bottom: 40vh;
     width: 60px;
     margin: auto;
     cursor: pointer;

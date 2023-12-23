@@ -14,6 +14,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'blog_name',
+        'portfolio_name',
+        'about_me',
+        'aboutme_p',
+        'company_func',
+        'address',
+        'phone_number',
+        'tech_stack',
+        'education',
+        'skill_stack',
     ];
 
     public function getBlog(): HasOne {

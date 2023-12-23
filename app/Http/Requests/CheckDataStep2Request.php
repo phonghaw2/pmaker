@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Request as FacadesRequest;
+use App\Enums\TemplateEnum;
+use Illuminate\Validation\Rule;
 
 class CheckDataStep2Request extends FormRequest
 {
@@ -32,6 +34,11 @@ class CheckDataStep2Request extends FormRequest
             return [];
         }
         return [
+            'p_type' => [
+                'required',
+                'string',
+                Rule::in([TemplateEnum::PORTFOLIO, TemplateEnum::BLOG]),
+            ],
             'p_name' => [
                 'required',
                 'string',

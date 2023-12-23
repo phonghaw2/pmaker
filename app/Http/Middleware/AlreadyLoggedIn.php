@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Enums\UserRoleEnum;
 
 class AlreadyLoggedIn
 {
@@ -17,7 +18,11 @@ class AlreadyLoggedIn
     public function handle(Request $request, Closure $next)
     {
         if(auth()->check()){
-            return redirect()->route('admin.dashboard');
+            if (auth()->user()->role === UserRoleEnum::ADMIN) {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->route('dashboard.index');
+            }
         }
         return $next($request);
     }
