@@ -1,7 +1,7 @@
-<h1 align="center"> GitPoint </h1> <br>
+<h1 align="center"> Pmaker </h1> <br>
 <p align="center">
   <a href="">
-    <img alt="Pmaker" title="Pmaker" src=../public/images/PMaker.png" width="450">
+    <img alt="Pmaker" title="Pmaker" src="readme/introduce-myself.png" width="450">
   </a>
 </p>
 
@@ -29,27 +29,22 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
 [![Gitter chat](https://img.shields.io/badge/chat-on_gitter-008080.svg?style=flat-square)](https://gitter.im/git-point)
 
-View repository and user information, control your notifications and even manage your issues and pull requests. Built with React Native, GitPoint is one of the most feature-rich unofficial GitHub clients that is 100% free.
+Create and grow your developer blog or portfolio effortlessly with Pmaker. 
 
 **Available for both iOS and Android.**
 
 <p align="center">
-  <img src = "readne/step1.png" width=350>
+  <img src = "readme/step1.png" width=750>
 </p>
 
 ## Features
 
-A few of the things you can do with GitPoint:
+A few of the things you can do with Pmaker:
 
-* View user activity feed
-* Communicate on your issue and pull request conversations
-* Close or lock issues
-* Apply labels and assignees
-* Review and merge pull requests
-* Create new issues
-* Star, watch and fork repositories
-* Control your unread and participating notifications
-* Easily search for any user or repository
+* Create your blog / portfolio.
+* Join the conversation: discuss and debate with your favorite writers.
+* Writing.
+* Update your portfolio.
 
 <p align="center">
   <img src = "http://i.imgur.com/IkSnFRL.png" width=700>
@@ -59,11 +54,6 @@ A few of the things you can do with GitPoint:
   <img src = "http://i.imgur.com/0iorG20.png" width=700>
 </p>
 
-## Feedback
-
-Feel free to send us feedback on [Twitter](https://twitter.com/gitpointapp) or [file an issue](https://github.com/gitpoint/git-point/issues/new). Feature requests are always welcome. If you wish to contribute, please take a quick look at the [guidelines](./CONTRIBUTING.md)!
-
-If there's anything you'd like to chat about, please feel free to join our [Gitter chat](https://gitter.im/git-point)!
 
 ## Contributors
 
