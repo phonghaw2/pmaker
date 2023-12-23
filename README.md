@@ -34,7 +34,7 @@ Create and grow your developer blog or portfolio effortlessly with Pmaker.
 **Available for both iOS and Android.**
 
 <p align="center">
-  <img src = "readme/step1.png" width=750>
+  <img src = "readme/introduction.png" width=750>
 </p>
 
 ## Features
@@ -47,11 +47,7 @@ A few of the things you can do with Pmaker:
 * Update your portfolio.
 
 <p align="center">
-  <img src = "http://i.imgur.com/IkSnFRL.png" width=700>
-</p>
-
-<p align="center">
-  <img src = "http://i.imgur.com/0iorG20.png" width=700>
+  <img src = "readme/step1.png" width=700>
 </p>
 
 
