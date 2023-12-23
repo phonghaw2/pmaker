@@ -20,15 +20,22 @@ class Certification extends Model
         'credential_url',
     ];
 
-    public function getDataFormId($user_id) {
+    public function getDataFormId($user_id)
+    {
         $data = static::where('user_id', $user_id)->get();
         return $data;
     }
 
-    public static function checkExists(array $certification) {
+    public static function checkExists(array $certification)
+    {
         return static::where('user_id', $certification['user_id'])
                     ->where('name', $certification['name'])
                     ->where('organization', $certification['organization'])
                     ->exists();
+    }
+
+    public function getDateIssueAttribute()
+    {
+        return date('M Y', strtotime($this->issue_date));
     }
 }

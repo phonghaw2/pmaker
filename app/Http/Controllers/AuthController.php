@@ -27,17 +27,17 @@ class AuthController extends Controller
                 'required',
             ],
         ]);
+
         $user = User::where('email', $request->email)->first();
-        if ($user) {
-            if (hash::check($request->password, $user->password)) {
-                auth()->login($user, true);
-                return redirect()->route('step.step_1');
-            } else {
-                return redirect()->route('account.login')->with('fail', 'Password not match');
-            }
-        } else {
-            return redirect()->route('account.login')->with('fail', 'Check your email :v');
+        if (!$user) {
+            return redirect()->route('account.login')->with('fail', trans('auth.emailInvalid'));
         }
+        if (!hash::check($request->password, $user->password)) {
+            return redirect()->route('account.login')->with('fail', trans('auth.password'));
+        }
+
+        auth()->login($user, true);
+        return redirect()->route('step.step_1');
     }
 
     public function signup()

@@ -1,0 +1,20 @@
+@extends('home.step.layout.master')
+@section($content)
+    @switch($content)
+        @case('step-1')
+            @include('home.step.step-1')
+            @break
+        @case('step-2')
+            @include('home.step.step-2')
+            @break
+        @case('step-3')
+            @include('home.step.step-3')
+            @break
+        @case('step-4')
+            @include('home.step.step-4')
+            @break
+        @default
+            @include('home.step.step-1')
+            @break
+    @endswitch
+@endsection

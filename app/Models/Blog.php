@@ -12,13 +12,6 @@ class Blog extends Model
 
     protected $fillable = [
         'user_id',
-        'username',
-        'aboutme',
-        'company_func',
-        'address',
-        'phone_number',
-        'tech_stack',
-        'education',
         'layout_id',
         'your_website',
         'x_link',

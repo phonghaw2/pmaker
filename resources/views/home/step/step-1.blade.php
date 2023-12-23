@@ -1,53 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/home/main.css') }}">
-    <title>Pmaker - Step 1</title>
-</head>
-
-<body translate="no">
-    <div class="pick-container">
-        <div class="project-dv">
-            <h1 class="h4 margin-bottom-16" style="color: #eb7ec6">Step 1: Choose type</h1>
+<div class="pick-container">
+    <div class="project-dv">
+        <h1 class="h4 margin-bottom-16" style="color: #eb7ec6">Step 1: Choose type</h1>
+    </div>
+    <div class="flex pmaker-pick">
+        <div class="project-yr-wrap light" id="blog-pick">
+            <div class="project-yr-copy">
+                {{-- <h1 class="h4 margin-bottom-16 btn-5">For Blogger</h1> --}}
+                <button class="custom-btn btn-5"><span><a href=""><h1 class="h4 margin-bottom-16">For Blogger</h1></a></button></span>
+                <p class="paragraph max-width-610">Get a full suite of intuitive design features and powerful marketing tools to create a unique blog that leaves a lasting impression. Create with content in mind.</p>
+            </div>
+            <img src="{{ asset('images/FREAK-MAG-1.jpg') }}" sizes="(max-width: 479px) 96vw, (max-width: 767px) 94vw, (max-width: 991px) 95vw, 100vw" alt="portfolio image"  class="yr-portfolio-img" style="opacity: 1;">
         </div>
-        <div class="flex pmaker-pick">
-            <div class="project-yr-wrap light" id="blog-pick">
-                <div class="project-yr-copy">
-                    {{-- <h1 class="h4 margin-bottom-16 btn-5">For Blogger</h1> --}}
-                    <button class="custom-btn btn-5"><span><a href=""><h1 class="h4 margin-bottom-16">For Blogger</h1></a></button></span>
-                    <p class="paragraph max-width-610">Get a full suite of intuitive design features and powerful marketing tools to create a unique blog that leaves a lasting impression. Create with content in mind.</p>
-                </div>
-                <img src="{{ asset('images/FREAK-MAG-1.jpg') }}" sizes="(max-width: 479px) 96vw, (max-width: 767px) 94vw, (max-width: 991px) 95vw, 100vw" alt="portfolio image"  class="yr-portfolio-img" style="opacity: 1;">
+        <div class="project-yr-wrap light-grey" id="portfolio-pick">
+            <div class="project-yr-copy">
+                <button class="custom-btn btn-11">
+                    <a href=""><h1 class="h4 margin-bottom-16">Portfolio</h1></a>
+                    <div class="dot"></div>
+                </button>
+                <p class="paragraph max-width-610">Create a portfolio as unique and creative as yourself. Easily create a professional portfolio to showcase your skills and qualifications without the hassle of building a website or learning advanced graphic design.</p>
             </div>
-            <div class="project-yr-wrap light-grey" id="portfolio-pick">
-                <div class="project-yr-copy">
-                    <button class="custom-btn btn-11">
-                        <a href=""><h1 class="h4 margin-bottom-16">Portfolio</h1></a>
-                        <div class="dot"></div>
-                    </button>
-                    <p class="paragraph max-width-610">Create a portfolio as unique and creative as yourself. Easily create a professional portfolio to showcase your skills and qualifications without the hassle of building a website or learning advanced graphic design.</p>
-                </div>
-                <img src="{{ asset('images/freak-mag-2.jpg') }}" sizes="(max-width: 479px) 97vw, (max-width: 767px) 94vw, (max-width: 991px) 95vw, 100vw" alt="portfolio image" class="yr-portfolio-img" style="opacity: 1;">
-            </div>
+            <img src="{{ asset('images/freak-mag-2.jpg') }}" sizes="(max-width: 479px) 97vw, (max-width: 767px) 94vw, (max-width: 991px) 95vw, 100vw" alt="portfolio image" class="yr-portfolio-img" style="opacity: 1;">
         </div>
     </div>
+</div>
 
-    <form method="post" action="{{ route('step.step_2') }}" id="next-step">
-        @csrf
-        <input type="hidden" id="type" name="p_type" value="">
-    </form>
-    <footer class="pmaker-footer">
-        <div class="c-footer_thanks">
-            <span class="c-footer_thanks_from -mobile" aria-hidden="true">From the Phong Ha</span>
-            <span class="c-footer_thanks_text">
-                Thank you<br> for your <span class="u-relative u-inline-block">support<span class="c-footer_thanks_from -desktop">From the Phong Ha</span></span>
-            </span>
-        </div>
-    </footer>
+<form method="post" action="{{ route('step.step_2') }}" id="next-step">
+    @csrf
+    <input type="hidden" id="type" name="p_type" value="">
+</form>
+
+@push('js-step')
     <div class="phong-intro">
         <div class="cursor" style="translate: none; rotate: none; scale: none; transform: translate(841px, 437px);"></div>
         <div class="shapes">
@@ -61,7 +44,6 @@
         <div class="content">
             <h1>Hello there!</h1>
         </div>
-
         <script src="{{ asset('js/gsap.min.js') }}"></script>
         <script id="rendered-js">
             document.body.addEventListener("mousemove", evt => {
@@ -86,8 +68,6 @@
     </div>
     <div class="slider">
     </div>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/step1.js') }}"></script>
-</body>
+@endpush
 
-</html>
