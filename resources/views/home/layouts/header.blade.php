@@ -4,7 +4,7 @@
             data-action="click-navigation" data-label="logo">
             <img class="h-8" src="{{ asset('images/PMaker.png') }}" alt="PMaker" width="auto">
         </a>
-        <div class="lg:hidden">
+        <div class="md:hidden">
             <button
                 class="navbar-burger flex items-center py-3 px-4 bg-brand-blue hover:bg-blue-700 text-white rounded-3xl focus:outline-none">
                 <svg class="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -354,7 +354,7 @@
                     data-section="pricing" data-category="landing-homepage" data-action="click-navigation"
                     data-label="pricing">Pricing</a></li>
         </ul>
-        <div class="load-animation reveal-fast hidden lg:block">
+        <div class="load-animation reveal-fast hidden md:block">
             <a href="{{ route('account.login') }}"
                 class="mr-2 inline-block px-4 py-3 text-xs font-semibold leading-none bg-white hover:bg-blueGray-800 hover:text-white rounded-4xl shadow-button transition duration-100 shuffle-click"
                 data-category="landing-homepage" data-action="click-navigation" data-label="sign-in">Sign In</a>

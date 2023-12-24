@@ -746,6 +746,10 @@ a {
     transform: translateX(-100%) rotateY(-180deg);
 }
 
+.card.flipped .front .button-wrapper {
+    visibility: hidden!important;
+}
+
 .card .card-item {
     width: 100%;
     height: 100%;

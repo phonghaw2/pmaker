@@ -22,12 +22,31 @@
                         <div class="form-col">
                             <label class="label" for="tag-input">Tech Stack? <span title="required">*</span></label>
                             <div class="tag-container">
-                                <div class="tag">
-                                    <span>Example</span>
-                                    <svg viewBox="0 0 50 50" width="16px" height="16px" onclick="remove(this, '')"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"/></svg>
-                                </div>
-                                <input type="text" id="tag-input" maxlength="20" name="p_tech_stack">
+                                @if (old('p_tech_stack'))
+                                    @foreach (explode('|pts|', old('p_tech_stack')) as $name)
+                                    <div class="tag">
+                                        <span data-tag-name="{{ $name }}">{{ $name }}</span>
+                                        <svg viewBox="0 0 50 50" width="16px" height="16px" onclick="remove(this, '')"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"/></svg>
+                                    </div>
+                                    @endforeach
+                                @elseif (!$data->tech_stack)
+                                    <div class="tag">
+                                        <span>Example</span>
+                                        <svg viewBox="0 0 50 50" width="16px" height="16px" onclick="remove(this, '')"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"/></svg>
+                                    </div>
+                                @else
+                                    @foreach ($data->tech_stack as $name)
+                                    <div class="tag">
+                                        <span data-tag-name="{{ $name }}">{{ $name }}</span>
+                                        <svg viewBox="0 0 50 50" width="16px" height="16px" onclick="remove(this, '')"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"/></svg>
+                                    </div>
+                                    @endforeach
+                                @endif
+                                <input type="text" id="tag-input" maxlength="20" value="">
                             </div>
+                            @error('p_tech_stack')
+                                <button class="btn-msg-error">{{ $message }}</button>
+                            @enderror
                         </div>
                         <div class="form-col col-experience">
                             <label class="label" for="experience">Experience <span title="required">*</span></label>
@@ -70,7 +89,20 @@
                                     </button>
                                 </div>
                             </div>
-                            <input class="field" type="text" name="p_education" value="" placeholder="University of California, Los Angeles" maxlength="150">
+                            @if (old('p_education'))
+                                @foreach (explode('|pts|', old('p_education')) as $name)
+                                <input class="field" data-p-education="" value="{{ $name }}" type="text" maxlength="150">
+                                @endforeach
+                            @elseif (!$data->education)
+                                <input class="field" data-p-education="" type="text" placeholder="University of California, Los Angeles" maxlength="150">
+                            @else
+                                @foreach ($data->education as $name)
+                                <input class="field" data-p-education="" value="{{ $name }}" type="text" maxlength="150">
+                                @endforeach
+                            @endif
+                            @error('p_education')
+                                <button class="btn-msg-error">{{ $message }}</button>
+                            @enderror
                         </div>
                         <div class="form-col col-certification">
                             <label class="label" for="certification">Certifications </label>
@@ -137,8 +169,10 @@
 <form method="post" action="{{ route('step.step_4') }}" id="step-save" class="form-info">
     @csrf
     @method('POST')
-    <input type="hidden" id="type" name="p_tech_stack" value="">
-    <input type="hidden" id="type" name="p_education" value="">
+    <input type="hidden" id="p_type" name="p_type" value="{{ $data->p_type }}" />
+    <input type="hidden" id="p_tech_stack" name="p_tech_stack" value="{{ old('p_tech_stack') }}">
+    <input type="hidden" id="p_education" name="p_education" value="{{ old('p_education') }}">
+    <input type="hidden" id="p_skill_stack" name="p_skill_stack" value="">
 </form>
 {{-- EXPERIENCE --}}
 <div class="box-lightbox add-exp-modal">

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Enums\TemplateEnum;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class CheckDataStep3Request extends FormRequest
@@ -16,7 +17,11 @@ class CheckDataStep3Request extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        // block
+        if(FacadesRequest::ip() == '127.1.1.1'){
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -29,24 +34,50 @@ class CheckDataStep3Request extends FormRequest
         if (FacadesRequest::isMethod('get')) {
             return [];
         }
-        return [
+
+        $rules = [
             'p_type' => [
                 'required',
                 'string',
                 Rule::in([TemplateEnum::PORTFOLIO, TemplateEnum::BLOG]),
             ],
-            'p_tech_stack' => [
-                'required',
-                'string',
-                'max:100',
-                'min:5',
-            ],
             'p_education' => [
                 'required',
                 'string',
                 'max:500',
-                'min:50',
+                'min:10',
             ],
+        ];
+
+        // Rule::when method doesn't work
+        if (Request::input('p_type') == TemplateEnum::PORTFOLIO) {
+            $rules['p_skill_stack'] = [
+                'required',
+                'string',
+                'max:255',
+                'min:5',
+            ];
+        } else {
+            $rules['p_tech_stack'] = [
+                'required',
+                'string',
+                'max:255',
+                'min:5',
+            ];
+        }
+
+        return $rules;
+    }
+
+    public function messages()
+    {
+        if (FacadesRequest::isMethod('get')) {
+            return [];
+        }
+        return [
+            'required' => 'The field is required.',
+            'max' => 'The field must not be greater than :max characters.',
+            'min' => 'The field must be at least :min characters.',
         ];
     }
 }

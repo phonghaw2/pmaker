@@ -5,7 +5,6 @@ $(document).ready(function () {
         $('.card').addClass('flipped');
         if ($('.p-func-left').hasClass('f-show')) {
             $('.f-next').addClass('submit');
-
         } else {
             $('.p-func-left').addClass('f-show');
         }
@@ -43,7 +42,7 @@ $(document).ready(function () {
     function createTag(label) {
         const div = document.createElement('div');
         div.setAttribute('class', 'tag');
-        div.innerHTML = '<span>' + label + '</span><svg viewBox="0 0 50 50" width="16px" height="16px" onclick="remove(this, ' + `'${label}'` + ')"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"/></svg>';
+        div.innerHTML = '<span data-tag-name="' + label + '">' + label + '</span><svg viewBox="0 0 50 50" width="16px" height="16px" onclick="remove(this, ' + `'${label}'` + ')"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"/></svg>';
         input.before(div);
     }
 
@@ -88,8 +87,6 @@ $(document).ready(function () {
         }
     });
 
-
-
     function renderExpDiv(exp = []) {
         let diff_month = monthDiff(new Date(exp.start_date), new Date(exp.end_date));
         // render
@@ -112,7 +109,6 @@ $(document).ready(function () {
     }
 
     function validateExp(action) {
-        console.log(action);
         var all_input = document.querySelectorAll(`#${action}-experience input`),
             check_start_date,
             check_end_date,
@@ -152,15 +148,18 @@ $(document).ready(function () {
     const eduCol = $('.col-education');
 
     $('#add-education').click( function( event ) {
+
+        if ($('[data-p-education]').length > 3) return false;
+
         const eduInput = document.createElement('input');
         eduInput.setAttribute('class', 'field');
         eduInput.setAttribute('type', 'text');
-        eduInput.setAttribute('name', "education[]");
         eduInput.setAttribute('placeholder', 'Oh, more?');
         eduInput.setAttribute('maxLength', 150);
+        eduInput.setAttribute('data-p-education', '');
         eduCol.after(eduInput);
-        edu_childEle_count = $('.col-education')[0].parentElement.childElementCount;
-        if (edu_childEle_count == 4) {
+        eduChildEleCount = $('.col-education')[0].parentElement.childElementCount;
+        if (eduChildEleCount == 4) {
             $('#add-education').attr('disabled', true);
         }
     });
@@ -230,12 +229,9 @@ $(document).ready(function () {
                 }
             }
         }
-        if (!check) {
-            return false;
-        }
-        return true;
-    }
 
+        return check;
+    }
 
     function renderCertDiv(cert = []) {
         let diff_month = monthDiff(new Date(cert.issue_date), new Date(cert.expiration_date));
@@ -268,6 +264,33 @@ $(document).ready(function () {
             p_input.classList.remove("warning");
         }
     }
+
+    $(document).on("click",".submit", function() {
+        step_save();
+    });
+
+    function step_save() {
+        let p_tech_stack    = [],
+            p_skill_stack   = [],
+            p_education     = [];
+
+        $('[data-tag-name]').each(function( index ) {
+            p_tech_stack.push($(this).data('tag-name'));
+        });
+        $('[data-tag-skill]').each(function( index ) {
+            p_skill_stack.push($(this).data('tag-skill'));
+        });
+        $('[data-p-education]').each(function( index ) {
+            p_education.push($(this)[0].value);
+        });
+
+        $('#p_tech_stack')[0].value    = p_tech_stack.join('|pts|');
+        $('#p_education')[0].value     = p_education.join('|pts|');
+        $('#p_skill_stack')[0].value   = p_skill_stack.join('|pts|');
+
+        document.getElementById("step-save").submit();
+    }
+
 });
 
 

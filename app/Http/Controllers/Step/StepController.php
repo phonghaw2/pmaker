@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseTrait;
 use App\Http\Requests\CheckDataStep1Request;
 use App\Http\Requests\CheckDataStep2Request;
+use App\Http\Requests\CheckDataStep3Request;
 use App\Models\Certification;
 use App\Models\Experience;
 use App\Models\Social;
@@ -18,6 +19,11 @@ class StepController extends Controller
 {
     use StepTrait;
     use ResponseTrait;
+    private int $user_id;
+
+    public function __construct() {
+        $this->user_id = auth()->user()->id;
+    }
 
     public function guide()
     {
@@ -43,10 +49,10 @@ class StepController extends Controller
             session($data);
         }
 
-        $data = User::where('id', auth()->user()->id)->first();
-        $data->p_type = session('p_type');
-        $data->p_name = ($data->p_type == TemplateEnum::BLOG) ? $data->blog_name : $data->portfolio_name;
-        $data->p_about = ($data->p_type == TemplateEnum::BLOG) ? $data->about_me : $data->about_me_p;
+        $data = User::where('id', $this->user_id)->first();
+        $data->p_type   = session('p_type');
+        $data->p_name   = ($data->p_type == TemplateEnum::BLOG) ? $data->blog_name : $data->portfolio_name;
+        $data->p_about  = ($data->p_type == TemplateEnum::BLOG) ? $data->about_me : $data->about_me_p;
 
         return view('home.step.layout.index', [
             'title'     => 'Pmaker - Step 2',
@@ -63,7 +69,7 @@ class StepController extends Controller
 
         if (FacadesRequest::isMethod('post')) {
             // Update user information
-            User::where('id', auth()->user()->id)->update([
+            User::where('id', $this->user_id)->update([
                 'blog_name'     => $request->p_name,
                 'about_me'      => $request->p_about,
                 'company_func'  => $request->p_company_func,
@@ -73,17 +79,18 @@ class StepController extends Controller
         }
 
         // Return view with data saved
-        $p_type = session('p_type');
+        $data = User::where('id', $this->user_id)->first(['tech_stack','skill_stack','education']);
+        $data->p_type           = session('p_type');
+        $data->tech_stack       = $data->tech_stack ? explode(',', $data->tech_stack) : '';
+        $data->skill_stack      = $data->skill_stack ? explode(',', $data->skill_stack) : '';
 
-        $user_id = 3;
+        $certification = Certification::where('user_id', $this->user_id)->get();
+        $experience = Experience::where('user_id', $this->user_id)->get();
 
-        $certification = Certification::where('user_id', $user_id)->get();
-        $experience = Experience::where('user_id', $user_id)->get();
-        // dd($certification);
         return view('home.step.layout.index', [
             'title'             => 'Pmaker - Step 3',
             'content'           => 'step-3',
-            'p_type'            => $p_type,
+            'data'              => $data,
             'certification'     => $certification,
             'experience'        => $experience,
         ]);
@@ -95,9 +102,11 @@ class StepController extends Controller
             return redirect()->route('step.step_1');
         }
 
+        dd($request->validated());
+
         if (FacadesRequest::isMethod('post')) {
             // Update user information
-            User::where('id', auth()->user()->id)->update([
+            User::where('id', $this->user_id)->update([
                 'blog_name' => $request->p_name,
                 'about_me' => $request->p_about,
                 'company_func' => $request->p_company_func,
