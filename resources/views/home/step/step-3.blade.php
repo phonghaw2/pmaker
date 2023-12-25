@@ -170,9 +170,9 @@
     @csrf
     @method('POST')
     <input type="hidden" id="p_type" name="p_type" value="{{ $data->p_type }}" />
-    <input type="hidden" id="p_tech_stack" name="p_tech_stack" value="{{ old('p_tech_stack') }}">
-    <input type="hidden" id="p_education" name="p_education" value="{{ old('p_education') }}">
-    <input type="hidden" id="p_skill_stack" name="p_skill_stack" value="">
+    <input type="hidden" id="tech_stack" name="tech_stack" value="">
+    <input type="hidden" id="education" name="education" value="">
+    <input type="hidden" id="skill_stack" name="skill_stack" value="">
 </form>
 {{-- EXPERIENCE --}}
 <div class="box-lightbox add-exp-modal">

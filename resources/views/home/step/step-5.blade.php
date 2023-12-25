@@ -29,51 +29,23 @@
                     <div class="card">
                         <div class="front card-item">
                             <div class="form-layout">
+                                @foreach ($layouts as $name => $attr)
                                 <div class="layout-card">
                                     <div class="card-callout">
                                         <div class="card-callin">
                                             <div class="card-cell">
-                                                <div class="number">01</div>
+                                                <div class="number">{{ $attr[0] }}</div>
                                             </div>
                                             <div class="card-cell large-shrink">
-                                                <span class="nbm">Magazine Layout</span>
+                                                <span class="nbm">{{ $name }}</span>
                                             </div>
                                             <div class="layout-image">
-                                                <img src="{{ asset('images/layout/magazine.png') }}" alt="">
+                                                <img src="{{ asset('images/layout/' . $attr[1]) }}" alt="">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="layout-card">
-                                    <div class="card-callout">
-                                        <div class="card-callin">
-                                            <div class="card-cell">
-                                                <div class="number">02</div>
-                                            </div>
-                                            <div class="card-cell large-shrink">
-                                                <span class="nbm">Stacked Layout</span>
-                                            </div>
-                                            <div class="layout-image">
-                                                <img src="{{ asset('images/layout/stacked.png') }}" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layout-card">
-                                    <div class="card-callout">
-                                        <div class="card-callin">
-                                            <div class="card-cell">
-                                                <div class="number">03</div>
-                                            </div>
-                                            <div class="card-cell large-shrink">
-                                                <span class="nbm">Grid Layout</span>
-                                            </div>
-                                            <div class="layout-image">
-                                                <img src="{{ asset('images/layout/grid.png') }}" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

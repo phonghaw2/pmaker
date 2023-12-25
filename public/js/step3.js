@@ -284,9 +284,9 @@ $(document).ready(function () {
             p_education.push($(this)[0].value);
         });
 
-        $('#p_tech_stack')[0].value    = p_tech_stack.join('|pts|');
-        $('#p_education')[0].value     = p_education.join('|pts|');
-        $('#p_skill_stack')[0].value   = p_skill_stack.join('|pts|');
+        $('#tech_stack')[0].value    = p_tech_stack.join('|pts|');
+        $('#education')[0].value     = p_education.join('|pts|');
+        $('#skill_stack')[0].value   = p_skill_stack.join('|pts|');
 
         document.getElementById("step-save").submit();
     }

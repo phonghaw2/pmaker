@@ -83,6 +83,7 @@ class StepController extends Controller
         $data->p_type           = session('p_type');
         $data->tech_stack       = $data->tech_stack ? explode(',', $data->tech_stack) : '';
         $data->skill_stack      = $data->skill_stack ? explode(',', $data->skill_stack) : '';
+        $data->education        = $data->education ? explode(',', $data->education) : '';
 
         $certification = Certification::where('user_id', $this->user_id)->get();
         $experience = Experience::where('user_id', $this->user_id)->get();
@@ -102,17 +103,9 @@ class StepController extends Controller
             return redirect()->route('step.step_1');
         }
 
-        dd($request->validated());
-
         if (FacadesRequest::isMethod('post')) {
             // Update user information
-            User::where('id', $this->user_id)->update([
-                'blog_name' => $request->p_name,
-                'about_me' => $request->p_about,
-                'company_func' => $request->p_company_func,
-                'address' => $request->p_address,
-                'phone_number' => $request->p_phone,
-            ]);
+            User::where('id', $this->user_id)->update($request->validated());
         }
 
         // if (FacadesRequest::isMethod('get')) {
@@ -123,18 +116,25 @@ class StepController extends Controller
                 // ->appends($request->all());
 
         // }
-        return view('home.step.step-4', [
+        return view('home.step.layout.index', [
+            'title'             => 'Pmaker - Step 4',
+            'content'           => 'step-4',
             'social' => $data,
             'platform' => $platform,
         ]);
-
-        // dd($request->all());
-
     }
 
     public function step5()
     {
-        return view('home.step.step_5');
+        $layouts = [
+            'Magazine Layout' => ['01.', 'magazine.png'],
+            'Stacked Layout' => ['02.', 'stacked.png'],
+            'Grid Layout' => ['03.', 'grid.png'],
+        ];
+
+        return view('home.step.step-5',[
+            'layouts' => $layouts,
+        ]);
     }
 
     public function stepSave(Request $request)
