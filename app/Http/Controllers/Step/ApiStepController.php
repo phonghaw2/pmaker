@@ -16,10 +16,10 @@ class ApiStepController extends Controller
     use ResponseTrait;
     use StepTrait;
 
-    public function renderSocialField(Request $request, ArticleService $articleService)
+    public function renderSocialField(Request $request)
     {
         try {
-            $articleService->handleUploadedImage($request->file('image'));
+            // $this->handleUploadedImage($request->file('image'));
             $platform = $request->get('platform');
 
             $query = Social::query();
@@ -85,6 +85,13 @@ class ApiStepController extends Controller
             return $this->successResponse();
         } catch (\Throwable $th) {
             return $this->errorResponse($th->getMessage());
+        }
+    }
+
+    public function handleUploadedImage($image)
+    {
+        if (!is_null($image)) {
+            $image->move(public_path('images') . DIRECTORY_SEPARATOR . 'temp');
         }
     }
 }

@@ -47,6 +47,12 @@ $(document).ready(function () {
         $(this).remove();
     });
 
+    $('[data-pick-platform]').click( function( event ) {
+        let platform = $(this).data("pick-platform");
+        let img_path = $(this).data("image-src");
+        $('#choose-image-' + platform).attr('src', img_path);
+    });
+
     function renderSocialField(platform) {
         $.ajax({
             type: "GET",

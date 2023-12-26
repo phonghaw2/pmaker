@@ -116,20 +116,23 @@ class StepController extends Controller
                 // ->appends($request->all());
 
         // }
+        $platform_default = $this->get_platform_default();
+
         return view('home.step.layout.index', [
             'title'             => 'Pmaker - Step 4',
             'content'           => 'step-4',
-            'social' => $data,
-            'platform' => $platform,
+            'social'            => $data,
+            'platform'          => $platform,
+            'platform_default'  => $platform_default,
         ]);
     }
 
     public function step5()
     {
         $layouts = [
-            'Magazine Layout' => ['01.', 'magazine.png'],
-            'Stacked Layout' => ['02.', 'stacked.png'],
-            'Grid Layout' => ['03.', 'grid.png'],
+            'Magazine Layout'   => ['01.', 'magazine.png'],
+            'Stacked Layout'    => ['02.', 'stacked.png'],
+            'Grid Layout'       => ['03.', 'grid.png'],
         ];
 
         return view('home.step.step-5',[
@@ -163,5 +166,30 @@ class StepController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+
+    public function get_platform_default() {
+        return [
+            'facebook'  => [
+                'path'          => 'images/facebook_default.svg',
+                'placeholder'   => '/user-name',
+                'length'        => '100',
+            ],
+            'youtube'  => [
+                'path'          => 'images/youtube_default.svg',
+                'placeholder'   => '/@phonghaw2',
+                'length'        => '100',
+            ],
+            'twitter'  => [
+                'path'          => 'images/twitter_default.svg',
+                'placeholder'   => '/HPhong24261595',
+                'length'        => '100',
+            ],
+            'instagram'  => [
+                'path'          => 'images/instagram_default.svg',
+                'placeholder'   => '/HPhong24261595',
+                'length'        => '100',
+            ],
+        ];
     }
 }

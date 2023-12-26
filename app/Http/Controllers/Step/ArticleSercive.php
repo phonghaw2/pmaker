@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Step;
 
-class ArticleService
+use App\Http\Controllers\Controller;
+
+class ArticleService extends Controller
 {
-    public function handleUploadedImage($image)
+    public static function handleUploadedImage($image)
     {
         if (!is_null($image)) {
             $image->move(public_path('images') . 'temp');
