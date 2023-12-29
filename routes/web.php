@@ -59,8 +59,7 @@ Route::group([
     Route::match(['get', 'post'], '/step-2', [StepController::class, 'step2'])->name('step_2');
     Route::match(['get', 'post'], '/step-3', [StepController::class, 'step3'])->name('step_3');
     Route::match(['get', 'post'], '/step-4', [StepController::class, 'step4'])->name('step_4');
-    Route::get('/step-5', [StepController::class, 'step5'])->name('step_5');
-    Route::post('/save', [StepController::class, 'stepSave'])->name('save');
+    Route::match(['get', 'post'], '/step-5', [StepController::class, 'step5'])->name('step_5');
 });
 
 Route::get('/main/api/test', [HomeController::class, 'check'])->name('check');

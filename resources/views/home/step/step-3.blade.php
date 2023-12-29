@@ -338,7 +338,7 @@
 @include('home.step.layout.p-func-left')
 @include('home.step.layout.p-func-right')
 
-<form action="{{ route('step.save') }}" method="post" id="step_save">
+<form action="{{ route('step.step_4') }}" method="post" id="step_save">
     @csrf
     <input type="hidden" id="type" name="p_type" value="">
     <input type="hidden" id="type" name="p_next_step" value="2">

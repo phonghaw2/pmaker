@@ -12,7 +12,6 @@ use App\Models\Certification;
 use App\Models\Experience;
 use App\Models\Social;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class StepController extends Controller
@@ -108,87 +107,73 @@ class StepController extends Controller
             User::where('id', $this->user_id)->update($request->validated());
         }
 
-        // if (FacadesRequest::isMethod('get')) {
-            $query = Social::query();
-            $platform = $query->distinct()
-                        ->pluck('platform');
-            $data = $query->get();
-                // ->appends($request->all());
-
-        // }
-        $platform_default = $this->get_platform_default();
+        $query = Social::query();
+        $platform = $query->distinct()
+                    ->pluck('platform');
+        $social = $query->get();
+            // ->appends($request->all());
 
         return view('home.step.layout.index', [
             'title'             => 'Pmaker - Step 4',
             'content'           => 'step-4',
-            'social'            => $data,
+            'social'            => $social,
             'platform'          => $platform,
-            'platform_default'  => $platform_default,
+            'platform_default'  => $this->getPlatformDefault(),
         ]);
     }
 
     public function step5()
     {
-        $layouts = [
-            'Magazine Layout'   => ['01.', 'magazine.png'],
-            'Stacked Layout'    => ['02.', 'stacked.png'],
-            'Grid Layout'       => ['03.', 'grid.png'],
-        ];
-
         return view('home.step.step-5',[
-            'layouts' => $layouts,
+            'layouts' => $this->getLayout(),
         ]);
     }
 
-    public function stepSave(Request $request)
-    {
-        $data = $this->checkDataStep($request->all());
-        foreach ($data as $key => $value) {
-            session()->put('data.'. $key, $value);
-        }
-        dd(session()->all());
-        if (session('data')['p_next_step'] != '') {
-            return redirect()->route('step.step_' . session('data')['p_next_step']);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function certSave(Request $request)
-    {
-        dd($request->all());
-        $data = $this->checkDataStep($request->all());
-        foreach ($data as $key => $value) {
-            session()->put('data.'. $key, $value);
-        }
-        if (session('data')['p_next_step'] != '') {
-            return redirect()->route('step.step_' . session('data')['p_next_step']);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function get_platform_default() {
+    public function getPlatformDefault() {
         return [
-            'facebook'  => [
+            [
+                'name'          => 'facebook',
                 'path'          => 'images/facebook_default.svg',
                 'placeholder'   => '/user-name',
                 'length'        => '100',
             ],
-            'youtube'  => [
+            [
+                'name'          => 'youtube',
                 'path'          => 'images/youtube_default.svg',
                 'placeholder'   => '/@phonghaw2',
                 'length'        => '100',
             ],
-            'twitter'  => [
+            [
+                'name'          => 'twitter',
                 'path'          => 'images/twitter_default.svg',
                 'placeholder'   => '/HPhong24261595',
                 'length'        => '100',
             ],
-            'instagram'  => [
+            [
+                'name'          => 'instagram',
                 'path'          => 'images/instagram_default.svg',
                 'placeholder'   => '/HPhong24261595',
                 'length'        => '100',
+            ],
+        ];
+    }
+
+    public function getLayout() {
+        return [
+            [
+                'name' => 'Magazine Layout',
+                'numb' => '01.',
+                'img'  => 'magazine.png'
+            ],
+            [
+                'name' => 'Stacked Layout',
+                'numb' => '02.',
+                'img'  => 'stacked.png'
+            ],
+            [
+                'name' => 'Grid Layout',
+                'numb' => '03.',
+                'img'  => 'grid.png'
             ],
         ];
     }

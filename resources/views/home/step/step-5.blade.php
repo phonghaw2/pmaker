@@ -16,18 +16,18 @@
                 <div class="card">
                     <div class="front card-item">
                         <div class="form-layout">
-                            @foreach ($layouts as $name => $attr)
+                            @foreach ($layouts as $layout)
                             <div class="layout-card">
                                 <div class="card-callout">
                                     <div class="card-callin">
                                         <div class="card-cell">
-                                            <div class="number">{{ $attr[0] }}</div>
+                                            <div class="number">{{ $layout['numb'] }}</div>
                                         </div>
                                         <div class="card-cell large-shrink">
-                                            <span class="nbm">{{ $name }}</span>
+                                            <span class="nbm">{{ $layout['name'] }}</span>
                                         </div>
                                         <div class="layout-image">
-                                            <img src="{{ asset('images/layout/' . $attr[1]) }}" alt="">
+                                            <img src="{{ asset('images/layout/' . $layout['img']) }}" alt="">
                                         </div>
                                     </div>
                                 </div>
