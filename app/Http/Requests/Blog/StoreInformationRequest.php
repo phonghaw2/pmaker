@@ -66,7 +66,7 @@ class StoreInformationRequest extends FormRequest
                 'max:250',
                 'active_url',
                 'url:http,https',
-                'regex:/' . PatternLinkEnum::X . '/i',
+                'regex:/' . PatternLinkEnum::X_URL . '/i',
 
             ],
             'linked_link' => [
@@ -74,28 +74,28 @@ class StoreInformationRequest extends FormRequest
                 'max:250',
                 'active_url',
                 'url:http,https',
-                'regex:/' . PatternLinkEnum::LINKED . '/i',
+                'regex:/' . PatternLinkEnum::LINKED_URL . '/i',
             ],
             'youtube_link' => [
                 'string',
                 'max:250',
                 'active_url',
                 'url:http,https',
-                'regex:/' . PatternLinkEnum::YOUTUBE . '/i',
+                'regex:/' . PatternLinkEnum::YOUTUBE_URL . '/i',
             ],
             'github_link' => [
                 'string',
                 'max:250',
                 'active_url',
                 'url:http,https',
-                'regex:/' . PatternLinkEnum::GITHUB . '/i',
+                'regex:/' . PatternLinkEnum::GITHUB_URL . '/i',
             ],
             'daily_link' => [
                 'string',
                 'max:250',
                 'active_url',
                 'url:http,https',
-                'regex:/' . PatternLinkEnum::DAILY . '/i',
+                'regex:/' . PatternLinkEnum::DAILY_URL . '/i',
             ],
             'pmaker' => [
                 'string',

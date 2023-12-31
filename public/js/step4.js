@@ -1,13 +1,5 @@
 $(document).ready(function () {
-    $('.form-info').submit(false);
-
-    $('.f-next').click( function( event ) {
-        window.location.href = "/main/step-5";
-    });
-
-    $('.f-back').click( function( event ) {
-        window.location.href = "/main/step-3";
-    });
+    // $('.form-info').submit(false);
 
     //------------Social Field-----------//
     const socialDiv = $('#social-div');
@@ -51,6 +43,7 @@ $(document).ready(function () {
         let platform = $(this).data("pick-platform");
         let img_path = $(this).data("image-src");
         $('#choose-image-' + platform).attr('src', img_path);
+        $('#image_' + platform)[0].value = img_path;
     });
 
     function renderSocialField(platform) {
@@ -67,5 +60,15 @@ $(document).ready(function () {
             }
         });
     }
+
+    // $(document).on("click",".submit", function() {
+    //     document.getElementById("step-save").submit();
+    //     // step_save();
+    // });
+
+    $('.f-next').click( function( event ) {
+        document.getElementById("step-save").submit();
+    });
+
 });
 

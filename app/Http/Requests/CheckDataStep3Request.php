@@ -41,7 +41,7 @@ class CheckDataStep3Request extends FormRequest
                 'string',
                 Rule::in([TemplateEnum::PORTFOLIO, TemplateEnum::BLOG]),
             ],
-            'p_education' => [
+            'education' => [
                 'required',
                 'string',
                 'max:500',
@@ -51,14 +51,14 @@ class CheckDataStep3Request extends FormRequest
 
         // Rule::when method doesn't work
         if (Request::input('p_type') == TemplateEnum::PORTFOLIO) {
-            $rules['p_skill_stack'] = [
+            $rules['skill_stack'] = [
                 'required',
                 'string',
                 'max:255',
                 'min:5',
             ];
         } else {
-            $rules['p_tech_stack'] = [
+            $rules['tech_stack'] = [
                 'required',
                 'string',
                 'max:255',

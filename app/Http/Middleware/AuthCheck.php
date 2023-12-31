@@ -18,10 +18,8 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->check()){
-
+        if (!auth()->check()) {
             return redirect()->route('index')->with('fail', 'You need to login first');
-
         }
         return $next($request);
     }

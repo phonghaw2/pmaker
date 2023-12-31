@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Step;
 
-use App\Enums\TemplateEnum;
+use App\Enums\VarKeyEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseTrait;
 use App\Http\Requests\CheckDataStep1Request;
 use App\Http\Requests\CheckDataStep2Request;
 use App\Http\Requests\CheckDataStep3Request;
+use App\Http\Requests\CheckDataStep4Request;
 use App\Models\Certification;
 use App\Models\Experience;
 use App\Models\Social;
@@ -21,7 +22,9 @@ class StepController extends Controller
     private int $user_id;
 
     public function __construct() {
-        $this->user_id = auth()->user()->id;
+        if (auth()->check()) {
+            $this->user_id = auth()->user()->id;
+        }
     }
 
     public function guide()
@@ -44,19 +47,14 @@ class StepController extends Controller
         }
 
         if (FacadesRequest::isMethod('post')) {
-            $data = $request->validated();
-            session($data);
+            $p_type = $request->validated();
+            session($p_type);
         }
-
-        $data = User::where('id', $this->user_id)->first();
-        $data->p_type   = session('p_type');
-        $data->p_name   = ($data->p_type == TemplateEnum::BLOG) ? $data->blog_name : $data->portfolio_name;
-        $data->p_about  = ($data->p_type == TemplateEnum::BLOG) ? $data->about_me : $data->about_me_p;
 
         return view('home.step.layout.index', [
             'title'     => 'Pmaker - Step 2',
             'content'   => 'step-2',
-            'data'      => $data,
+            'data'      => User::getDataStep2($this->user_id, session('p_type')),
         ]);
     }
 
@@ -68,7 +66,7 @@ class StepController extends Controller
 
         if (FacadesRequest::isMethod('post')) {
             // Update user information
-            User::where('id', $this->user_id)->update([
+            User::whereId($this->user_id)->update([
                 'blog_name'     => $request->p_name,
                 'about_me'      => $request->p_about,
                 'company_func'  => $request->p_company_func,
@@ -77,22 +75,13 @@ class StepController extends Controller
             ]);
         }
 
-        // Return view with data saved
-        $data = User::where('id', $this->user_id)->first(['tech_stack','skill_stack','education']);
-        $data->p_type           = session('p_type');
-        $data->tech_stack       = $data->tech_stack ? explode(',', $data->tech_stack) : '';
-        $data->skill_stack      = $data->skill_stack ? explode(',', $data->skill_stack) : '';
-        $data->education        = $data->education ? explode(',', $data->education) : '';
-
-        $certification = Certification::where('user_id', $this->user_id)->get();
-        $experience = Experience::where('user_id', $this->user_id)->get();
-
         return view('home.step.layout.index', [
-            'title'             => 'Pmaker - Step 3',
-            'content'           => 'step-3',
-            'data'              => $data,
-            'certification'     => $certification,
-            'experience'        => $experience,
+            'title'            => 'Pmaker - Step 3',
+            'content'          => 'step-3',
+            'data'             => User::getDataStep3($this->user_id, session('p_type')),
+            'certification'    => Certification::whereUserId($this->user_id)->get(),
+            'experience'       => Experience::whereUserId($this->user_id)->get(),
+            'separation'       => VarKeyEnum::SEPARATION,
         ]);
     }
 
@@ -103,28 +92,29 @@ class StepController extends Controller
         }
 
         if (FacadesRequest::isMethod('post')) {
+            $update = $request->validated();
+            unset($update['p_type']);
             // Update user information
-            User::where('id', $this->user_id)->update($request->validated());
+            User::whereId($this->user_id)->update($update);
         }
 
-        $query = Social::query();
-        $platform = $query->distinct()
-                    ->pluck('platform');
-        $social = $query->get();
-            // ->appends($request->all());
+        $social = Social::all();
 
         return view('home.step.layout.index', [
             'title'             => 'Pmaker - Step 4',
             'content'           => 'step-4',
             'social'            => $social,
-            'platform'          => $platform,
+            'platform'          => $social->pluck('platform')->unique(),
             'platform_default'  => $this->getPlatformDefault(),
         ]);
     }
 
-    public function step5()
+    public function step5(CheckDataStep4Request $request)
     {
-        return view('home.step.step-5',[
+        // dd(FacadesRequest::all());
+        return view('home.step.layout.index',[
+            'title'             => 'Pmaker - Step 5',
+            'content'           => 'step-5',
             'layouts' => $this->getLayout(),
         ]);
     }

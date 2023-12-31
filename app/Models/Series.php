@@ -35,7 +35,7 @@ class Series extends Model
      * @return static
      */
     public static function getSeries($user_id, $series_id) {
-        return static::where('user_id', $user_id)->where('id', $series_id)->first();
+        return static::whereUserId($user_id)->whereId($series_id)->first();
     }
 
     /**
@@ -45,6 +45,6 @@ class Series extends Model
      * @return static
      */
     public static function getAllSeriesByUser($user_id) {
-        return static::where('user_id', $user_id)->get();
+        return static::whereUserId($user_id)->get();
     }
 }

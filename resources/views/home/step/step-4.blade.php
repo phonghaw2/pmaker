@@ -4,6 +4,15 @@
 
 <div class="pick-container">
     <div class="project-dv">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <h1 class="h4 margin-bottom-16" style="color: #7bf2f6;">Step 4: Make your social network</h1>
     </div>
     <div class="flex pmaker-info p-mask">
@@ -16,7 +25,9 @@
             </div>
         </div>
         <div class="p-col right">
-            <form action="" class="form-info">
+            <form method="post" action="{{ route('step.step_5') }}" id="step-save" class="form-info">
+                @csrf
+                @method('POST')
                 <div class="card">
                     <div class="front card-item">
                         <div class="form-col" id="social-div">
@@ -51,6 +62,15 @@
 </div>
 
 @include('home.step.layout.p-func-right')
+
+{{-- <form method="post" action="{{ route('step.step_5') }}" id="step-save" class="form-info">
+    @csrf
+    @method('POST')
+    <input type="hidden" id="p_type" name="p_type" value="{{ $data->p_type }}" />
+    <input type="hidden" id="tech_stack" name="tech_stack" value="">
+    <input type="hidden" id="education" name="education" value="">
+    <input type="hidden" id="skill_stack" name="skill_stack" value="">
+</form> --}}
 
 @push('js-step')
     <script src="{{ asset('js/step4.js') }}"></script>

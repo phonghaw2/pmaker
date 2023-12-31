@@ -22,20 +22,20 @@
                         <div class="form-col">
                             <label class="label" for="tag-input">Tech Stack? <span title="required">*</span></label>
                             <div class="tag-container">
-                                @if (old('p_tech_stack'))
-                                    @foreach (explode('|pts|', old('p_tech_stack')) as $name)
+                                @if (old('tech_stack'))
+                                    @foreach (explode($separation, old('tech_stack')) as $name)
                                     <div class="tag">
                                         <span data-tag-name="{{ $name }}">{{ $name }}</span>
                                         <svg viewBox="0 0 50 50" width="16px" height="16px" onclick="remove(this, '')"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"/></svg>
                                     </div>
                                     @endforeach
-                                @elseif (!$data->tech_stack)
+                                @elseif (!$data->tech_stack_array)
                                     <div class="tag">
                                         <span>Example</span>
                                         <svg viewBox="0 0 50 50" width="16px" height="16px" onclick="remove(this, '')"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"/></svg>
                                     </div>
                                 @else
-                                    @foreach ($data->tech_stack as $name)
+                                    @foreach ($data->tech_stack_array as $name)
                                     <div class="tag">
                                         <span data-tag-name="{{ $name }}">{{ $name }}</span>
                                         <svg viewBox="0 0 50 50" width="16px" height="16px" onclick="remove(this, '')"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"/></svg>
@@ -44,7 +44,7 @@
                                 @endif
                                 <input type="text" id="tag-input" maxlength="20" value="">
                             </div>
-                            @error('p_tech_stack')
+                            @error('tech_stack')
                                 <button class="btn-msg-error">{{ $message }}</button>
                             @enderror
                         </div>
@@ -89,18 +89,18 @@
                                     </button>
                                 </div>
                             </div>
-                            @if (old('p_education'))
-                                @foreach (explode('|pts|', old('p_education')) as $name)
+                            @if (old('education'))
+                                @foreach (explode('|pts|', old('education')) as $name)
                                 <input class="field" data-p-education="" value="{{ $name }}" type="text" maxlength="150">
                                 @endforeach
-                            @elseif (!$data->education)
+                            @elseif (!$data->education_array)
                                 <input class="field" data-p-education="" type="text" placeholder="University of California, Los Angeles" maxlength="150">
                             @else
-                                @foreach ($data->education as $name)
+                                @foreach ($data->education_array as $name)
                                 <input class="field" data-p-education="" value="{{ $name }}" type="text" maxlength="150">
                                 @endforeach
                             @endif
-                            @error('p_education')
+                            @error('education')
                                 <button class="btn-msg-error">{{ $message }}</button>
                             @enderror
                         </div>
@@ -337,12 +337,6 @@
 
 @include('home.step.layout.p-func-left')
 @include('home.step.layout.p-func-right')
-
-<form action="{{ route('step.step_4') }}" method="post" id="step_save">
-    @csrf
-    <input type="hidden" id="type" name="p_type" value="">
-    <input type="hidden" id="type" name="p_next_step" value="2">
-</form>
 
 @push('js-step')
     <script>

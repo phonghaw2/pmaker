@@ -21,9 +21,9 @@ class Experience extends Model
     ];
 
     public static function checkExists(array $experience) {
-        return static::where('user_id', $experience['user_id'])
-                    ->where('company_name', $experience['company_name'])
-                    ->where('title', $experience['title'])
+        return static::whereUserId($experience['user_id'])
+                    ->whereCompanyName($experience['company_name'])
+                    ->whereTitle($experience['title'])
                     ->exists();
     }
 }

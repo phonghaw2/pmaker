@@ -19,7 +19,8 @@
         </ul>
     </div>
     <input class="field social-field" type="text"
-            name="{{ $name }}" value="" required
+            name="{{ $name }}" value=""
             placeholder="{{ $placeholder }}"
             maxlength="{{ $length }}">
+    <input id="image_{{ $name }}" type="hidden" name="image_{{ $name }}" value="{{ asset($path) }}">
 </div>

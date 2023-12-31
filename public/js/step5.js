@@ -1,14 +1,6 @@
 $(document).ready(function () {
     $('.form-info').submit(false);
 
-    $('.f-next').click( function( event ) {
-        window.location.href = "/main/step-5";
-    });
-
-    $('.f-back').click( function( event ) {
-        window.location.href = "/main/step-4";
-    });
-
     //------------Social Field-----------//
     const socialDiv = $('#social-div');
 

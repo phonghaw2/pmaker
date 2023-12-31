@@ -1,3 +1,7 @@
+@push('css-step')
+    <link rel="stylesheet" href="{{ asset('css/home/step5.min.css') }}">
+@endpush
+
 <div class="pick-container">
     <div class="project-dv">
         <h1 class="h4 margin-bottom-16" style="color: #7bf2f6;">Step 5: Your almost done!</h1>
@@ -48,6 +52,6 @@
 @include('home.step.layout.p-func-right')
 
 @push('js-step')
-    <script src="{{ asset('js/step4.js') }}"></script>
+    <script src="{{ asset('js/step5.js') }}"></script>
 @endpush
 

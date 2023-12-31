@@ -16,10 +16,12 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        $user_id = auth()->user()->id;
-        $this->user = User::where('id', $user_id)->first();
-        $this->user->user_code = md5($this->user->name . 'salt' . $this->user->id);
-        FacadesView::share('data', $this->user);
+        if (auth()->check()) {
+            $user_id = auth()->user()->id;
+            $this->user = User::where('id', $user_id)->first();
+            $this->user->user_code = md5($this->user->name . 'salt' . $this->user->id);
+            FacadesView::share('data', $this->user);
+        }
     }
 
     public function index()

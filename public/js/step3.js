@@ -15,10 +15,6 @@ $(document).ready(function () {
         $('.p-func-left').removeClass('f-show');
     });
 
-    $('.f-back').click( function( event ) {
-        window.location.href = "/main/step-2";
-    });
-
     //----------TAG-------------//
     const input = document.querySelector('#tag-input');
     // Catch event and make a tag

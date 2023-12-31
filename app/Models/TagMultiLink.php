@@ -37,7 +37,7 @@ class TagMultiLink extends Model
      */
     static function allTags($userId)
     {
-        return static::where('user_id', $userId)
+        return static::whereUserId($userId)
                 ->whereNull('parent_tag_id')
                 ->get();
     }
@@ -85,7 +85,7 @@ class TagMultiLink extends Model
      */
     static function getTags($userId, $tagId)
     {
-        return static::where('user_id', $userId)->where('id',  $tagId)->first();
+        return static::whereUserId($userId)->whereId($tagId)->first();
     }
 
     /**
@@ -97,7 +97,7 @@ class TagMultiLink extends Model
      */
     static function getLinksByTagId($userId, $tagId)
     {
-        return static::where('user_id', $userId)->where('parent_tag_id', $tagId)->get('link');
+        return static::whereUserId($userId)->where('parent_tag_id', $tagId)->get('link');
     }
 
     /**
@@ -109,8 +109,8 @@ class TagMultiLink extends Model
      */
     static function deleteTags($userId, $tagId)
     {
-        return static::where('user_id', $userId)
-                ->where('id', $tagId)
+        return static::whereUserId($userId)
+                ->whereId($tagId)
                 ->whereNull('parent_tag_id')
                 ->orWhere('parent_tag_id', $tagId)
                 ->delete();

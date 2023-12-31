@@ -52,6 +52,7 @@ Route::group([
 Route::group([
     'as' => 'step.',
     'prefix' => 'main',
+    'middleware' => 'hasLogged',
 ], static function () {
     // FULL MAIN STEP TO CREATE PAGE
     Route::get('/', [StepController::class, 'guide'])->name('guide');

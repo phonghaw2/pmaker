@@ -13,6 +13,9 @@
         @case('step-4')
             @include('home.step.step-4')
             @break
+        @case('step-5')
+            @include('home.step.step-5')
+            @break
         @default
             @include('home.step.step-1')
             @break

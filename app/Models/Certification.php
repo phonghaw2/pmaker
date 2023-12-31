@@ -22,15 +22,15 @@ class Certification extends Model
 
     public function getDataFormId($user_id)
     {
-        $data = static::where('user_id', $user_id)->get();
+        $data = static::whereUserId($user_id)->get();
         return $data;
     }
 
     public static function checkExists(array $certification)
     {
-        return static::where('user_id', $certification['user_id'])
-                    ->where('name', $certification['name'])
-                    ->where('organization', $certification['organization'])
+        return static::whereUserId($certification['user_id'])
+                    ->whereName($certification['name'])
+                    ->whereOrganization($certification['organization'])
                     ->exists();
     }
 
