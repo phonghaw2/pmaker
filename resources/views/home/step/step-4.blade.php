@@ -30,6 +30,9 @@
                 @method('POST')
                 <div class="card">
                     <div class="front card-item">
+                        {{-- @error('p_name')
+                            <button class="btn-msg-error">{{ $message }}</button>
+                        @enderror --}}
                         <div class="form-col" id="social-div">
                             <label class="label" for="name" style="margin-bottom: 2vw;">What your's URL? <span title="required">*</span></label>
                             @foreach ($platform_default as $data)
@@ -42,7 +45,7 @@
                                 <span class="basebtn-content">Add More Link</span>
                                 <span class="basebtn-content-link">
                                     @foreach ($platform as $item)
-                                        @if (!in_array($item, array('twitter', 'facebook', 'instagram', 'youtube')))
+                                        @if (!in_array($item, array('x', 'facebook', 'instagram', 'youtube')))
                                             <img src="{{ asset('images/' . $item . '_default.svg') }}"
                                             alt="{{ $item }}" title="{{ $item }}" data-platform="{{ $item }}">
                                         @endif

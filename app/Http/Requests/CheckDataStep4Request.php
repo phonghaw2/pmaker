@@ -35,7 +35,6 @@ class CheckDataStep4Request extends FormRequest
         $rules = [];
 
         $platform = Social::all()->pluck('platform')->unique();
-        dd($platform);
         foreach ($platform as $name) {
             if (!isset($pattern_link_ary[strtoupper($name)])) continue;
             $rules[$name] = [
@@ -43,63 +42,15 @@ class CheckDataStep4Request extends FormRequest
                 'max:250',
                 'regex:/' . $pattern_link_ary[strtoupper($name)]->value . '/i',
             ];
+            // Rule: image of platform
+            $rules['image_' . $name] = [
+                'required_with:' . $name,
+                'nullable',
+                'max:250'
+            ];
         }
 
-        dd($rules);
-        return [
-            // 'your_website' => [
-            //     'string',
-            //     'max:250',
-            //     'active_url',
-            //     'url:http,https',
-            // ],
-            'facebook' => [
-                'nullable',
-                'max:250',
-                'regex:/' . PatternLinkEnum::FACEBOOK . '/i',
-            ],
-            'image_facebook' => [
-                'required_with:facebook',
-                'nullable',
-                'max:250',
-            ],
-            'x_link' => [
-                'string',
-                'max:250',
-                'active_url',
-                'url:http,https',
-                'regex:/' . PatternLinkEnum::X . '/i',
-
-            ],
-            'linked_link' => [
-                'string',
-                'max:250',
-                'active_url',
-                'url:http,https',
-                'regex:/' . PatternLinkEnum::LINKED . '/i',
-            ],
-            'youtube_link' => [
-                'string',
-                'max:250',
-                'active_url',
-                'url:http,https',
-                'regex:/' . PatternLinkEnum::YOUTUBE . '/i',
-            ],
-            'github_link' => [
-                'string',
-                'max:250',
-                'active_url',
-                'url:http,https',
-                'regex:/' . PatternLinkEnum::GITHUB . '/i',
-            ],
-            'daily_link' => [
-                'string',
-                'max:250',
-                'active_url',
-                'url:http,https',
-                'regex:/' . PatternLinkEnum::DAILY . '/i',
-            ],
-        ];
+        return $rules;
     }
 
     public function messages()

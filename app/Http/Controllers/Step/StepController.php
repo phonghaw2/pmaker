@@ -106,11 +106,18 @@ class StepController extends Controller
             'social'            => $social,
             'platform'          => $social->pluck('platform')->unique(),
             'platform_default'  => $this->getPlatformDefault(),
+            'platform_old'      => $this->getPlatformOld($social, old()),
         ]);
     }
 
     public function step5(CheckDataStep4Request $request)
     {
+        if (FacadesRequest::isMethod('post')) {
+            $update = $request->validated();
+            unset($update['p_type']);
+            // Update user information
+            User::whereId($this->user_id)->update($update);
+        }
         // dd(FacadesRequest::all());
         return view('home.step.layout.index',[
             'title'             => 'Pmaker - Step 5',
@@ -119,7 +126,8 @@ class StepController extends Controller
         ]);
     }
 
-    public function getPlatformDefault() {
+    public function getPlatformDefault()
+    {
         return [
             [
                 'name'          => 'facebook',
@@ -134,7 +142,7 @@ class StepController extends Controller
                 'length'        => '100',
             ],
             [
-                'name'          => 'twitter',
+                'name'          => 'x',
                 'path'          => 'images/twitter_default.svg',
                 'placeholder'   => '/HPhong24261595',
                 'length'        => '100',
@@ -148,7 +156,8 @@ class StepController extends Controller
         ];
     }
 
-    public function getLayout() {
+    public function getLayout()
+    {
         return [
             [
                 'name' => 'Magazine Layout',
@@ -166,5 +175,26 @@ class StepController extends Controller
                 'img'  => 'grid.png'
             ],
         ];
+    }
+
+    public function getPlatformOld($social, $old = array())
+    {
+        if (count($old) == 0) {
+            return [];
+        }
+
+        $ret = [];
+        foreach ($social as $item) {
+            if (!in_array($item->platform, $old)) continue;
+
+            $ret[] = [
+                'name'          => $item->platform,
+                'path'          => $item->file_path,
+                'placeholder'   => '/user-name',
+                'length'        => '100',
+            ];
+        }
+
+        return $ret;
     }
 }
